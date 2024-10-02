@@ -1,0 +1,11 @@
+@import "./../variables.scss";
+
+@mixin apply-theme($theme-colors) {
+  background-color: map-get($theme-colors, pgpt-color-background);
+  color: map-get($theme-colors, pgpt-color-text);
+}
+
+@mixin pgpt-theme($theme-name) {
+  $theme-colors: map-get($themes, $theme-name);
+  @include apply-theme($theme-colors);
+}

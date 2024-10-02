@@ -1,6 +1,13 @@
 @import "./variables.scss";
+@import "./Styles/theme_mixins.scss";
 
 body {
-  background-color: var(--pgpt-background-color);
-  color: var(--pgpt-text-color);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  @include pgpt-theme(light);
+}
+
+body.dark-theme {
+  @include pgpt-theme(dark);
 }
