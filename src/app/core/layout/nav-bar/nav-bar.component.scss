@@ -1,0 +1,19 @@
+@import "./../../../../variables.scss";
+
+.nav-bar-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-16;
+
+  .theme-toggle {
+    font-size: $pgpt-font-size-body-medium;
+    color: var(--pgpt-color-text);
+  }
+
+  span {
+    font-size: $pgpt-font-size-body-medium;
+  }
+}

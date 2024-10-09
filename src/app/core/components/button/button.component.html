@@ -1,0 +1,14 @@
+<div
+  class="button"
+  [ngClass]="{
+    'base-button':buttonType === 'base',
+    'primary': buttonType === 'primary', 
+    'disabled': buttonType === 'disabled', 
+    'fill': buttonType === 'fill', 
+    'small': buttonSize === 'small', 
+    'medium': buttonSize === 'medium', 
+    'large': buttonSize === 'large'
+  }"
+>
+  <ng-content></ng-content>
+</div>

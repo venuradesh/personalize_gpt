@@ -1,45 +1,71 @@
-$light-theme-colors: (
-  pgpt-color-background: #f2f2f2,
-  pgpt-color-background-variant: #f9f9f9,
-  pgpt-color-background-hover: #e8e8e8,
-  pgpt-color-background-selected: #d9d9d9,
-  pgpt-color-background-selected-hover: #d2d2d2,
-  pgpt-color-theme-blue: #0798f2,
-  pgpt-color-theme-blue-hover: #0173d1,
-  pgpt-color-theme-yellow: #f2bc1b,
-  pgpt-color-theme-yellow-hover: #d9a918,
-  pgpt-color-text: #1a1b46,
-  pgpt-color-text-link: #0173d1,
-  pgpt-color-text-weak: #3e484d,
-  pgpt-color-text-hint: #a2a2a5,
-  pgpt-color-text-static-light: #fafafa,
-  pgpt-color-border-contrast: #000000,
-  pgpt-color-border-medium: #d9d9d9,
-  pgpt-color-border-soft: #e8e8e8,
-);
+// Colors
+$pgpt-color-background: #f2f2f2;
+$pgpt-color-background-transparent: transparent;
+$pgpt-color-background-variant: #f9f9f9;
+$pgpt-color-background-hover: #e8e8e8;
+$pgpt-color-background-selected: #d9d9d9;
+$pgpt-color-background-selected-hover: #d2d2d2;
+$pgpt-color-theme-blue: #0798f2;
+$pgpt-color-theme-blue-hover: #0173d1;
+$pgpt-color-theme-yellow: #f2bc1b;
+$pgpt-color-theme-yellow-hover: #d9a918;
+$pgpt-color-text: #1a1b46;
+$pgpt-color-text-link: #0173d1;
+$pgpt-color-text-weak: #3e484d;
+$pgpt-color-text-hint: #a2a2a5;
+$pgpt-color-contrast: #1a1b1d;
+$pgpt-color-text-static-light: #fafafa;
+$pgpt-color-border-contrast: #000000;
+$pgpt-color-border-medium: #d9d9d9;
+$pgpt-color-border-soft: #e8e8e8;
 
-$dark-theme-colors: (
-  pgpt-color-background: #0f0f23,
-  pgpt-color-background-variant: #0f0f1e,
-  pgpt-color-background-hover: #141437,
-  pgpt-color-background-selected: #232332,
-  pgpt-color-background-selected-hover: #282d41,
-  pgpt-color-theme-blue: #0798f2,
-  pgpt-color-theme-blue-hover: #0173d1,
-  pgpt-color-theme-yellow: #f2bc1b,
-  pgpt-color-theme-yellow-hover: #d9a918,
-  pgpt-color-text: #fafafa,
-  pgpt-color-text-link: #06b4ff,
-  pgpt-color-text-weak: #d2d2d2,
-  pgpt-color-text-hint: #8c8c8c,
-  pgpt-color-text-static-light: #fafafa,
-  pgpt-color-text-static-dark: #1a1b1d,
-  pgpt-color-border-contrast: #ffffff,
-  pgpt-color-border-medium: #636769,
-  pgpt-color-border-soft: #3e484d,
-);
+// logo icon
+$pgpt-logo-icon-no-stroke-low-res: url("./../assets/Icons/logo-low.png");
+$pgpt-logo-icon-no-stroke-high-res: url("./../assets/Icons/logo.png");
+$pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke.png");
+$pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke-low.png");
 
-$themes: (
-  light: $light-theme-colors,
-  dark: $dark-theme-colors,
-);
+// border width
+$pgpt-border-width-regular: 1px;
+$pgpt-border-width-focus: 2px;
+
+// spacing
+$pgpt-spacing-16: 1rem;
+$pgpt-spacing-8: 0.5rem;
+$pgpt-spacing-4: 0.25rem;
+$pgpt-spacing-2: 0.125rem;
+$pgpt-spacing-base-rem: 1rem;
+
+// sizing
+$pgpt-sizing-16: 1rem;
+$pgpt-sizing-8: 0.5rem;
+$pgpt-sizing-4: 0.25rem;
+$pgpt-sizing-base-rem: 1rem;
+
+// Radius
+$pgpt-radius-l: 1rem;
+$pgpt-radius-m: 0.5rem;
+$pgpt-radius-s: 0.25rem;
+
+// typography
+// font-size
+$pgpt-font-size-micro: 0.625rem;
+$pgpt-font-size-body-small: 0.75rem;
+$pgpt-font-size-body-medium: 0.875rem;
+$pgpt-font-size-body: 1rem;
+$pgpt-font-size-display-small: 1.5rem;
+$pgpt-font-size-display-medium: 2rem;
+$pgpt-font-size-display-large: 2.5rem;
+$pgpt-font-size-display-extralarge: 4rem;
+
+// font-weight
+$pgpt-font-weight-bold: 700;
+$pgpt-font-weight-semibold: 600;
+$pgpt-font-weight-regular: 400;
+
+// line height
+$pgpt-line-height-flowing: 1.5;
+$pgpt-line-height-regular: 1;
+
+// Font Family
+$pgpt-font-family-default: "Open Sans", sans-serif;

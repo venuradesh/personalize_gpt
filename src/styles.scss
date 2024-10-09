@@ -1,13 +1,61 @@
 @import "./variables.scss";
-@import "./Styles/theme_mixins.scss";
 
-body {
+:root {
+  --pgpt-color-background: #f2f2f2;
+  --pgpt-color-background-variant: #f9f9f9;
+  --pgpt-color-background-hover: #e8e8e8;
+  --pgpt-color-background-selected: #d9d9d9;
+  --pgpt-color-background-selected-hover: #d2d2d2;
+  --pgpt-color-text: #1a1b46;
+  --pgpt-color-text-link: #0173d1;
+  --pgpt-color-text-weak: #3e484d;
+  --pgpt-color-text-hint: #a2a2a5;
+  --pgpt-color-text-static-light: #fafafa;
+  --pgpt-color-border-contrast: #000000;
+  --pgpt-color-border-medium: #d9d9d9;
+  --pgpt-color-border-soft: #e8e8e8;
+  --pgpt-color-contrast: #1a1b1d;
+  --pgpt-color-theme-blue: #0798f2;
+  --pgpt-color-theme-blue-hover: #0173d1;
+  --pgpt-color-theme-yellow: #f2bc1b;
+  --pgpt-color-theme-yellow-hover: #d9a918;
+}
+
+.dark-theme {
+  --pgpt-color-background: #0f0f23;
+  --pgpt-color-background-variant: #0f0f1e;
+  --pgpt-color-background-hover: #2d2e2f;
+  --pgpt-color-background-selected: #232332;
+  --pgpt-color-background-selected-hover: #282d41;
+  --pgpt-color-text: #fafafa;
+  --pgpt-color-text-link: #06b4ff;
+  --pgpt-color-text-weak: #d2d2d2;
+  --pgpt-color-text-hint: #8c8c8c;
+  --pgpt-color-text-static-light: #fafafa;
+  --pgpt-color-text-static-dark: #1a1b1d;
+  --pgpt-color-border-contrast: #ffffff;
+  --pgpt-color-border-medium: #636769;
+  --pgpt-color-border-soft: #3e484d;
+  --pgpt-color-contrast: #fafafa;
+}
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  @include pgpt-theme(light);
 }
 
-body.dark-theme {
-  @include pgpt-theme(dark);
+body {
+  background-color: var(--pgpt-color-background);
+  color: var(--pgpt-color-theme);
+  font-family: $pgpt-font-family-default;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

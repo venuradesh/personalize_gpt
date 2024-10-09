@@ -11,9 +11,5 @@ import { ThemeService } from "./services/theme.service";
   styleUrl: "./app.component.scss",
 })
 export class AppComponent {
-  constructor(private themeService: ThemeService) {}
-
-  public toggleTheme(): void {
-    this.themeService.toggleTheme();
-  }
+  constructor() {}
 }
