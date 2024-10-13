@@ -33,12 +33,12 @@ export class NavBarComponent implements OnInit {
   }
 
   //#region Check Button status
-  checkButtonStatus(): void {
+  private checkButtonStatus(): void {
     if (this.router.url === "/start") {
       this.resetButtonStatus();
     }
 
-    if (this.router.url === "login") {
+    if (this.router.url === "/login") {
       this.navBarButtonStatus.loginButton = false;
     }
 
@@ -49,7 +49,7 @@ export class NavBarComponent implements OnInit {
   //#endregion
 
   //#region Reset Button Status
-  resetButtonStatus(): void {
+  private resetButtonStatus(): void {
     this.navBarButtonStatus = {
       loginButton: true,
       registerButton: true,
