@@ -14,6 +14,4 @@ export class ButtonComponent {
 
   @Input()
   buttonSize: "small" | "medium" | "large" = "small";
-
-  constructor() {}
 }
