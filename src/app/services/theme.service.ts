@@ -26,7 +26,7 @@ export class ThemeService {
     }
   }
 
-  private isDarkTheme(): boolean {
+  public isDarkTheme(): boolean {
     return document.body.classList.contains(this.DARK_THEME_CLASS);
   }
 
