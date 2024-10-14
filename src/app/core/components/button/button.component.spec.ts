@@ -2,23 +2,55 @@ import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { ButtonComponent } from "./button.component";
 import { By } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 
 describe("ButtonComponent", () => {
   let component: ButtonComponent;
   let fixture: ComponentFixture<ButtonComponent>;
+  let mockRouter: Partial<Router>;
 
   beforeEach(async () => {
+    mockRouter = {
+      navigate: jest.fn(),
+    };
+
     await TestBed.configureTestingModule({
       imports: [ButtonComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
+    component["router"] = mockRouter as Router;
     fixture.detectChanges();
   });
 
   it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  describe("onButtonClick", () => {
+    it("should call naviagte method when navigateTo is provided", () => {
+      const spy = jest.spyOn(mockRouter, "navigate");
+      component.navigateTo = { to: "/login" };
+      component.onButtonClick();
+
+      expect(spy).toHaveBeenCalledWith(["/login"], { state: undefined });
+    });
+
+    it("should call navigate button with state if state provided", () => {
+      const spy = jest.spyOn(mockRouter, "navigate");
+      component.navigateTo = { to: "/login", state: { user_name: "abc" } };
+
+      component.onButtonClick();
+      expect(spy).toHaveBeenCalledWith(["/login"], { state: { user_name: "abc" } });
+    });
+
+    it("should not call naviagte method if navigateTo is not given", () => {
+      const spy = jest.spyOn(mockRouter, "navigate");
+      component.onButtonClick();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
   });
 
   describe("Shallow tests", () => {
