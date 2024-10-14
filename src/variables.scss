@@ -1,0 +1,56 @@
+@import "./Styles/responsive.scss";
+
+// logo icon
+$pgpt-logo-icon-no-stroke-low-res: url("./../assets/Icons/logo-low.png");
+$pgpt-logo-icon-no-stroke-high-res: url("./../assets/Icons/logo.png");
+$pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke.png");
+$pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke-low.png");
+
+// border width
+$pgpt-border-width-regular: 1px;
+$pgpt-border-width-focus: 2px;
+
+// spacing
+$pgpt-spacing-16: 1rem;
+$pgpt-spacing-8: 0.5rem;
+$pgpt-spacing-4: 0.25rem;
+$pgpt-spacing-2: 0.125rem;
+$pgpt-spacing-base-rem: 1rem;
+
+//focus box shadow
+$pgpt-focus-box-shadow: 0 0 0 2px var(--pgpt-color-focus);
+
+// sizing
+$pgpt-sizing-16: 1rem;
+$pgpt-sizing-8: 0.5rem;
+$pgpt-sizing-4: 0.25rem;
+$pgpt-sizing-base-rem: 1rem;
+
+// Radius
+$pgpt-radius-l: 1rem;
+$pgpt-radius-m: 0.5rem;
+$pgpt-radius-s: 0.25rem;
+
+// typography
+// font-size
+$pgpt-font-size-micro: 0.625rem;
+$pgpt-font-size-body-small: 0.75rem;
+$pgpt-font-size-body-medium: 0.875rem;
+$pgpt-font-size-body: 1rem;
+$pgpt-font-size-display-small: 1.5rem;
+$pgpt-font-size-display-medium: 2rem;
+$pgpt-font-size-display-large: 2.5rem;
+$pgpt-font-size-display-extralarge: 4rem;
+
+// font-weight
+$pgpt-font-weight-bold: 700;
+$pgpt-font-weight-semibold: 600;
+$pgpt-font-weight-lighter-bold: 500;
+$pgpt-font-weight-regular: 400;
+
+// line height
+$pgpt-line-height-flowing: 1.5;
+$pgpt-line-height-regular: 1;
+
+// Font Family
+$pgpt-font-family-default: "Open Sans", sans-serif;

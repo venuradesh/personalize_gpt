@@ -1,0 +1,70 @@
+@import "./../../../../Styles/include.scss";
+
+.button {
+  font-size: $pgpt-font-size-body-small;
+  line-height: $pgpt-line-height-regular;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: relative;
+  border-radius: $pgpt-radius-s;
+  cursor: pointer;
+  margin-inline: $pgpt-spacing-4;
+
+  &:focus {
+    outline: none;
+    box-shadow: $pgpt-focus-box-shadow;
+  }
+
+  &.base-button {
+    background-color: var(--pgpt-color-background-transparent);
+
+    &:hover {
+      background-color: var(--pgpt-color-background-hover);
+    }
+  }
+
+  &.primary {
+    background-color: var(--pgpt-color-theme-blue);
+    color: var(--pgpt-color-text-static-light);
+
+    &:hover {
+      background-color: var(--pgpt-color-theme-blue-hover);
+    }
+  }
+
+  &.disabled {
+    color: var(--pgpt-color-text);
+    pointer-events: none !important;
+    cursor: default !important;
+
+    & > span {
+      opacity: 0.5 !important;
+    }
+  }
+
+  &.fill {
+    background-color: var(--pgpt-color-theme-yellow);
+    color: var(--pgpt-color-text);
+
+    &:hover {
+      background-color: var(--pgpt-color-theme-yellow-hover);
+    }
+  }
+
+  &.small {
+    padding-inline: $pgpt-sizing-8;
+    padding-block: $pgpt-sizing-8;
+  }
+
+  &.medium {
+    padding-inline: $pgpt-spacing-16;
+    padding-block: $pgpt-sizing-8;
+  }
+
+  &.large {
+    padding-inline: calc($pgpt-spacing-base-rem * 2);
+    padding-block: calc($pgpt-spacing-base-rem * 0.675);
+  }
+}

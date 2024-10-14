@@ -1,0 +1,16 @@
+<div
+  class="button"
+  [ngClass]="{
+    'base-button':buttonType === 'base',
+    'disabled': buttonType === 'disabled', 
+    'primary': buttonType === 'primary', 
+    'fill': buttonType === 'fill', 
+    'small': buttonSize === 'small', 
+    'medium': buttonSize === 'medium', 
+    'large': buttonSize === 'large'
+  }"
+  tabindex="0"
+  (click)="onButtonClick()"
+>
+  <ng-content></ng-content>
+</div>

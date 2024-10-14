@@ -1,0 +1,67 @@
+$small-screen: 420px;
+$medium-screen: 768px;
+$large-screen: 1024px;
+$xl-screen: 1920px;
+
+$screen-ranges: (
+  "sm-only": (
+    lower-bound: 0,
+    upper-bound: $small-screen,
+  ),
+  "sm-up": (
+    lower-bound: $small-screen + 1,
+    upper-bound: null,
+  ),
+  "md-down": (
+    lower-bound: null,
+    upper-bound: $medium-screen,
+  ),
+  "md-only": (
+    lower-bound: $small-screen + 1,
+    upper-bound: $medium-screen,
+  ),
+  "md-up": (
+    lower-bound: $medium-screen + 1,
+    upper-bound: null,
+  ),
+  "lg-down": (
+    lower-bound: null,
+    upper-bound: $large-screen,
+  ),
+  "lg-only": (
+    lower-bound: $medium-screen + 1,
+    upper-bound: $large-screen,
+  ),
+  "lg-up": (
+    lower-bound: $large-screen + 1,
+    upper-bound: null,
+  ),
+  "xl-down": (
+    lower-bound: null,
+    upper-bound: $xl-screen,
+  ),
+  "xl-up": (
+    lower-bound: $xl-screen + 1,
+    upper-bound: null,
+  ),
+);
+
+@mixin media($range) {
+  $bounds: map-get($screen-ranges, $range);
+  $lower: map-get($bounds, lower-bound);
+  $upper: map-get($bounds, upper-bound);
+
+  @if $upper == null {
+    @media only screen and (min-width: $lower) {
+      @content;
+    }
+  } @else if $lower == null {
+    @media only screen and (max-width: $upper) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $lower) and (max-width: $upper) {
+      @content;
+    }
+  }
+}
