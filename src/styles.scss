@@ -20,6 +20,10 @@
   --pgpt-color-theme-blue-hover: #0173d1;
   --pgpt-color-theme-yellow: #f2bc1b;
   --pgpt-color-theme-yellow-hover: #d9a918;
+
+  --pgpt-logo-sm: 3rem;
+  --pgpt-logo-md: 5rem;
+  --pgpt-logo-large: clamp(20rem, 70vw, 25rem);
 }
 
 :root {
@@ -39,6 +43,12 @@
     --pgpt-color-border-medium: #636769;
     --pgpt-color-border-soft: #3e484d;
     --pgpt-color-contrast: #fafafa;
+  }
+}
+
+@include media("lg-down") {
+  :root {
+    --pgpt-logo-large: clamp(15rem, 70vw, 20rem);
   }
 }
 

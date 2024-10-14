@@ -1,12 +1,10 @@
+@import "./Styles/responsive.scss";
+
 // logo icon
 $pgpt-logo-icon-no-stroke-low-res: url("./../assets/Icons/logo-low.png");
 $pgpt-logo-icon-no-stroke-high-res: url("./../assets/Icons/logo.png");
 $pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke.png");
 $pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke-low.png");
-
-$pgpt-logo-sm: 3rem;
-$pgpt-logo-md: 5rem;
-$pgpt-logo-large: clamp(20rem, 50vw, 25rem);
 
 // border width
 $pgpt-border-width-regular: 1px;

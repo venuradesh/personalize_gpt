@@ -36,6 +36,10 @@
         right: 0;
         bottom: 0;
       }
+
+      @include media("md-down") {
+        display: none;
+      }
     }
   }
 
@@ -49,10 +53,15 @@
 
     .logo-container {
       background-image: $pgpt-logo-icon-with-stroke-low-res;
-      width: $pgpt-logo-large;
-      height: $pgpt-logo-large;
+      width: var(--pgpt-logo-large);
+      height: var(--pgpt-logo-large);
       background-repeat: no-repeat;
+      background-position: center;
       background-size: contain;
+
+      @include media("lg-down") {
+        margin-block-end: calc($pgpt-spacing-base-rem * 3);
+      }
     }
 
     .content-container {
@@ -68,6 +77,11 @@
         font-size: $pgpt-font-size-body;
         margin-block-start: $pgpt-spacing-8;
         cursor: default;
+
+        @include media("lg-down") {
+          font-size: $pgpt-font-size-body-small;
+          margin-block-start: $pgpt-spacing-16;
+        }
       }
 
       .heading {
@@ -80,6 +94,10 @@
         span {
           color: var(--pgpt-color-theme-blue);
         }
+
+        @include media("lg-down") {
+          font-size: $pgpt-font-size-display-large;
+        }
       }
 
       .get-start-btn {
@@ -91,10 +109,15 @@
           color: var(--pgpt-color-text);
         }
       }
-    }
-  }
 
-  @include media("sm-only") {
-    background-color: red;
+      @include media("lg-down") {
+        align-items: center;
+      }
+    }
+
+    @include media("lg-down") {
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 }
