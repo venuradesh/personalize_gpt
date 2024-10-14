@@ -16,4 +16,11 @@
   span {
     font-size: $pgpt-font-size-body-medium;
   }
+
+  .button {
+    span {
+      color: var(--pgpt-color-text) !important;
+      font-weight: $pgpt-font-weight-lighter-bold;
+    }
+  }
 }

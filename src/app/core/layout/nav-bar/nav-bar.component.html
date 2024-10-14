@@ -3,10 +3,10 @@
     <i class="material-icons-outlined theme-toggle" *ngIf="!isDarkMode">light_mode</i>
     <i class="material-icons-outlined theme-toggle" *ngIf="isDarkMode">contrast</i>
   </pgpt-button>
-  <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" *ngIf="navBarButtonStatus.loginButton">
+  <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.loginButton">
     <span>Login</span>
   </pgpt-button>
-  <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" *ngIf="navBarButtonStatus.registerButton">
+  <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.registerButton">
     <span>Register</span>
   </pgpt-button>
 </div>

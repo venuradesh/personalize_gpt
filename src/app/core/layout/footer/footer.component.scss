@@ -1,0 +1,17 @@
+@import "../../../../variables.scss";
+
+.footer-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  column-gap: $pgpt-sizing-8;
+  margin-block: $pgpt-spacing-16;
+  pointer-events: none;
+  cursor: default;
+
+  span {
+    font-size: $pgpt-font-size-body-small;
+    color: var(--pgpt-color-text-hint);
+  }
+}

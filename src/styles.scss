@@ -2,6 +2,7 @@
 
 :root {
   --pgpt-color-background: #f2f2f2;
+  --pgpt-color-background-transparent: transparent;
   --pgpt-color-background-variant: #f9f9f9;
   --pgpt-color-background-hover: #e8e8e8;
   --pgpt-color-background-selected: #d9d9d9;
@@ -21,22 +22,24 @@
   --pgpt-color-theme-yellow-hover: #d9a918;
 }
 
-.dark-theme {
-  --pgpt-color-background: #0f0f23;
-  --pgpt-color-background-variant: #0f0f1e;
-  --pgpt-color-background-hover: #2d2e2f;
-  --pgpt-color-background-selected: #232332;
-  --pgpt-color-background-selected-hover: #282d41;
-  --pgpt-color-text: #fafafa;
-  --pgpt-color-text-link: #06b4ff;
-  --pgpt-color-text-weak: #d2d2d2;
-  --pgpt-color-text-hint: #8c8c8c;
-  --pgpt-color-text-static-light: #fafafa;
-  --pgpt-color-text-static-dark: #1a1b1d;
-  --pgpt-color-border-contrast: #ffffff;
-  --pgpt-color-border-medium: #636769;
-  --pgpt-color-border-soft: #3e484d;
-  --pgpt-color-contrast: #fafafa;
+:root {
+  .dark-theme {
+    --pgpt-color-background: #03093e;
+    --pgpt-color-background-variant: #0f0f1e;
+    --pgpt-color-background-hover: #2d2e2f;
+    --pgpt-color-background-selected: #232332;
+    --pgpt-color-background-selected-hover: #282d41;
+    --pgpt-color-text: #fafafa;
+    --pgpt-color-text-link: #06b4ff;
+    --pgpt-color-text-weak: #d2d2d2;
+    --pgpt-color-text-hint: #8c8c8c;
+    --pgpt-color-text-static-light: #fafafa;
+    --pgpt-color-text-static-dark: #1a1b1d;
+    --pgpt-color-border-contrast: #ffffff;
+    --pgpt-color-border-medium: #636769;
+    --pgpt-color-border-soft: #3e484d;
+    --pgpt-color-contrast: #fafafa;
+  }
 }
 
 * {

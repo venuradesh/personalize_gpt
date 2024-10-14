@@ -1,21 +1,18 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 
 @Injectable({
   providedIn: "root",
 })
-export class ThemeService implements OnInit {
+export class ThemeService {
   private readonly LIGHT_THEME_CLASS = "light-theme";
   private readonly DARK_THEME_CLASS = "dark-theme";
   private readonly THEME_KEY = "app-theme";
 
   constructor() {
-    const isDark = this.isDarkTheme();
-    if (isDark) {
-      document.body.classList.add("dark-theme");
-    }
+    this.checkStorages();
   }
 
-  public ngOnInit(): void {
+  private checkStorages(): void {
     const savedTheme = localStorage.getItem(this.THEME_KEY);
     switch (savedTheme) {
       case this.LIGHT_THEME_CLASS:
@@ -25,7 +22,7 @@ export class ThemeService implements OnInit {
         this.enableDarkTheme();
         break;
       default:
-        this.enableLIghtTheme();
+        this.enableDarkTheme();
     }
   }
 

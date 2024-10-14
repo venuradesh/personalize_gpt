@@ -61,6 +61,6 @@
 
   &.large {
     padding-inline: calc($pgpt-spacing-base-rem * 2);
-    padding-block: $pgpt-spacing-16;
+    padding-block: calc($pgpt-spacing-base-rem * 0.675);
   }
 }

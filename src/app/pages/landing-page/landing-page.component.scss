@@ -1,0 +1,96 @@
+@import "./../../../variables.scss";
+
+.landing-page-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .landing-page-deco {
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    top: 1rem;
+    bottom: 1rem;
+    z-index: -1;
+
+    .border-indicator {
+      position: absolute;
+      width: calc($pgpt-sizing-base-rem * 5);
+      height: calc($pgpt-sizing-base-rem * 5);
+      border-color: var(--pgpt-color-theme-yellow);
+      border-style: solid;
+      border-width: $pgpt-sizing-4;
+
+      &.border-indicator-1 {
+        border-bottom: none;
+        border-right: none;
+        left: 0;
+        top: 0;
+      }
+
+      &.border-indicator-2 {
+        border-left: none;
+        border-top: none;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  .landing-page-container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    width: max-content;
+
+    .logo-container {
+      background-image: $pgpt-logo-icon-with-stroke-low-res;
+      width: $pgpt-logo-large;
+      height: $pgpt-logo-large;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .text {
+        font-family: $pgpt-font-family-default;
+        font-weight: $pgpt-font-weight-regular;
+        line-height: $pgpt-line-height-regular;
+        color: var(--pgpt-color-text-hint);
+        font-size: $pgpt-font-size-body;
+        margin-block-start: $pgpt-spacing-8;
+        cursor: default;
+      }
+
+      .heading {
+        font-size: $pgpt-font-size-display-extralarge;
+        font-weight: $pgpt-font-weight-bold;
+        line-height: $pgpt-line-height-regular;
+        color: var(--pgpt-color-theme-yellow);
+        cursor: default;
+
+        span {
+          color: var(--pgpt-color-theme-blue);
+        }
+      }
+
+      .get-start-btn {
+        margin-block-start: $pgpt-spacing-16;
+
+        span {
+          font-size: $pgpt-font-size-body;
+          font-weight: $pgpt-font-weight-lighter-bold;
+          color: var(--pgpt-color-text);
+        }
+      }
+    }
+  }
+}

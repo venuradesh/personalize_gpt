@@ -1,29 +1,12 @@
-// Colors
-$pgpt-color-background: #f2f2f2;
-$pgpt-color-background-transparent: transparent;
-$pgpt-color-background-variant: #f9f9f9;
-$pgpt-color-background-hover: #e8e8e8;
-$pgpt-color-background-selected: #d9d9d9;
-$pgpt-color-background-selected-hover: #d2d2d2;
-$pgpt-color-theme-blue: #0798f2;
-$pgpt-color-theme-blue-hover: #0173d1;
-$pgpt-color-theme-yellow: #f2bc1b;
-$pgpt-color-theme-yellow-hover: #d9a918;
-$pgpt-color-text: #1a1b46;
-$pgpt-color-text-link: #0173d1;
-$pgpt-color-text-weak: #3e484d;
-$pgpt-color-text-hint: #a2a2a5;
-$pgpt-color-contrast: #1a1b1d;
-$pgpt-color-text-static-light: #fafafa;
-$pgpt-color-border-contrast: #000000;
-$pgpt-color-border-medium: #d9d9d9;
-$pgpt-color-border-soft: #e8e8e8;
-
 // logo icon
 $pgpt-logo-icon-no-stroke-low-res: url("./../assets/Icons/logo-low.png");
 $pgpt-logo-icon-no-stroke-high-res: url("./../assets/Icons/logo.png");
-$pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke.png");
-$pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke-low.png");
+$pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke.png");
+$pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke-low.png");
+
+$pgpt-logo-sm: 3rem;
+$pgpt-logo-md: 5rem;
+$pgpt-logo-large: clamp(20rem, 50vw, 25rem);
 
 // border width
 $pgpt-border-width-regular: 1px;
@@ -61,6 +44,7 @@ $pgpt-font-size-display-extralarge: 4rem;
 // font-weight
 $pgpt-font-weight-bold: 700;
 $pgpt-font-weight-semibold: 600;
+$pgpt-font-weight-lighter-bold: 500;
 $pgpt-font-weight-regular: 400;
 
 // line height
