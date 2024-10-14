@@ -1,0 +1,58 @@
+$mobile-size: 420px;
+$mobile-landscape: 600px;
+$tablet-portrait: 768px;
+$table-landscape: 1024px;
+$laptop: 1280px;
+$desktop: 1440px;
+$monitors: 1920px;
+
+$screen-ranges: (
+  "sm-only": (
+    lower-bound: 0,
+    upper-bound: $mobile-size,
+  ),
+  "sm-l-only": (
+    lower-boud: $mobile-size + 1,
+    upper-bound: $mobile-landscape,
+  ),
+  "md-only": (
+    lower-bound: $mobile-landscape + 1,
+    upper-bound: $tablet-portrait,
+  ),
+  "md-l-only": (
+    lower-bound: $tablet-portrait + 1,
+    upper-bound: $table-landscape,
+  ),
+  "lg-only": (
+    lower-bound: $table-landscape + 1,
+    upper-bound: $laptop,
+  ),
+  "lg-l-only": (
+    lower-bound: $laptop + 1,
+    upper-bound: $desktop,
+  ),
+  "xl-only": (
+    lower-bound: $desktop + 1,
+    upper-bound: $monitors,
+  ),
+  "xl-l-only": (
+    lower-bound: $monitors,
+    upper-bound: null,
+  ),
+);
+
+@mixin media($range) {
+  $bounds: map-get($screen-ranges, $range);
+  $lower: map-get($bounds, lower-bound);
+  $upper: map-get($bounds, upper-bound);
+
+  @if $upper == null {
+    @media only screen and (min-width: $lower) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $lower) and (max-width: $upper) {
+      @content;
+    }
+  }
+}

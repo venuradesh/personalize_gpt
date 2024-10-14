@@ -1,4 +1,4 @@
-@import "./../../../variables.scss";
+@import "./../../../Styles/include.scss";
 
 .landing-page-wrapper {
   width: 100vw;
@@ -92,5 +92,9 @@
         }
       }
     }
+  }
+
+  @include media("sm-only") {
+    background-color: red;
   }
 }
