@@ -1,42 +1,47 @@
-$mobile-size: 420px;
-$mobile-landscape: 600px;
-$tablet-portrait: 768px;
-$table-landscape: 1024px;
-$laptop: 1280px;
-$desktop: 1440px;
-$monitors: 1920px;
+$small-screen: 420px;
+$medium-screen: 768px;
+$large-screen: 1024px;
+$xl-screen: 1920px;
 
 $screen-ranges: (
   "sm-only": (
     lower-bound: 0,
-    upper-bound: $mobile-size,
+    upper-bound: $small-screen,
   ),
-  "sm-l-only": (
-    lower-boud: $mobile-size + 1,
-    upper-bound: $mobile-landscape,
+  "sm-up": (
+    lower-bound: $small-screen + 1,
+    upper-bound: null,
+  ),
+  "md-down": (
+    lower-bound: null,
+    upper-bound: $medium-screen,
   ),
   "md-only": (
-    lower-bound: $mobile-landscape + 1,
-    upper-bound: $tablet-portrait,
+    lower-bound: $small-screen + 1,
+    upper-bound: $medium-screen,
   ),
-  "md-l-only": (
-    lower-bound: $tablet-portrait + 1,
-    upper-bound: $table-landscape,
+  "md-up": (
+    lower-bound: $medium-screen + 1,
+    upper-bound: null,
+  ),
+  "lg-down": (
+    lower-bound: null,
+    upper-bound: $large-screen,
   ),
   "lg-only": (
-    lower-bound: $table-landscape + 1,
-    upper-bound: $laptop,
+    lower-bound: $medium-screen + 1,
+    upper-bound: $large-screen,
   ),
-  "lg-l-only": (
-    lower-bound: $laptop + 1,
-    upper-bound: $desktop,
+  "lg-up": (
+    lower-bound: $large-screen + 1,
+    upper-bound: null,
   ),
-  "xl-only": (
-    lower-bound: $desktop + 1,
-    upper-bound: $monitors,
+  "xl-down": (
+    lower-bound: null,
+    upper-bound: $xl-screen,
   ),
-  "xl-l-only": (
-    lower-bound: $monitors,
+  "xl-up": (
+    lower-bound: $xl-screen + 1,
     upper-bound: null,
   ),
 );
@@ -48,6 +53,10 @@ $screen-ranges: (
 
   @if $upper == null {
     @media only screen and (min-width: $lower) {
+      @content;
+    }
+  } @else if $lower == null {
+    @media only screen and (max-width: $upper) {
       @content;
     }
   } @else {
