@@ -12,6 +12,11 @@
   cursor: pointer;
   margin-inline: $pgpt-spacing-4;
 
+  &:focus {
+    outline: none;
+    box-shadow: $pgpt-focus-box-shadow;
+  }
+
   &.base-button {
     background-color: var(--pgpt-color-background-transparent);
 
