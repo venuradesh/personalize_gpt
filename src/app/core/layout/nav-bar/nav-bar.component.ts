@@ -1,9 +1,10 @@
-import { CommonModule } from "@angular/common";
+import { CommonModule, Location } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ButtonComponent } from "../../components/button/button.component";
 import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../../services/theme.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Subject, takeUntil } from "rxjs";
 
 interface NavBarButtonStatus {
   loginButton: boolean;
@@ -18,7 +19,7 @@ interface NavBarButtonStatus {
   templateUrl: "./nav-bar.component.html",
   styleUrl: "./nav-bar.component.scss",
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements OnInit, OnDestroy {
   public isDarkMode: boolean = false;
   public navBarButtonStatus: NavBarButtonStatus = {
     loginButton: true,
@@ -26,24 +27,38 @@ export class NavBarComponent implements OnInit {
     themeButton: true,
   };
 
-  constructor(private themeService: ThemeService, private router: Router) {}
+  private desctroy$ = new Subject<void>
+
+  constructor(private themeService: ThemeService, private router: Router, private location: Location) {}
 
   ngOnInit(): void {
-    this.checkButtonStatus();
+    this.location.onUrlChange((route) => {
+      this.setButtonStatus(route);
+    })
   }
 
   //#region Check Button status
-  private checkButtonStatus(): void {
-    if (this.router.url === "/start") {
-      this.resetButtonStatus();
-    }
+  public setButtonStatus(route: string): void {
+    switch(route){
+      case '/start':
+        this.resetButtonStatus();
+        break;
 
-    if (this.router.url === "/login") {
-      this.navBarButtonStatus.loginButton = false;
-    }
+      case '/login':
+        this.navBarButtonStatus = {
+          loginButton :false,
+          registerButton :true,
+          themeButton: true
+        }
+        break;
 
-    if (this.router.url === "/register") {
-      this.navBarButtonStatus.registerButton = false;
+      case '/register':
+        this.navBarButtonStatus = {
+          loginButton :true,
+          registerButton :false,
+          themeButton: true
+        }
+        break;
     }
   }
   //#endregion
@@ -64,4 +79,9 @@ export class NavBarComponent implements OnInit {
     this.themeService.toggleTheme();
   }
   //#endregion
+
+  ngOnDestroy(): void {
+    this.desctroy$.next();
+    this.desctroy$.complete();    
+  }
 }
