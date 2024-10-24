@@ -1,5 +1,5 @@
 import { CommonModule, Location } from "@angular/common";
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { ButtonComponent } from "../../components/button/button.component";
 import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../../services/theme.service";
@@ -18,6 +18,7 @@ interface NavBarButtonStatus {
   imports: [CommonModule, ButtonComponent, MatIconModule],
   templateUrl: "./nav-bar.component.html",
   styleUrl: "./nav-bar.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavBarComponent implements OnInit, OnDestroy {
   public isDarkMode: boolean = false;
@@ -29,7 +30,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   private desctroy$ = new Subject<void>
 
-  constructor(private themeService: ThemeService, private router: Router, private location: Location) {}
+  constructor(private themeService: ThemeService, private cdr: ChangeDetectorRef, private location: Location) {}
 
   ngOnInit(): void {
     this.location.onUrlChange((route) => {
@@ -60,6 +61,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
         }
         break;
     }
+
+    this.cdr.markForCheck();
   }
   //#endregion
 
@@ -70,6 +73,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
       registerButton: true,
       themeButton: true,
     };
+    this.cdr.markForCheck();
   }
   //#endregion
 
@@ -77,6 +81,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme();
+    this.cdr.markForCheck();
   }
   //#endregion
 

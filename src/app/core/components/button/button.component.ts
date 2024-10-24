@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 import { Router } from "@angular/router";
 
 interface NavigateStructure {
@@ -13,6 +13,7 @@ interface NavigateStructure {
   imports: [CommonModule],
   templateUrl: "./button.component.html",
   styleUrl: "./button.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   @Input()

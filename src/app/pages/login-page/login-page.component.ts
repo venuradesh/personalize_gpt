@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { NavBarComponent } from "../../core/layout/nav-bar/nav-bar.component";
 
 @Component({
@@ -8,5 +8,6 @@ import { NavBarComponent } from "../../core/layout/nav-bar/nav-bar.component";
   imports: [CommonModule, NavBarComponent],
   templateUrl: "./login-page.component.html",
   styleUrl: "./login-page.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPageComponent {}
