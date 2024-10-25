@@ -1,1 +1,12 @@
-<p>register-page works!</p>
+<div class="register-page-wrapper">
+  <div class="register-page-container">
+    <div class="page-heading">
+      {{ 'registerPage.registerPageHeader' | pgptTranslate }}
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerState">
+      <pgpt-form-input [control]="firstName"></pgpt-form-input>
+      <button type="submit">{{ 'buttons.submit' | pgptTranslate }}</button>
+    </form>
+  </div>
+</div>
