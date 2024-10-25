@@ -3,14 +3,13 @@
     <div class="border-indicator border-indicator-1"></div>
     <div class="border-indicator border-indicator-2"></div>
   </div>
-  koko
   <div class="landing-page-container">
     <div class="logo-container"></div>
     <div class="content-container">
-      <div class="heading">Personalize<span>GPT</span></div>
-      <div class="text text-section-2">Customized Intelligence, Seamless Conversations</div>
-      <pgpt-button [buttonSize]="'large'" [buttonType]="'fill'" class="get-start-btn">
-        <span>Get Start</span>
+      <div class="heading">{{ 'branding.firstName' | pgptTranslate }}<span>{{'branding.lastName' | pgptTranslate}}</span></div>
+      <div class="text text-section-2">{{'branding.motto' | pgptTranslate}}</div>
+      <pgpt-button [buttonSize]="'large'" [buttonType]="'fill'" class="get-start-btn" [onClick]="this.onRegisterClick.bind(this)">
+        <span>{{'buttons.getStart' | pgptTranslate}}</span>
       </pgpt-button>
     </div>
   </div>

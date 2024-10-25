@@ -5,6 +5,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../../services/theme.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
+import { NavigationService } from "../../../services/navigation.service";
+import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 
 interface NavBarButtonStatus {
   loginButton: boolean;
@@ -15,7 +17,7 @@ interface NavBarButtonStatus {
 @Component({
   selector: "pgpt-nav-bar",
   standalone: true,
-  imports: [CommonModule, ButtonComponent, MatIconModule],
+  imports: [CommonModule, ButtonComponent, MatIconModule, PgptTranslatePipe],
   templateUrl: "./nav-bar.component.html",
   styleUrl: "./nav-bar.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -30,7 +32,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   private desctroy$ = new Subject<void>
 
-  constructor(private themeService: ThemeService, private cdr: ChangeDetectorRef, private location: Location) {}
+  constructor(private themeService: ThemeService, private cdr: ChangeDetectorRef, private location: Location, private navigationService: NavigationService) {}
 
   ngOnInit(): void {
     this.location.onUrlChange((route) => {
@@ -82,6 +84,18 @@ export class NavBarComponent implements OnInit, OnDestroy {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme();
     this.cdr.markForCheck();
+  }
+  //#endregion
+
+  //#region Nagite to Login
+  onLoginClick(): void {
+    this.navigationService.navigate({to: '/login'})
+  }
+  //#endregion
+
+  //#region Navigate to Regsiter
+  onRegisterClick():void {
+    this.navigationService.navigate({to: '/register'});
   }
   //#endregion
 
