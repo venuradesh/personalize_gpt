@@ -3,9 +3,35 @@
     <div class="page-heading">
       {{ 'registerPage.registerPageHeader' | pgptTranslate }}
     </div>
-
     <form (ngSubmit)="onSubmit()" [formGroup]="registerState">
-      <pgpt-form-input [control]="firstName"></pgpt-form-input>
+      <!-- Name Section Row -->
+      <div class="tr name-section">
+        <!-- First Name -->
+        <div class="td">
+          <pgpt-form-input [control]="firstName"></pgpt-form-input>
+          <div class="error-state" *ngIf="firstName.errors">{{firstName.getError('error')}}</div>
+        </div>
+        <!-- Last Name -->
+        <div class="td">
+          <pgpt-form-input [control]="lastName"></pgpt-form-input>
+          <div class="error-state" *ngIf="lastName.errors">{{lastName.getError('error')}}</div>
+        </div>
+      </div>
+
+      <!-- Identity Row -->
+      <div class="tr identity-section">
+        <!-- Date of birth -->
+        <div class="td">
+          <pgpt-form-input [control]="dob"></pgpt-form-input>
+          <div class="error-state" *ngIf="dob.errors">{{dob.getError('error')}}</div>
+        </div>
+
+        <!-- Email -->
+        <div class="td">
+          <pgpt-form-input [control]="email"></pgpt-form-input>
+          <div class="error-state" *ngIf="email.errors">{{email.getError('error')}}</div>
+        </div>
+      </div>
       <button type="submit">{{ 'buttons.submit' | pgptTranslate }}</button>
     </form>
   </div>
