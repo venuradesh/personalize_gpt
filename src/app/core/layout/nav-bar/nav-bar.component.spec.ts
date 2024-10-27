@@ -4,21 +4,19 @@ import { NavBarComponent } from "./nav-bar.component";
 import { Router } from "@angular/router";
 import { ThemeService } from "../../../services/theme.service";
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+import { Location } from "@angular/common";
 
 describe("NavBarComponent", () => {
   let component: NavBarComponent;
   let fixture: ComponentFixture<NavBarComponent>;
   let mockThemeService: Partial<ThemeService>;
   let mockRouter: Partial<Router>;
+  let mockLocation: Partial<Location>;
 
   beforeEach(async () => {
-    mockThemeService = {
-      toggleTheme: jest.fn(),
-    };
-
-    mockRouter = {
-      url: "/start",
-    };
+    mockThemeService = { toggleTheme: jest.fn() };
+    mockRouter = { url: "/start" };
+    mockLocation = { onUrlChange: jest.fn() };
 
     await TestBed.configureTestingModule({
       schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -26,6 +24,7 @@ describe("NavBarComponent", () => {
       providers: [
         { provide: ThemeService, useValue: mockThemeService },
         { provide: Router, useValue: mockRouter },
+        { provide: Location, useValue: mockLocation },
       ],
     }).compileComponents();
 
@@ -39,11 +38,18 @@ describe("NavBarComponent", () => {
   });
 
   describe("ngOnInit", () => {
-    it("should reset the Buttons when the router url is start", () => {
-      mockRouter = {
-        url: "/start",
-      };
+    let spy: jest.SpyInstance;
+
+    it("should call the onUrlhange Function", () => {
+      spy = jest.spyOn(mockLocation, "onUrlChange");
       component.ngOnInit();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe("setButtonStatus", () => {
+    it("should reset the Buttons when the router url is start", () => {
+      component.setButtonStatus("/start");
 
       expect(component.navBarButtonStatus).toEqual({
         loginButton: true,
@@ -52,18 +58,24 @@ describe("NavBarComponent", () => {
       });
     });
 
-    it("should set the login button as false when the router url is login", () => {
-      component["router"] = { url: "/login" } as Router;
-      component.ngOnInit();
+    it("should set the login button as false and register button as true when the router url is login", () => {
+      component.setButtonStatus("/login");
 
-      expect(component.navBarButtonStatus.loginButton).toBeFalsy();
+      expect(component.navBarButtonStatus).toEqual({
+        loginButton: false,
+        registerButton: true,
+        themeButton: true,
+      });
     });
 
-    it("should set the register button false when the router url is register", () => {
-      component["router"] = { url: "/register" } as Router;
-      component.ngOnInit();
+    it("should set the register button false and login button as true when the router url is register", () => {
+      component.setButtonStatus("/register");
 
-      expect(component.navBarButtonStatus.registerButton).toBeFalsy();
+      expect(component.navBarButtonStatus).toEqual({
+        loginButton: true,
+        registerButton: false,
+        themeButton: true,
+      });
     });
   });
 

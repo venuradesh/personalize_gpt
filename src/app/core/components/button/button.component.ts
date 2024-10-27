@@ -1,11 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input } from "@angular/core";
-import { Router } from "@angular/router";
-
-interface NavigateStructure {
-  to: string;
-  state?: Object;
-}
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 
 @Component({
   selector: "pgpt-button",
@@ -13,6 +7,7 @@ interface NavigateStructure {
   imports: [CommonModule],
   templateUrl: "./button.component.html",
   styleUrl: "./button.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
   @Input()
@@ -22,12 +17,12 @@ export class ButtonComponent {
   buttonSize: "small" | "medium" | "large" = "small";
 
   @Input()
-  navigateTo: NavigateStructure = { to: "" };
+  type: string = "";
 
-  constructor(private router: Router) {}
+  @Input()
+  onClick: () => void = () => {};
 
   public onButtonClick(): void {
-    if (!this.navigateTo.to) return;
-    this.router.navigate([this.navigateTo.to], { state: this.navigateTo.state });
+    this.onClick();
   }
 }

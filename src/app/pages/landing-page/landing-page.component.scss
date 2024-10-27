@@ -1,8 +1,8 @@
 @import "./../../../Styles/include.scss";
 
 .landing-page-wrapper {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: calc(100% - $pgpt-nav-bar-height);
   display: flex;
   flex-direction: column;
   position: relative;

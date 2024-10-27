@@ -1,0 +1,48 @@
+@import "../../../Styles/include.scss";
+
+.register-page-wrapper {
+  width: 100%;
+  height: calc(100% - $pgpt-nav-bar-height);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-page-container {
+  width: clamp(calc($pgpt-sizing-base-rem * 15), 90vw, calc($pgpt-sizing-base-rem * 48));
+  padding-block: $pgpt-spacing-16;
+  padding-inline: $pgpt-spacing-16;
+
+  .page-heading {
+    font-size: $pgpt-font-size-display-medium;
+    font-weight: $pgpt-font-weight-bold;
+    color: var(--pgpt-color-theme-blue);
+    margin-block: $pgpt-spacing-16;
+    text-align: center;
+
+    @include media("md-down") {
+      font-size: $pgpt-font-size-display-small;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    row-gap: $pgpt-sizing-8;
+
+    .tr {
+      width: 100%;
+      display: flex;
+      column-gap: $pgpt-sizing-8;
+
+      @include media("md-down") {
+        flex-direction: column;
+        row-gap: $pgpt-spacing-8;
+      }
+
+      .td {
+        width: 100%;
+      }
+    }
+  }
+}

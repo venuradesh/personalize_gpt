@@ -1,0 +1,22 @@
+{
+  "branding": {
+    "name": "PersonalizeGPT",
+    "firstName": "Personalize",
+    "lastName": "GPT",
+    "motto": "Customized Intelligence, Seamless Conversations"
+  },
+  "buttons": {
+    "submit": "Submit",
+    "login": "Login",
+    "register": "Register",
+    "getStart": "Get Start"
+  },
+  "register": {
+    "registerPageHeader": "Tell us about you!",
+    "registerSubmit": "Continue to the PersonalizeGPT",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "dob": "Date of Birth (YYYY-MM-DD)",
+    "email": "Email address"
+  }
+}

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
   selector: "pgpt-footer",
@@ -7,6 +7,7 @@ import { Component } from "@angular/core";
   imports: [CommonModule],
   templateUrl: "./footer.component.html",
   styleUrl: "./footer.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
   public currentYear = Date.now();

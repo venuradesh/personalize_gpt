@@ -1,0 +1,40 @@
+<div class="register-page-wrapper">
+  <div class="register-page-container">
+    <div class="page-heading">
+      {{ 'register.registerPageHeader' | pgptTranslate }}
+    </div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="registerState" class="form">
+      <!-- Name Section Row -->
+      <div class="tr name-section">
+        <!-- First Name -->
+        <div class="td">
+          <pgpt-form-input [control]="firstName" [placeHolder]="'register.firstName' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="firstName.errors">{{firstName.getError('error')}}</div>
+        </div>
+        <!-- Last Name -->
+        <div class="td">
+          <pgpt-form-input [control]="lastName" [placeHolder]="'register.lastName' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="lastName.errors">{{lastName.getError('error')}}</div>
+        </div>
+      </div>
+
+      <!-- Identity Row -->
+      <div class="tr identity-section">
+        <!-- Date of birth -->
+        <div class="td">
+          <pgpt-form-date-input [control]="dob" [placeHolder]="'register.dob' | pgptTranslate"></pgpt-form-date-input>
+          <div class="error-state" tabindex="-1" *ngIf="dob.errors">{{dob.getError('error')}}</div>
+        </div>
+
+        <!-- Email -->
+        <div class="td">
+          <pgpt-form-input [control]="email" [placeHolder]="'register.email' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="email.errors">{{email.getError('error')}}</div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit">{{ 'register.registerSubmit' | pgptTranslate }}</button>
+    </form>
+  </div>
+</div>

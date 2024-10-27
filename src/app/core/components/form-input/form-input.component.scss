@@ -1,0 +1,30 @@
+@import "../../../../Styles/include.scss";
+
+.input-wrapper {
+  width: 100%;
+
+  .input-field {
+    font-size: $pgpt-font-size-body-small;
+    font-family: $pgpt-font-family-default;
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid var(--pgpt-color-border-medium);
+    border-radius: $pgpt-radius-s;
+    padding-block: $pgpt-spacing-8;
+    padding-inline: $pgpt-spacing-8;
+    background-color: var(--pgpt-color-background-transparent);
+    color: var(--pgpt-color-text);
+
+    &::placeholder {
+      font-family: $pgpt-font-family-default;
+      font-size: $pgpt-font-size-body-small;
+      color: var(--pgpt-color-text-hint);
+    }
+
+    &:focus {
+      border-color: var(--pgpt-color-focus);
+    }
+  }
+}

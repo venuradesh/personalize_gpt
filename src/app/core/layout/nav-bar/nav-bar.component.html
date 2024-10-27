@@ -3,10 +3,10 @@
     <i class="material-icons-outlined theme-toggle" *ngIf="!isDarkMode">light_mode</i>
     <i class="material-icons-outlined theme-toggle" *ngIf="isDarkMode">contrast</i>
   </pgpt-button>
-  <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.loginButton" [navigateTo]="{to: '/login'}">
-    <span>Login</span>
+  <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.loginButton" [onClick]="onLoginClick.bind(this)">
+    <span>{{ 'buttons.login' | pgptTranslate }}</span>
   </pgpt-button>
-  <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.registerButton" [navigateTo]="{to: '/register'}">
-    <span>Register</span>
+  <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.registerButton" [onClick]="onRegisterClick.bind(this)">
+    <span>{{ 'buttons.register' | pgptTranslate }}</span>
   </pgpt-button>
 </div>
