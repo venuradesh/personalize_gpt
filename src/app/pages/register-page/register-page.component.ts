@@ -6,11 +6,12 @@ import { FormInputComponent } from "../../core/components/form-input/form-input.
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { FormDateInputComponent } from "../../core/components/form-date-input/form-date-input.component";
+import { FooterComponent } from "../../core/layout/footer/footer.component";
 
 @Component({
   selector: "pgpt-register-page",
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, FormDateInputComponent, PgptTranslatePipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FooterComponent, ButtonComponent, FormInputComponent, FormDateInputComponent, PgptTranslatePipe],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

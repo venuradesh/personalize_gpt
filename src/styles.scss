@@ -64,9 +64,7 @@ body {
   background-color: var(--pgpt-color-background);
   color: var(--pgpt-color-text);
   font-family: $pgpt-font-family-default;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  overflow: overlay;
 }
 
 html,

@@ -84,11 +84,17 @@
       </div>
 
       <!-- Submit Button -->
-      <div class="btn-submit-btn">
-        <pgpt-button [type]="'submit'" [onClick]="onSubmitButtonClick.bind(this)">
-          {{ 'register.registerSubmit' | pgptTranslate }}
+      <div class="tr submit-btn">
+        <pgpt-button [type]="'submit'" [buttonType]="'primary'" [buttonSize]="'large'" [onClick]="onSubmitButtonClick.bind(this)">
+          <span>
+            {{ 'register.registerSubmit' | pgptTranslate }}
+          </span>
         </pgpt-button>
       </div>
     </form>
+  </div>
+
+  <div class="footer-container">
+    <pgpt-footer></pgpt-footer>
   </div>
 </div>
