@@ -1,7 +1,9 @@
 <div class="date-input-container">
-  <div class="input-previewer" tabindex="0" (click)="dateInput.showPicker()">
-    <input #dateInput type="date" [formControl]="control" class="date-input" tabindex="-1" (change)="onDateInputChange($event)" />
-    <i class="material-icons-outlined">calendar_month</i>
-    <div class="content" [class.placeholder]="activatePlaceholder">{{inputValue ? inputValue : placeHolder}}</div>
+  <input #dateInput type="date" class="date-input" tabindex="-1" (change)="onDateInputChange($event)" />
+  <div class="input-previewer" tabindex="0">
+    <input type="text" class="content" tabindex="-1" [formControl]="control" [placeholder]="placeHolder" />
+    <pgpt-button [onClick]="triggerShowPicker.bind(this)">
+      <i class="material-icons-outlined">calendar_month</i>
+    </pgpt-button>
   </div>
 </div>

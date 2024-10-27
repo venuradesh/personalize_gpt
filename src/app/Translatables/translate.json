@@ -17,6 +17,14 @@
     "firstName": "First name",
     "lastName": "Last name",
     "dob": "Date of Birth (YYYY-MM-DD)",
-    "email": "Email address"
+    "email": "Email address",
+    "personality": "Your personality (calm, aggresive, etc.)",
+    "orgName": "Company name",
+    "designation": "Your job title",
+    "password": "Password",
+    "confPassword": "Confirm password",
+    "desc": "Describe yourself briefly in one sentence",
+    "maxLengthError": "Maximum character length is: ",
+    "openAiKey": "Your OpenAI API Key"
   }
 }

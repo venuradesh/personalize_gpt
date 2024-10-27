@@ -1,3 +1,11 @@
 <div class="input-wrapper">
-  <input [type]="type" [formControl]="control" tabindex="0" class="input-field" [placeholder]="placeHolder" />
+  <input [type]="type" [placeholder]="placeHolder" [formControl]="control" class="input-field" tabindex="0" />
+  <div class="show-password" *ngIf="activatePreviewPassword">
+    <pgpt-button [onClick]="togglePassword.bind(this)" *ngIf="!showPassword">
+      <i class="material-icons-outlined show-icon">visibility</i>
+    </pgpt-button>
+    <pgpt-button [onClick]="togglePassword.bind(this)" *ngIf="showPassword">
+      <i class="material-icons-outlined show-icon">visibility_off</i>
+    </pgpt-button>
+  </div>
 </div>

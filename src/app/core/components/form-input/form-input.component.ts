@@ -1,11 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, forwardRef, inject, Input, OnInit } from "@angular/core";
-import { ControlContainer, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { ControlContainer, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from "@angular/forms";
+import { ButtonComponent } from "../button/button.component";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: "pgpt-form-input",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, MatIconModule],
   templateUrl: "./form-input.component.html",
   styleUrl: "./form-input.component.scss",
   viewProviders: [{ provide: ControlContainer, useFactory: () => inject(ControlContainer, { skipSelf: true }) }],
@@ -18,13 +20,27 @@ import { ControlContainer, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFo
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormInputComponent {
+export class FormInputComponent implements OnInit {
   @Input()
-  type: "text" | "number" = "text";
+  type: "text" | "number" | "password" = "text";
 
   @Input()
   control!: FormControl;
 
   @Input()
   placeHolder: string = "";
+
+  public showPassword: boolean = false;
+  public activatePreviewPassword: boolean = false;
+
+  public ngOnInit(): void {
+    if (this.type === "password") {
+      this.activatePreviewPassword = true;
+    }
+  }
+
+  public togglePassword(): void {
+    this.showPassword = !this.showPassword;
+    this.type = this.showPassword ? "text" : "password";
+  }
 }

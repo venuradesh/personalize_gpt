@@ -1,33 +1,36 @@
-import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { CommonModule, NgFor } from "@angular/common";
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from "@angular/core";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ButtonComponent } from "../../core/components/button/button.component";
 import { FormInputComponent } from "../../core/components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { FormDateInputComponent } from "../../core/components/form-date-input/form-date-input.component";
+import { FooterComponent } from "../../core/layout/footer/footer.component";
 
 @Component({
   selector: "pgpt-register-page",
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, FormDateInputComponent, PgptTranslatePipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FooterComponent, ButtonComponent, FormInputComponent, FormDateInputComponent, PgptTranslatePipe],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterPageComponent implements OnInit {
+  @ViewChild("registerForm") registerForm!: NgForm;
+
   firstName = new FormControl("", [FormValidator.requiredValidator("First Name is required")]);
   lastName = new FormControl("", [FormValidator.requiredValidator("Last Name is required")]);
-  dob = new FormControl("", [FormValidator.requiredValidator()]);
-  designation = new FormControl("");
+  dob = new FormControl("", [FormValidator.dobFieldValidator(), FormValidator.dobValueValidator(), FormValidator.requiredValidator("DOB is required")]);
+  designation = new FormControl("", [FormValidator.requiredValidator("Job Title is required")]);
   organizationName = new FormControl("");
-  country = new FormControl("");
-  email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator()]);
-  personality = new FormControl("");
-  password = new FormControl("");
-  confPassword = new FormControl("");
-  openAiToken = new FormControl("");
-  replicateToken = new FormControl("");
+  email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator("Email is required")]);
+  personality = new FormControl("", [FormValidator.requiredValidator("Personality is required")]);
+  country = new FormControl("", [FormValidator.requiredValidator("Country is requireed")]);
+  password = new FormControl("", [FormValidator.passwordValidator(), FormValidator.requiredValidator("Password is Required")]);
+  confPassword = new FormControl("", [FormValidator.passwordMatcher(this.password), FormValidator.requiredValidator("Confirmation password is required")]);
+  describe = new FormControl("", [Validators.maxLength(60)]);
+  openAiToken = new FormControl("", [FormValidator.requiredValidator("OpenAi API Key is required")]);
 
   registerState: FormGroup;
 
@@ -46,14 +49,44 @@ export class RegisterPageComponent implements OnInit {
 
       apiTokens: new FormGroup({
         openAiToken: this.openAiToken,
-        replicateToken: this.replicateToken,
       }),
     });
   }
 
   ngOnInit(): void {}
 
-  onSubmit(): void {
-    console.log(this.registerState);
+  private triggerChecks() {
+    Object.keys(this.registerState.controls).forEach((field) => {
+      const control = this.registerState.get(field);
+      control?.markAsTouched();
+      control?.markAsDirty();
+      control?.updateValueAndValidity();
+
+      if (control instanceof FormGroup) {
+        Object.keys(control.controls).forEach((nestedField) => {
+          const nestedControl = control.get(nestedField);
+          nestedControl?.markAllAsTouched();
+          nestedControl?.markAsDirty();
+          nestedControl?.updateValueAndValidity();
+        });
+      }
+    });
+  }
+
+  onSubmitButtonClick(): void {
+    if (this.registerForm) {
+      this.triggerChecks();
+      this.registerForm.ngSubmit.emit();
+    }
+  }
+
+  onFormSubmit(): void {
+    if (this.registerState.status === "VALID") {
+    }
+
+    if (this.registerState.status === "INVALID") {
+      console.log(this.registerState);
+      // this.registerState.
+    }
   }
 }

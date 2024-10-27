@@ -13,7 +13,7 @@
   --pgpt-color-text-hint: #a2a2a5;
   --pgpt-color-text-static-light: #fafafa;
   --pgpt-color-border-contrast: #000000;
-  --pgpt-color-border-medium: #d9d9d9;
+  --pgpt-color-border-medium: #b8b8b8;
   --pgpt-color-border-soft: #e8e8e8;
   --pgpt-color-contrast: #1a1b1d;
   --pgpt-color-theme-blue: #0798f2;
@@ -64,16 +64,11 @@ body {
   background-color: var(--pgpt-color-background);
   color: var(--pgpt-color-text);
   font-family: $pgpt-font-family-default;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  overflow: overlay;
+  margin: 0;
 }
 
 html,
 body {
   height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
