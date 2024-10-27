@@ -1,12 +1,19 @@
-<div class="nav-bar-container">
-  <pgpt-button [buttonType]="'base'" (click)="toggleTheme()" *ngIf="navBarButtonStatus.themeButton">
-    <i class="material-icons-outlined theme-toggle" *ngIf="!isDarkMode">light_mode</i>
-    <i class="material-icons-outlined theme-toggle" *ngIf="isDarkMode">contrast</i>
-  </pgpt-button>
-  <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.loginButton" [onClick]="onLoginClick.bind(this)">
-    <span>{{ 'buttons.login' | pgptTranslate }}</span>
-  </pgpt-button>
-  <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.registerButton" [onClick]="onRegisterClick.bind(this)">
-    <span>{{ 'buttons.register' | pgptTranslate }}</span>
-  </pgpt-button>
+<div class="nav-bar-container" [class.back-activated]="!activateBack">
+  <div class="back-button-container" *ngIf="activateBack">
+    <pgpt-button [buttonType]="'base'" class="button" [onClick]="navigateToPreviousPage.bind(this)">
+      <i class="material-icons-outlined back">arrow_back</i>
+    </pgpt-button>
+  </div>
+  <div class="auth-button-container">
+    <pgpt-button [buttonType]="'base'" (click)="toggleTheme()" *ngIf="navBarButtonStatus.themeButton">
+      <i class="material-icons-outlined theme-toggle" *ngIf="!isDarkMode">light_mode</i>
+      <i class="material-icons-outlined theme-toggle" *ngIf="isDarkMode">contrast</i>
+    </pgpt-button>
+    <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.loginButton" [onClick]="onLoginClick.bind(this)">
+      <span>{{ 'buttons.login' | pgptTranslate }}</span>
+    </pgpt-button>
+    <pgpt-button [buttonType]="'fill'" [buttonSize]="'medium'" class="button" *ngIf="navBarButtonStatus.registerButton" [onClick]="onRegisterClick.bind(this)">
+      <span>{{ 'buttons.register' | pgptTranslate }}</span>
+    </pgpt-button>
+  </div>
 </div>

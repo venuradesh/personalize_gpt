@@ -29,6 +29,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     registerButton: true,
     themeButton: true,
   };
+  public activateBack: boolean = true;
 
   private desctroy$ = new Subject<void>
 
@@ -45,6 +46,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     switch(route){
       case '/start':
         this.resetButtonStatus();
+        this.activateBack = false;
         break;
 
       case '/login':
@@ -53,6 +55,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
           registerButton :true,
           themeButton: true
         }
+        this.activateBack = true;
         break;
 
       case '/register':
@@ -61,6 +64,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
           registerButton :false,
           themeButton: true
         }
+        this.activateBack = true;
         break;
     }
 
@@ -80,7 +84,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   //#endregion
 
   //#region Toggle theme
-  toggleTheme(): void {
+  public toggleTheme(): void {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.toggleTheme();
     this.cdr.markForCheck();
@@ -88,18 +92,24 @@ export class NavBarComponent implements OnInit, OnDestroy {
   //#endregion
 
   //#region Nagite to Login
-  onLoginClick(): void {
+  public onLoginClick(): void {
     this.navigationService.navigate({to: '/login'})
   }
   //#endregion
 
+  //#region Navigate to Previous-page
+  public navigateToPreviousPage(): void {
+    this.navigationService.navigateBack();
+  }
+  //#endregion
+
   //#region Navigate to Regsiter
-  onRegisterClick():void {
+  public onRegisterClick():void {
     this.navigationService.navigate({to: '/register'});
   }
   //#endregion
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.desctroy$.next();
     this.desctroy$.complete();    
   }

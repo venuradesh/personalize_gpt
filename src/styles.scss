@@ -65,13 +65,10 @@ body {
   color: var(--pgpt-color-text);
   font-family: $pgpt-font-family-default;
   overflow: overlay;
+  margin: 0;
 }
 
 html,
 body {
   height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
