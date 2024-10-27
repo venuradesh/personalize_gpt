@@ -25,7 +25,7 @@ export class RegisterPageComponent implements OnInit {
   designation = new FormControl("", [FormValidator.requiredValidator("Job Title is required")]);
   organizationName = new FormControl("");
   email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator("Email is required")]);
-  personality = new FormControl("", [FormValidator.requiredValidator("Personality is required")]);
+  personality = new FormControl("", [FormValidator.requiredValidator("Personality is required"), Validators.maxLength(20)]);
   country = new FormControl("", [FormValidator.requiredValidator("Country is requireed")]);
   password = new FormControl("", [FormValidator.passwordValidator(), FormValidator.requiredValidator("Password is Required")]);
   confPassword = new FormControl("", [FormValidator.passwordMatcher(this.password), FormValidator.requiredValidator("Confirmation password is required")]);

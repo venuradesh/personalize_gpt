@@ -65,6 +65,7 @@
         <div class="td">
           <pgpt-form-input [control]="personality" [placeHolder]="'register.personality' | pgptTranslate"></pgpt-form-input>
           <div class="error-state" tabindex="-1" *ngIf="personality.errors">{{personality.getError('error')}}</div>
+          <div class="error-state" tabindex="-1" *ngIf="personality.errors?.['maxlength']">{{('register.maxLengthError' | pgptTranslate) + personality.errors?.['maxlength'].requiredLength}}</div>
         </div>
       </div>
       <!-- Describe Row -->
