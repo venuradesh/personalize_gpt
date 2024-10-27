@@ -5,13 +5,18 @@
     "lastName": "GPT",
     "motto": "Customized Intelligence, Seamless Conversations"
   },
-  "registerPage": {
-    "registerPageHeader": "Tell us about you"
-  },
   "buttons": {
     "submit": "Submit",
     "login": "Login",
     "register": "Register",
     "getStart": "Get Start"
+  },
+  "register": {
+    "registerPageHeader": "Tell us about you!",
+    "registerSubmit": "Continue to the PersonalizeGPT",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "dob": "Date of Birth (YYYY-MM-DD)",
+    "email": "Email address"
   }
 }

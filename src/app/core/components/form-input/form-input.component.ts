@@ -20,8 +20,11 @@ import { ControlContainer, FormControl, FormGroup, NG_VALUE_ACCESSOR, ReactiveFo
 })
 export class FormInputComponent {
   @Input()
-  type: string = "text";
+  type: "text" | "number" = "text";
 
   @Input()
   control!: FormControl;
+
+  @Input()
+  placeHolder: string = "";
 }

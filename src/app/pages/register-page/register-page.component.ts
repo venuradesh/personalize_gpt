@@ -5,11 +5,12 @@ import { ButtonComponent } from "../../core/components/button/button.component";
 import { FormInputComponent } from "../../core/components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FormValidator } from "../../core/helpers/validators/form-validators";
+import { FormDateInputComponent } from "../../core/components/form-date-input/form-date-input.component";
 
 @Component({
   selector: "pgpt-register-page",
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, PgptTranslatePipe],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, FormDateInputComponent, PgptTranslatePipe],
   templateUrl: "./register-page.component.html",
   styleUrl: "./register-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,11 +18,11 @@ import { FormValidator } from "../../core/helpers/validators/form-validators";
 export class RegisterPageComponent implements OnInit {
   firstName = new FormControl("", [FormValidator.requiredValidator("First Name is required")]);
   lastName = new FormControl("", [FormValidator.requiredValidator("Last Name is required")]);
-  dob = new FormControl("");
+  dob = new FormControl("", [FormValidator.requiredValidator()]);
   designation = new FormControl("");
   organizationName = new FormControl("");
   country = new FormControl("");
-  email = new FormControl("");
+  email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator()]);
   personality = new FormControl("");
   password = new FormControl("");
   confPassword = new FormControl("");
