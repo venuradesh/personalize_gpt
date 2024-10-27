@@ -18,11 +18,11 @@ import { FormDateInputComponent } from "../../core/components/form-date-input/fo
 export class RegisterPageComponent implements OnInit {
   firstName = new FormControl("", [FormValidator.requiredValidator("First Name is required")]);
   lastName = new FormControl("", [FormValidator.requiredValidator("Last Name is required")]);
-  dob = new FormControl("", [FormValidator.requiredValidator()]);
+  dob = new FormControl("", [FormValidator.requiredValidator("DOB is required"), FormValidator.dobFieldValidator(), FormValidator.dobValueValidator()]);
   designation = new FormControl("");
   organizationName = new FormControl("");
   country = new FormControl("");
-  email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator()]);
+  email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator("Email is required")]);
   personality = new FormControl("");
   password = new FormControl("");
   confPassword = new FormControl("");

@@ -2,10 +2,11 @@
 
 .date-input-container {
   width: 100%;
-  height: 100%;
+  position: relative;
 
   .date-input {
     visibility: hidden;
+    position: absolute;
     width: 100%;
     height: 100%;
     outline: none;
@@ -18,6 +19,9 @@
     position: relative;
     border-radius: $pgpt-radius-s;
     border: 2px solid var(--pgpt-color-border-medium);
+    display: flex;
+    justify-content: space-between;
+
     cursor: pointer;
 
     &:focus,
@@ -27,23 +31,31 @@
     }
 
     i {
-      position: absolute;
-      right: $pgpt-sizing-4;
-      top: 50%;
-      transform: translateY(-50%) scale(0.7);
+      position: relative;
       color: var(--pgpt-color-text-hint);
+      font-size: $pgpt-font-size-body-medium;
     }
 
     .content {
-      position: absolute;
+      position: relative;
+      font-family: $pgpt-font-family-default;
       font-size: $pgpt-font-size-body-small;
+      padding-inline: $pgpt-spacing-8;
       color: var(--pgpt-color-text);
-      top: 50%;
-      left: $pgpt-sizing-8;
-      transform: translateY(-50%);
+      flex: 1;
+      border: none;
+      outline: none;
+      background-color: var(--pgpt-color-background-transparent);
 
-      &.placeholder {
+      &::placeholder {
+        font-family: $pgpt-font-family-default;
+        font-size: $pgpt-font-size-body-small;
         color: var(--pgpt-color-text-hint);
+      }
+
+      &:focus,
+      &:focus-visible {
+        outline: none;
       }
     }
   }

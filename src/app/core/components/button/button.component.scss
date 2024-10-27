@@ -18,6 +18,7 @@
   }
 
   &.base-button {
+    margin-inline: 0;
     background-color: var(--pgpt-color-background-transparent);
 
     &:hover {
