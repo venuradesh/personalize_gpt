@@ -33,6 +33,41 @@
         </div>
       </div>
 
+      <!-- Personality Row -->
+      <div class="tr personality-section">
+        <div class="td">
+          <pgpt-form-input [control]="personality" [placeHolder]="'register.personality' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="personality.errors">{{personality.getError('error')}}</div>
+        </div>
+      </div>
+
+      <!-- Organization info Row-->
+      <div class="tr org-section">
+        <!-- Organization name -->
+        <div class="td">
+          <pgpt-form-input [control]="organizationName" [placeHolder]="'register.orgName' | pgptTranslate"></pgpt-form-input>
+        </div>
+        <!-- Designation -->
+        <div class="td">
+          <pgpt-form-input [control]="designation" [placeHolder]="'register.designation' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="designation.errors">{{designation.getError('error')}}</div>
+        </div>
+      </div>
+
+      <!-- Password Row -->
+      <div class="tr password-section">
+        <!-- Password -->
+        <div class="td">
+          <pgpt-form-input [type]="'password'" [control]="password" [placeHolder]="'register.password' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="password.errors">{{password.getError('error')}}</div>
+        </div>
+        <!-- Confirm Password -->
+        <div class="td">
+          <pgpt-form-input [type]="'password'" [control]="confPassword" [placeHolder]="'register.confPassword' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="confPassword.errors">{{confPassword.getError('error')}}</div>
+        </div>
+      </div>
+
       <!-- Submit Button -->
       <button type="submit">{{ 'register.registerSubmit' | pgptTranslate }}</button>
     </form>

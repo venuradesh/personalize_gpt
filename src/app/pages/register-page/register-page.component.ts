@@ -18,14 +18,14 @@ import { FormDateInputComponent } from "../../core/components/form-date-input/fo
 export class RegisterPageComponent implements OnInit {
   firstName = new FormControl("", [FormValidator.requiredValidator("First Name is required")]);
   lastName = new FormControl("", [FormValidator.requiredValidator("Last Name is required")]);
-  dob = new FormControl("", [FormValidator.requiredValidator("DOB is required"), FormValidator.dobFieldValidator(), FormValidator.dobValueValidator()]);
-  designation = new FormControl("");
+  dob = new FormControl("", [FormValidator.dobFieldValidator(), FormValidator.dobValueValidator(), FormValidator.requiredValidator("DOB is required")]);
+  designation = new FormControl("", [FormValidator.requiredValidator("Job Title is required")]);
   organizationName = new FormControl("");
-  country = new FormControl("");
   email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator("Email is required")]);
-  personality = new FormControl("");
-  password = new FormControl("");
-  confPassword = new FormControl("");
+  personality = new FormControl("", [FormValidator.requiredValidator("Personality is required")]);
+  country = new FormControl("", [FormValidator.requiredValidator("Country is requireed")]);
+  password = new FormControl("", [FormValidator.passwordValidator(), FormValidator.requiredValidator("Password is Required")]);
+  confPassword = new FormControl("", [FormValidator.passwordMatcher(this.password), FormValidator.requiredValidator("Confirmation password is required")]);
   openAiToken = new FormControl("");
   replicateToken = new FormControl("");
 

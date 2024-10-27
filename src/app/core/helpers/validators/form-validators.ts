@@ -58,4 +58,29 @@ export class FormValidator {
       return { error: `Age must be greater than ${minAge} years.` };
     };
   }
+
+  public static passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.touched && !control.dirty) return null;
+
+      const regExp: RegExp = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+      if (regExp.test(control.value)) return null;
+
+      return { error: "Password must contain at least 8 characters containing one uppercase letter, one lowercase letter, one number, and one special character." };
+    };
+  }
+
+  public static passwordMatcher(password: AbstractControl): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.touched && !control.dirty) return null;
+
+      if (password.value === control.value) {
+        return null;
+      }
+
+      if (!password.value) return { error: "Please enter the password first" };
+
+      return { error: "Confirmation password must match the original password" };
+    };
+  }
 }
