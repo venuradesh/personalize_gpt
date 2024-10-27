@@ -22,6 +22,9 @@
     "orgName": "Company name",
     "designation": "Your job title",
     "password": "Password",
-    "confPassword": "Confirm password"
+    "confPassword": "Confirm password",
+    "desc": "Describe yourself briefly in one sentence",
+    "maxLengthError": "Maximum character length is: ",
+    "openAiKey": "Your OpenAI API Key"
   }
 }

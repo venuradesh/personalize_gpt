@@ -3,7 +3,7 @@
     <div class="page-heading">
       {{ 'register.registerPageHeader' | pgptTranslate }}
     </div>
-    <form (ngSubmit)="onSubmit()" [formGroup]="registerState" class="form">
+    <form #registerForm="ngForm" (ngSubmit)="onFormSubmit()" [formGroup]="registerState" class="form">
       <!-- Name Section Row -->
       <div class="tr name-section">
         <!-- First Name -->
@@ -30,14 +30,6 @@
         <div class="td">
           <pgpt-form-input [control]="email" [placeHolder]="'register.email' | pgptTranslate"></pgpt-form-input>
           <div class="error-state" tabindex="-1" *ngIf="email.errors">{{email.getError('error')}}</div>
-        </div>
-      </div>
-
-      <!-- Personality Row -->
-      <div class="tr personality-section">
-        <div class="td">
-          <pgpt-form-input [control]="personality" [placeHolder]="'register.personality' | pgptTranslate"></pgpt-form-input>
-          <div class="error-state" tabindex="-1" *ngIf="personality.errors">{{personality.getError('error')}}</div>
         </div>
       </div>
 
@@ -68,8 +60,35 @@
         </div>
       </div>
 
+      <!-- Personality Row -->
+      <div class="tr personality-section">
+        <div class="td">
+          <pgpt-form-input [control]="personality" [placeHolder]="'register.personality' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="personality.errors">{{personality.getError('error')}}</div>
+        </div>
+      </div>
+      <!-- Describe Row -->
+      <div class="tr desc-section">
+        <div class="td">
+          <pgpt-form-input [control]="describe" [placeHolder]="'register.desc' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="describe.errors?.['maxlength']">{{('register.maxLengthError' | pgptTranslate) + describe.errors?.['maxlength'].requiredLength}}</div>
+        </div>
+      </div>
+
+      <!-- Keys -->
+      <div class="tr key-section">
+        <div class="td">
+          <pgpt-form-input [control]="openAiToken" [placeHolder]="'register.openAiKey' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="openAiToken.errors">{{openAiToken.getError('error')}}</div>
+        </div>
+      </div>
+
       <!-- Submit Button -->
-      <button type="submit">{{ 'register.registerSubmit' | pgptTranslate }}</button>
+      <div class="btn-submit-btn">
+        <pgpt-button [type]="'submit'" [onClick]="onSubmitButtonClick.bind(this)">
+          {{ 'register.registerSubmit' | pgptTranslate }}
+        </pgpt-button>
+      </div>
     </form>
   </div>
 </div>
