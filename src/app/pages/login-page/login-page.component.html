@@ -1,1 +1,51 @@
-<div class="login-page-wrapper"></div>
+<div class="login-page-wrapper">
+  @if(isForgotPasswordClicked | async){
+  <div class="forgot-password-container container">
+    <pgpt-forgot-password class="forgot-password" [backToLogin]="isForgotPasswordClicked"></pgpt-forgot-password>
+  </div>
+  } @else {
+  <div class="login-container container">
+    <!-- Branding -->
+    <div class="branding-container"></div>
+    <!-- Heading -->
+    <div class="heading">{{'login.loginPageHeader' | pgptTranslate}}</div>
+
+    <!-- Form Section -->
+    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
+      <!-- Email -->
+      <div class="email section">
+        <pgpt-form-input [control]="email" [placeHolder]="'login.email' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="email.errors">{{email.getError('error')}}</div>
+      </div>
+
+      <!-- Password -->
+      <div class="password section">
+        <pgpt-form-input [control]="password" [placeHolder]="'login.password' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="password.errors">{{password.getError('error')}}</div>
+      </div>
+
+      <!-- Forgot password section -->
+      <div class="forgot content section">
+        <span>{{'login.forgot' | pgptTranslate}}</span>
+        <span class="link" (click)="onForgotPasswordClick()">{{'resources.clickHere' | pgptTranslate}}</span>
+      </div>
+
+      <!-- Acions Buttons -->
+      <div class="action-buttons">
+        <pgpt-button [type]="'submit'" [buttonSize]="'large'" [buttonType]="'fill'" [onClick]="onSubmitButtonClick.bind(this)">
+          <span>{{'login.loginButton' | pgptTranslate}}</span>
+        </pgpt-button>
+      </div>
+
+      <!-- Forgot password section -->
+      <div class="noacc content section">
+        <span>{{'login.noAccount' | pgptTranslate}}</span>
+        <a class="link" [routerLink]="['/register']">{{'login.register' | pgptTranslate}}</a>
+      </div>
+    </form>
+  </div>
+  }
+
+  <!-- Footer -->
+  <pgpt-footer></pgpt-footer>
+</div>

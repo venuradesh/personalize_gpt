@@ -12,6 +12,7 @@
   --pgpt-color-text-weak: #3e484d;
   --pgpt-color-text-hint: #a2a2a5;
   --pgpt-color-text-static-light: #fafafa;
+  --pgpt-color-text-static-dark: #1a1b1d;
   --pgpt-color-border-contrast: #000000;
   --pgpt-color-border-medium: #b8b8b8;
   --pgpt-color-border-soft: #e8e8e8;
@@ -40,8 +41,6 @@
     --pgpt-color-text-link: #06b4ff;
     --pgpt-color-text-weak: #d2d2d2;
     --pgpt-color-text-hint: #8c8c8c;
-    --pgpt-color-text-static-light: #fafafa;
-    --pgpt-color-text-static-dark: #1a1b1d;
     --pgpt-color-border-contrast: #ffffff;
     --pgpt-color-border-medium: #636769;
     --pgpt-color-border-soft: #3e484d;
@@ -52,7 +51,7 @@
 
 @include media("lg-down") {
   :root {
-    --pgpt-logo-large: clamp(15rem, 70vw, 20rem);
+    --pgpt-logo-large: clamp(12rem, 70vw, 15rem);
   }
 }
 
@@ -73,4 +72,26 @@ body {
 html,
 body {
   height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link {
+  margin-inline-start: $pgpt-spacing-4;
+  color: var(--pgpt-color-theme-blue);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.error-state {
+  color: var(--pgpt-color-error);
+  font-size: $pgpt-font-size-body-small;
+  margin-block-start: $pgpt-spacing-8;
+  line-height: $pgpt-line-height-flowing;
 }

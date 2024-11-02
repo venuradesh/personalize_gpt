@@ -26,5 +26,21 @@
     "desc": "Describe yourself briefly in one sentence",
     "maxLengthError": "Maximum character length is: ",
     "openAiKey": "Your OpenAI API Key"
+  },
+  "login": {
+    "loginPageHeader": "Welcome Back!",
+    "loginButton": "Continue",
+    "cancelButton": "Cancel",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "register": "Register",
+    "forgotPasswordContent": "No Worries, We'll send you reset instructions.",
+    "backToLogin": "Back to Login",
+    "resetPassword": "Reset Password"
+  },
+  "resources": {
+    "clickHere": "Click Here"
   }
 }

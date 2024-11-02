@@ -7,6 +7,7 @@ import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { FormDateInputComponent } from "../../core/components/form-date-input/form-date-input.component";
 import { FooterComponent } from "../../core/layout/footer/footer.component";
+import { Common } from "../../core/helpers/common";
 
 @Component({
   selector: "pgpt-register-page",
@@ -55,27 +56,9 @@ export class RegisterPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private triggerChecks() {
-    Object.keys(this.registerState.controls).forEach((field) => {
-      const control = this.registerState.get(field);
-      control?.markAsTouched();
-      control?.markAsDirty();
-      control?.updateValueAndValidity();
-
-      if (control instanceof FormGroup) {
-        Object.keys(control.controls).forEach((nestedField) => {
-          const nestedControl = control.get(nestedField);
-          nestedControl?.markAllAsTouched();
-          nestedControl?.markAsDirty();
-          nestedControl?.updateValueAndValidity();
-        });
-      }
-    });
-  }
-
   onSubmitButtonClick(): void {
     if (this.registerForm) {
-      this.triggerChecks();
+      Common.triggerFormChecks(this.registerState);
       this.registerForm.ngSubmit.emit();
     }
   }
