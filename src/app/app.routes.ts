@@ -2,6 +2,8 @@ import { Routes } from "@angular/router";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { RegisterPageComponent } from "./pages/register-page/register-page.component";
+import { ForgotPasswordComponent } from "./core/layout/forgot-password/forgot-password.component";
+import { ChatPageComponent } from "./pages/chat-page/chat-page.component";
 
 export const routes: Routes = [
   {
@@ -23,5 +25,9 @@ export const routes: Routes = [
     path: "register",
     pathMatch: "full",
     component: RegisterPageComponent,
+  },
+  {
+    path: "chat",
+    component: ChatPageComponent,
   },
 ];

@@ -4,7 +4,7 @@ import { ButtonComponent } from "../../components/button/button.component";
 import { MatIconModule } from "@angular/material/icon";
 import { ThemeService } from "../../../services/theme.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Subject, takeUntil } from "rxjs";
+import { BehaviorSubject, Subject, takeUntil } from "rxjs";
 import { NavigationService } from "../../../services/navigation.service";
 import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 
@@ -12,6 +12,7 @@ interface NavBarButtonStatus {
   loginButton: boolean;
   registerButton: boolean;
   themeButton: boolean;
+  backButton: boolean;
 }
 
 @Component({
@@ -28,8 +29,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
     loginButton: true,
     registerButton: true,
     themeButton: true,
+    backButton: false,
   };
-  public activateBack: boolean = true;
+  public removeNavBar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   private desctroy$ = new Subject<void>
 
@@ -46,26 +48,36 @@ export class NavBarComponent implements OnInit, OnDestroy {
     switch(route){
       case '/start':
         this.resetButtonStatus();
-        this.activateBack = false;
         break;
 
       case '/login':
         this.navBarButtonStatus = {
           loginButton :false,
           registerButton :true,
-          themeButton: true
+          themeButton: true,
+          backButton: true,
         }
-        this.activateBack = true;
+        this.removeNavBar.next(false);
         break;
 
       case '/register':
         this.navBarButtonStatus = {
           loginButton :true,
           registerButton :false,
-          themeButton: true
+          themeButton: true,
+          backButton: true,
         }
-        this.activateBack = true;
+        this.removeNavBar.next(false);
         break;
+
+      default: 
+        this.navBarButtonStatus = {
+          loginButton: false,
+          registerButton: false,
+          themeButton: true,
+          backButton: false
+        }
+        this.removeNavBar.next(true);
     }
 
     this.cdr.markForCheck();
@@ -78,7 +90,9 @@ export class NavBarComponent implements OnInit, OnDestroy {
       loginButton: true,
       registerButton: true,
       themeButton: true,
+      backButton: false
     };
+    this.removeNavBar.next(false);
     this.cdr.markForCheck();
   }
   //#endregion

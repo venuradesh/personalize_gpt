@@ -3,7 +3,6 @@
 .register-page-wrapper {
   width: 100%;
   height: calc(100% - $pgpt-nav-bar-height);
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,13 +45,6 @@
 
       .td {
         width: 100%;
-
-        .error-state {
-          color: var(--pgpt-color-error);
-          font-size: $pgpt-font-size-body-small;
-          margin-block-start: $pgpt-spacing-8;
-          line-height: $pgpt-line-height-flowing;
-        }
       }
 
       &.submit-btn {

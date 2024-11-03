@@ -1,6 +1,7 @@
 import { Location } from "@angular/common";
 import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter, Observable } from "rxjs";
 
 export interface NavigateStructure {
   to: string;
