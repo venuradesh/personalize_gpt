@@ -2,6 +2,7 @@
 
 :root {
   --pgpt-color-background: #f2f2f2;
+  --pgpt-color-panel-background: #ebebeb;
   --pgpt-color-background-transparent: transparent;
   --pgpt-color-background-variant: #f9f9f9;
   --pgpt-color-background-hover: #e8e8e8;
@@ -33,8 +34,9 @@
 :root {
   .dark-theme {
     --pgpt-color-background: #03093e;
+    --pgpt-color-panel-background: #030932;
     --pgpt-color-background-variant: #0f0f1e;
-    --pgpt-color-background-hover: #2d2e2f;
+    --pgpt-color-background-hover: #030923;
     --pgpt-color-background-selected: #232332;
     --pgpt-color-background-selected-hover: #282d41;
     --pgpt-color-text: #fafafa;

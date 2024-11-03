@@ -1,0 +1,32 @@
+@import "../../../../Styles/include.scss";
+
+.tile-container {
+  padding-block: $pgpt-spacing-16;
+  padding-inline: $pgpt-spacing-16;
+  border-radius: $pgpt-radius-m;
+  cursor: pointer;
+
+  &.fill {
+    background-color: var(--pgpt-color-theme-yellow);
+
+    &:hover {
+      background-color: var(--pgpt-color-theme-yellow-hover);
+    }
+  }
+
+  &.primary {
+    background-color: var(--pgpt-color-theme-blue);
+
+    &:hover {
+      background-color: var(--pgpt-color-theme-blue-hover);
+    }
+  }
+
+  &.base {
+    background-color: var(--pgpt-color-background-transparent);
+
+    &:hover {
+      background-color: var(--pgpt-color-background-hover);
+    }
+  }
+}

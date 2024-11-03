@@ -6,6 +6,13 @@ $pgpt-logo-icon-no-stroke-high-res: url("./../assets/Icons/logo.png");
 $pgpt-logo-icon-with-stroke-high-res: url("./../assets/Icons/logo-stroke.png");
 $pgpt-logo-icon-with-stroke-low-res: url("./../assets/Icons/logo-stroke-low.png");
 
+// Other icons
+$pgpt-icon-doc-analyzer: url("./../assets/Icons/bot.png");
+$pgpt-icon-setting: url("./../assets/Icons/admin.png");
+$pgpt-icon-model: url("./../assets/Icons/modal.png");
+$pgpt-icon-profile: url("./../assets/Icons/user.png");
+$pgpt-icon-size: 2rem;
+
 // border width
 $pgpt-border-width-regular: 1px;
 $pgpt-border-width-focus: 2px;
@@ -57,3 +64,11 @@ $pgpt-font-family-default: Roboto, "Helvetica Neue", sans-serif;
 
 // Header
 $pgpt-nav-bar-height: 4rem;
+
+// Side bar sizes
+$pgpt-side-panel-large: 17.5rem;
+$pgpt-side-panel-small: 2.5rem;
+
+// box-shadow
+$pgpt-box-shadow-s: 0px 0px 4px rgba(0, 0, 0, 0.6);
+// $pgpt-box-shadow-m: 0px 0px 16px var(--);

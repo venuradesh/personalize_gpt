@@ -1,0 +1,51 @@
+<div class="side-panel-container">
+  <!-- Top section -->
+  <div class="top-section">
+    <!-- Start new Conversation -->
+    <div class="start-chat-container section">
+      <pgpt-panel-tile [tileType]="'fill'">
+        <div class="button-section">
+          <i class="material-icons-outlined plus">add</i>
+          <span>{{'navigator.chatStart' | pgptTranslate}}</span>
+        </div>
+      </pgpt-panel-tile>
+    </div>
+
+    <!-- Dcoumnet analyzer -->
+    <div class="document-analyzer section">
+      <pgpt-panel-tile [tileType]="'base'">
+        <div class="button-section item doc-analyzer">
+          <div class="icon"></div>
+          <span>{{'navigator.documentAnalyzer' | pgptTranslate}}</span>
+        </div>
+      </pgpt-panel-tile>
+    </div>
+
+    <!-- Other Options -->
+    <div class="other section">
+      <pgpt-panel-tile [tileType]="'base'">
+        <div class="button-section item settings">
+          <div class="icon"></div>
+          <span>{{'resources.settings' | pgptTranslate}}</span>
+        </div>
+      </pgpt-panel-tile>
+      <pgpt-panel-tile [tileType]="'base'">
+        <div class="button-section item llm">
+          <div class="icon"></div>
+          <span>{{'navigator.llm' | pgptTranslate}}</span>
+        </div>
+      </pgpt-panel-tile>
+    </div>
+  </div>
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <div class="profile-section section">
+      <pgpt-panel-tile [tileType]="'base'">
+        <div class="button-section item profile">
+          <div class="icon"></div>
+          <span>User Name</span>
+        </div>
+      </pgpt-panel-tile>
+    </div>
+  </div>
+</div>

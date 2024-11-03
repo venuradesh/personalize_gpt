@@ -41,6 +41,12 @@
     "resetPassword": "Reset Password"
   },
   "resources": {
-    "clickHere": "Click Here"
+    "clickHere": "Click Here",
+    "settings": "Settings"
+  },
+  "navigator": {
+    "chatStart": "Start a new Chat",
+    "documentAnalyzer": "Document Analyzer Chatbot",
+    "llm": "Change LLM Model"
   }
 }
