@@ -5,6 +5,16 @@
   height: 100%;
   display: flex;
 
+  .side-panel {
+    flex-basis: 0;
+    overflow: hidden;
+    transition: flex-basis 0.3s ease-in-out;
+
+    &.isOpen {
+      flex-basis: $pgpt-side-panel-large;
+    }
+  }
+
   .chat-section {
     flex: 1;
   }

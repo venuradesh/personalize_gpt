@@ -1,6 +1,6 @@
 <div class="chat-page-container">
   <!-- Side Panel -->
-  <div class="side-panel">
+  <div class="side-panel" [class.isOpen]="isOpen$ | async">
     <pgpt-side-panel></pgpt-side-panel>
   </div>
 
