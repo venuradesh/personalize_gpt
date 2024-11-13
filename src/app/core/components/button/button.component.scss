@@ -30,6 +30,15 @@
     background-color: var(--pgpt-color-theme-blue);
     color: var(--pgpt-color-text-static-light);
 
+    &.add-border {
+      border: 2px solid var(--pgpt-color-theme-blue);
+      box-shadow: none;
+
+      :focus {
+        border-color: var(--pgpt-color-focus);
+      }
+    }
+
     &:hover {
       background-color: var(--pgpt-color-theme-blue-hover);
     }
@@ -49,6 +58,15 @@
     background-color: var(--pgpt-color-theme-yellow);
     color: var(--pgpt-color-text-static-dark);
 
+    &.add-border {
+      border: 2px solid var(--pgpt-color-theme-yellow);
+      box-shadow: none;
+
+      :focus {
+        border-color: var(--pgpt-color-focus);
+      }
+    }
+
     &:hover {
       background-color: var(--pgpt-color-theme-yellow-hover);
     }
@@ -62,6 +80,19 @@
   &.medium {
     padding-inline: $pgpt-spacing-16;
     padding-block: $pgpt-sizing-8;
+  }
+
+  &.basic {
+    padding: $pgpt-sizing-4;
+
+    &.add-border {
+      border: 2px solid var(--pgpt-color-border-medium);
+      box-shadow: none;
+
+      :focus {
+        border-color: var(--pgpt-color-focus);
+      }
+    }
   }
 
   &.large {

@@ -1,11 +1,17 @@
 <div class="input-wrapper">
-  <input [type]="type" [placeholder]="placeHolder" [formControl]="control" class="input-field" tabindex="0" />
+  <ng-content></ng-content>
+  <input [type]="type" [placeholder]="placeHolder" [formControl]="control" class="input-field" tabindex="0" (keyup)="onKeyUp($event)" />
   <div class="show-password" *ngIf="activatePreviewPassword">
     <pgpt-button [onClick]="togglePassword.bind(this)" *ngIf="!showPassword">
       <i class="material-icons-outlined show-icon">visibility</i>
     </pgpt-button>
     <pgpt-button [onClick]="togglePassword.bind(this)" *ngIf="showPassword">
       <i class="material-icons-outlined show-icon">visibility_off</i>
+    </pgpt-button>
+  </div>
+  <div class="submit-container" *ngIf="inputBehaviorType === 'submit'">
+    <pgpt-button [buttonSize]="'small'" [buttonType]="'primary'" [isBorderAdded]="true" [onClick]="onSubmitBtnClick.bind(this)">
+      <i class="material-icons-outlined send-icon">send</i>
     </pgpt-button>
   </div>
 </div>

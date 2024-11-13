@@ -1,0 +1,34 @@
+@import "../../../../Styles/include.scss";
+
+.chat-welcome-container {
+  display: flex;
+  flex-direction: column;
+
+  .branding-logo {
+    width: 100%;
+    height: calc($pgpt-sizing-base-rem * 15);
+    background-image: $pgpt-logo-icon-with-stroke-low-res;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-block-end: $pgpt-spacing-16;
+    opacity: 0.6;
+  }
+
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--pgpt-color-text-weak);
+
+    &-heading {
+      font-size: $pgpt-font-size-display-small;
+      font-weight: $pgpt-font-weight-semibold;
+      margin-block: $pgpt-spacing-8;
+    }
+
+    &-sub-heading {
+      font-size: $pgpt-font-size-body-medium;
+    }
+  }
+}

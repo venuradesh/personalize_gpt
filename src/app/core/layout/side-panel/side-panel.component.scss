@@ -39,6 +39,14 @@
       position: fixed;
       left: $pgpt-spacing-16;
       top: $pgpt-spacing-16;
+
+      .hamburger-menu {
+        font-size: $pgpt-font-size-display-small;
+
+        @include media("md-down") {
+          font-size: $pgpt-font-size-body;
+        }
+      }
     }
 
     &.start-chat-container {

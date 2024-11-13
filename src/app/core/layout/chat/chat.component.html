@@ -1,6 +1,17 @@
 <div class="chat-wrapper">
   <div class="chat-container">
-    <div class="sec1">Hello</div>
-    <div class="sec1">World</div>
+    <div class="chat-content">
+      <div class="chat-content-top">
+        <div class="chat-welcome-container">
+          <pgpt-chat-welcome></pgpt-chat-welcome>
+        </div>
+      </div>
+      <div class="chat-content-bottom">
+        <div class="prompt-input">
+          <pgpt-form-input [control]="prompt" [inputBehaviorType]="'submit'" [placeHolder]="'chat.inputPlaceholder' | pgptTranslate" [onSubmitClick]="onSubmitClck.bind(this)"></pgpt-form-input>
+        </div>
+        <div class="chat-disclaimer">{{'chat.disclaimer' | pgptTranslate}}</div>
+      </div>
+    </div>
   </div>
 </div>

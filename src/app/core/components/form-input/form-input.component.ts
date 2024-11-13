@@ -25,10 +25,16 @@ export class FormInputComponent implements OnInit {
   type: "text" | "number" | "password" = "text";
 
   @Input()
+  inputBehaviorType: "submit" | "normal" = "normal";
+
+  @Input()
   control!: FormControl;
 
   @Input()
   placeHolder: string = "";
+
+  @Input()
+  onSubmitClick: () => void = () => {};
 
   public showPassword: boolean = false;
   public activatePreviewPassword: boolean = false;
@@ -42,5 +48,15 @@ export class FormInputComponent implements OnInit {
   public togglePassword(): void {
     this.showPassword = !this.showPassword;
     this.type = this.showPassword ? "text" : "password";
+  }
+
+  public onKeyUp(event: KeyboardEvent): void {
+    if (event.code === "Enter" && this.inputBehaviorType === "submit") {
+      this.onSubmitBtnClick();
+    }
+  }
+
+  public onSubmitBtnClick(): void {
+    this.onSubmitClick();
   }
 }
