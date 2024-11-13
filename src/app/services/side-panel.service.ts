@@ -5,11 +5,12 @@ import { BehaviorSubject, debounceTime, fromEvent, map, Subject, takeUntil } fro
   providedIn: "root",
 })
 export class SidePanelService implements OnDestroy {
+  private SIDE_PANEL_VISIBILITY = "side-panel-visibility";
+  private MEDIUM_SCREEN_WIDTH: number = 768;
+
   public isOpen$: BehaviorSubject<boolean>;
 
   private windowWidth: number = window.innerWidth;
-  private SIDE_PANEL_VISIBILITY = "side-panel-visibility";
-  private MEDIUM_SCREEN_WIDTH: number = 768;
   private destroy$ = new Subject<void>();
 
   constructor() {

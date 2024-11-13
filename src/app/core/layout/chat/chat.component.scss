@@ -8,5 +8,7 @@
   .chat-container {
     height: 100%;
     padding: $pgpt-spacing-8;
+    display: flex;
+    justify-content: space-between;
   }
 }
