@@ -1,5 +1,5 @@
-import { Injectable, OnDestroy } from "@angular/core";
-import { BehaviorSubject, Subject, takeUntil } from "rxjs";
+import { HostListener, Injectable, OnDestroy } from "@angular/core";
+import { BehaviorSubject, debounceTime, fromEvent, map, Subject, takeUntil } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -7,12 +7,30 @@ import { BehaviorSubject, Subject, takeUntil } from "rxjs";
 export class SidePanelService implements OnDestroy {
   public isOpen$: BehaviorSubject<boolean>;
 
+  private windowWidth: number = window.innerWidth;
   private SIDE_PANEL_VISIBILITY = "side-panel-visibility";
+  private MEDIUM_SCREEN_WIDTH: number = 768;
   private destroy$ = new Subject<void>();
 
   constructor() {
     this.isOpen$ = new BehaviorSubject<boolean>(this.getPreference());
     this.setLocalStorageValue();
+    this.onResize();
+  }
+
+  // Listen to window resize event
+  private onResize(): void {
+    fromEvent(window, "resize")
+      .pipe(
+        map(() => window.innerWidth),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((width: number) => this.handleWidth(width));
+  }
+
+  private handleWidth(width: number) {
+    this.windowWidth = width;
+    if (width <= this.MEDIUM_SCREEN_WIDTH) this.close();
   }
 
   public open(): void {
@@ -28,13 +46,17 @@ export class SidePanelService implements OnDestroy {
   }
 
   private getPreference(): boolean {
+    const isMediumScreen: boolean = this.windowWidth <= this.MEDIUM_SCREEN_WIDTH;
     const side_panel_visibility: string | null = localStorage.getItem(this.SIDE_PANEL_VISIBILITY);
-    return side_panel_visibility ? side_panel_visibility === "true" : true;
+    return side_panel_visibility ? side_panel_visibility === "true" : isMediumScreen ? false : true;
   }
 
   private setLocalStorageValue(): void {
     this.isOpen$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (val: boolean) => localStorage.setItem(this.SIDE_PANEL_VISIBILITY, String(val)),
+      next: (val: boolean) => {
+        if (this.windowWidth > this.MEDIUM_SCREEN_WIDTH) localStorage.setItem(this.SIDE_PANEL_VISIBILITY, String(val));
+        else localStorage.removeItem(this.SIDE_PANEL_VISIBILITY);
+      },
     });
   }
 
