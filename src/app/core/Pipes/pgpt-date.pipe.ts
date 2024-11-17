@@ -20,7 +20,7 @@ export class PgptDatePipe implements PipeTransform {
     if (this.isToday(date)) {
       return `${time}`;
     } else if (this.isYesterday(date)) {
-      return `Yesterday,${time}`;
+      return `Yesterday | ${time}`;
     }
 
     return `${datetime.year}/${datetime.month}/${datetime.day} | ${time}`;

@@ -72,6 +72,11 @@ $pgpt-side-panel-small: 2.5rem;
 // box-shadow
 $pgpt-box-shadow-s: 0px 0px 4px rgba(0, 0, 0, 0.6);
 
+// Chat container sizes
+$pgpt-chat-container-max-width: calc($pgpt-sizing-base-rem * 50);
+$pgpt-chat-container-min-width: calc($pgpt-sizing-base-rem * 20);
+$pgpt-chat-container-size: clamp($pgpt-chat-container-min-width, 100%, $pgpt-chat-container-max-width);
+
 // Avatar
 $pgpt-avatar-size: 2rem;
 $pgpt-user-avatar: url("./../assets/Icons/user.png");

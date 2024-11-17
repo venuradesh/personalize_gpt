@@ -15,12 +15,8 @@
     }
 
     .chat-content {
-      $pgpt-chat-container-max-width: calc($pgpt-sizing-base-rem * 50);
-      $pgpt-chat-container-min-width: calc($pgpt-sizing-base-rem * 20);
-
-      width: clamp($pgpt-chat-container-min-width, 100%, $pgpt-chat-container-max-width);
+      width: 100%;
       height: 100%;
-      margin-inline: auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -28,10 +24,13 @@
       &-top {
         width: 100%;
         height: 100%;
-        margin-block-end: $pgpt-spacing-8;
+        margin-block-end: $pgpt-spacing-16;
+        overflow: overlay;
+        margin-inline: auto;
+        @include scrollbar();
+        width: $pgpt-chat-container-size;
 
         .chat-welcome-container {
-          width: 100%;
           height: 100%;
           display: flex;
           justify-content: center;
@@ -44,6 +43,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-inline: auto;
+        width: $pgpt-chat-container-size;
 
         .prompt-input {
           width: 100%;

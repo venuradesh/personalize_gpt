@@ -13,3 +13,16 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+
+@mixin branding() {
+  background-image: $pgpt-logo-icon-with-stroke-low-res;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin scrollbar() {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pgpt-color-text-hint) var(--pgpt-color-background-transparent);
+  scrollbar-gutter: stable;
+}

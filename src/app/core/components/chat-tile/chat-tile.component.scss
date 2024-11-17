@@ -1,7 +1,8 @@
 @import "../../../../Styles/include.scss";
 
 .chat-tile-container {
-  width: 100%;
+  width: $pgpt-chat-container-size;
+  margin-inline: auto;
   margin-block-end: $pgpt-spacing-16;
   display: flex;
   flex-direction: row-reverse;
@@ -18,6 +19,16 @@
       align-items: flex-start;
       border-top-right-radius: $pgpt-spacing-8;
       border-top-left-radius: 0;
+      background-color: transparent;
+      padding-block: 0;
+
+      .time {
+        text-align: left;
+      }
+
+      @include media("md-down") {
+        padding-inline: 0;
+      }
     }
   }
 

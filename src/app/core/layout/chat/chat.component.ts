@@ -19,15 +19,7 @@ import { ChatTileComponent } from "../../components/chat-tile/chat-tile.componen
 export class ChatComponent {
   prompt = new FormControl("", [FormValidator.requiredValidator("Please Enter your Prompts")]);
 
-  public chatSource$ = new BehaviorSubject<ChatDataSource[]>([
-    { content: "What is the captial of Sri lanka?", role: "user", created: new Date() },
-    {
-      content:
-        "Sri Jayawardenapura Kotte is the main captial of Sri Lanka, serving as the legislative captial since 1985. It is located in the colombo district, about 8 kilometers southeast of the commercial capital, Colombo",
-      role: "assistant",
-      created: new Date(),
-    },
-  ]);
+  public chatSource$ = new BehaviorSubject<ChatDataSource[]>([]);
   chatState: FormGroup;
 
   constructor() {
