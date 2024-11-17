@@ -1,0 +1,63 @@
+@import "../../../../Styles/include.scss";
+
+.chat-tile-container {
+  width: 100%;
+  margin-block-end: $pgpt-spacing-16;
+  display: flex;
+  flex-direction: row-reverse;
+
+  &.isAssistant {
+    flex-direction: row;
+
+    .avatar {
+      @include avatar("assistant");
+    }
+
+    .tile-content-container {
+      text-align: left;
+      align-items: flex-start;
+      border-top-right-radius: $pgpt-spacing-8;
+      border-top-left-radius: 0;
+    }
+  }
+
+  .avatar {
+    width: $pgpt-avatar-size;
+    height: $pgpt-avatar-size;
+    @include avatar("user");
+
+    @include media("md-down") {
+      display: none;
+    }
+  }
+
+  .tile-content-container {
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-inline: $pgpt-spacing-8;
+    padding-inline: $pgpt-spacing-16;
+    padding-block-start: $pgpt-spacing-16;
+    padding-block-end: $pgpt-spacing-8;
+    background: var(--pgpt-color-chat-tile-background);
+    border-radius: $pgpt-spacing-8;
+    border-top-right-radius: 0;
+    border-top-left-radius: $pgpt-spacing-8;
+    text-align: right;
+
+    .content {
+      font-size: $pgpt-font-size-body-medium;
+      padding-block-end: $pgpt-spacing-4;
+      line-height: $pgpt-line-height-flowing;
+    }
+
+    .time {
+      width: 100%;
+      text-align: right;
+      font-size: $pgpt-font-size-micro;
+      font-weight: $pgpt-font-weight-lighter-bold;
+      color: var(--pgpt-color-text-hint);
+    }
+  }
+}

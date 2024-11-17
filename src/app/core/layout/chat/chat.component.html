@@ -1,10 +1,21 @@
 <div class="chat-wrapper">
   <div class="chat-container">
     <div class="chat-content">
-      <div class="chat-content-top">
+      <div class="chat-content-top" *ngIf="(chatSource$ | async) as chatDatas">
+        @if(chatDatas.length === 0){
+        <!-- Welcome banner -->
         <div class="chat-welcome-container">
           <pgpt-chat-welcome></pgpt-chat-welcome>
         </div>
+        } @else {
+        <!-- Chat container -->
+        <div class="chat-tiles-container">
+          @for(chatData of chatDatas; track chatData){
+          <!-- Chat tiles -->
+          <pgpt-chat-tile [tileContent]="chatData"></pgpt-chat-tile>
+          }
+        </div>
+        }
       </div>
       <div class="chat-content-bottom">
         <div class="prompt-input">

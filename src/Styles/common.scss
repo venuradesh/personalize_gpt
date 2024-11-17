@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+@mixin avatar($user) {
+  @if $user == "user" {
+    background-image: $pgpt-user-avatar;
+  }
+
+  @if $user == "assistant" {
+    background-image: $pgpt-assistant-avatar;
+  }
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
