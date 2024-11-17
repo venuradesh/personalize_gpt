@@ -71,4 +71,8 @@ $pgpt-side-panel-small: 2.5rem;
 
 // box-shadow
 $pgpt-box-shadow-s: 0px 0px 4px rgba(0, 0, 0, 0.6);
-// $pgpt-box-shadow-m: 0px 0px 16px var(--);
+
+// Avatar
+$pgpt-avatar-size: 2rem;
+$pgpt-user-avatar: url("./../assets/Icons/user.png");
+$pgpt-assistant-avatar: url("./../assets/Icons/logo-low.png");

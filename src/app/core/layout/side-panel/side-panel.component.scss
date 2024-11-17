@@ -12,6 +12,7 @@
   background-color: var(--pgpt-color-panel-background);
   border-right: 1px solid var(--pgpt-color-border-soft);
   position: relative;
+  overflow-y: overlay;
   left: -100%;
   transition: left 0.3s ease-in-out;
 
