@@ -8,13 +8,14 @@ import { FormInputComponent } from "../../core/components/form-input/form-input.
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { Common } from "../../core/helpers/common";
 import { ActivatedRoute, RouterModule, RouterOutlet } from "@angular/router";
-import { BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject, Subject, takeUntil } from "rxjs";
 import { ForgotPasswordComponent } from "../../core/layout/forgot-password/forgot-password.component";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
   selector: "pgpt-login-page",
   standalone: true,
-  imports: [CommonModule, LoginPageComponent, FooterComponent, PgptTranslatePipe, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, RouterModule, ForgotPasswordComponent],
+  imports: [CommonModule, FooterComponent, PgptTranslatePipe, FormsModule, ReactiveFormsModule, ButtonComponent, FormInputComponent, RouterModule, ForgotPasswordComponent],
   templateUrl: "./login-page.component.html",
   styleUrl: "./login-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +32,7 @@ export class LoginPageComponent implements OnDestroy {
   
   private destroy$ = new Subject<void>
 
-  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
+  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private authService: AuthService) {
     this.formGroup = new FormGroup({
       email: this.email,
       password: this.password,
@@ -51,7 +52,12 @@ export class LoginPageComponent implements OnDestroy {
   }
 
   onFormSubmit() {
-    console.log(this.formGroup);
+    if(this.formGroup.status === 'INVALID') return
+
+    this.authService.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
+      next: val => console.log(val),
+      error: err => console.log(err)
+    })
   }
 
   onForgotPasswordClick(): void {
