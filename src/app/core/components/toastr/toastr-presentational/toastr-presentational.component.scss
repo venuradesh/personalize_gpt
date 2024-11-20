@@ -1,0 +1,67 @@
+@import "../../../../../Styles/include.scss";
+
+.toastr {
+  width: calc($pgpt-sizing-base-rem * 18);
+  height: calc($pgpt-sizing-base-rem * 5);
+  border: 1px solid var(--pgpt-color-border-soft);
+  border-radius: $pgpt-spacing-4;
+
+  background-color: var(--pgpt-color-panel-background);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+
+  &-close {
+    position: absolute;
+    right: $pgpt-spacing-4;
+    top: $pgpt-spacing-4;
+    cursor: pointer;
+
+    .close {
+      font-size: $pgpt-font-size-body-small;
+    }
+  }
+
+  &-color {
+    width: $pgpt-sizing-8;
+    height: 100%;
+    @include default_cursor();
+
+    &.success {
+      background-color: var(--pgpt-color-success);
+    }
+
+    &.error {
+      background-color: var(--pgpt-color-error);
+    }
+
+    &.warning {
+      background-color: var(--pgpt-color-warning);
+    }
+
+    &.info {
+      background-color: var(--pgpt-color-info);
+    }
+  }
+
+  &-content {
+    padding-inline: $pgpt-spacing-8;
+    padding-block-end: $pgpt-spacing-8;
+    margin-block: auto;
+    @include default_cursor();
+
+    &-title {
+      color: var(--pgpt-color-text);
+      font-size: $pgpt-font-size-body;
+      font-weight: $pgpt-font-weight-lighter-bold;
+      margin-block-end: $pgpt-spacing-8;
+      @include text_overflow_ellipsis(1);
+    }
+
+    &-message {
+      color: var(--pgpt-color-text-hint);
+      font-size: $pgpt-font-size-body-small;
+      @include text_overflow_ellipsis(2);
+    }
+  }
+}

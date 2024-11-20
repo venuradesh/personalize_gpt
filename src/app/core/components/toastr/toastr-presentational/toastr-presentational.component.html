@@ -1,0 +1,10 @@
+<div class="toastr" @toastAnimation>
+  <div class="toastr-close" (click)="onCloseClick(toastrData._id)">
+    <i class="material-icons-outlined close">close</i>
+  </div>
+  <div class="toastr-color" [ngClass]="toastrData.type"></div>
+  <div class="toastr-content">
+    <div class="toastr-content-title">{{toastrData.title ?? toastrData.type}}</div>
+    <div class="toastr-content-message">{{toastrData.message}}</div>
+  </div>
+</div>

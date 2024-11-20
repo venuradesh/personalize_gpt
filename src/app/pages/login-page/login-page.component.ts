@@ -8,9 +8,10 @@ import { FormInputComponent } from "../../core/components/form-input/form-input.
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { Common } from "../../core/helpers/common";
 import { ActivatedRoute, RouterModule, RouterOutlet } from "@angular/router";
-import { BehaviorSubject, Subject, takeUntil } from "rxjs";
+import { BehaviorSubject, catchError, Observable, of, Subject, switchMap, takeUntil } from "rxjs";
 import { ForgotPasswordComponent } from "../../core/layout/forgot-password/forgot-password.component";
 import { AuthService } from "../../services/auth.service";
+import { ApiSource } from "../../core/models/api_models";
 
 @Component({
   selector: "pgpt-login-page",
@@ -54,10 +55,17 @@ export class LoginPageComponent implements OnDestroy {
   onFormSubmit() {
     if(this.formGroup.status === 'INVALID') return
 
-    this.authService.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
+    this.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
       next: val => console.log(val),
       error: err => console.log(err)
     })
+  }
+
+  private login(email:string, password: string): Observable<ApiSource | null> {
+    return this.authService.login(email, password).pipe(
+      switchMap((value: any) => of({message: value.message, data: value.data, error: value.error})),
+      catchError((err) => {console.log(err); return of(null)})
+    )
   }
 
   onForgotPasswordClick(): void {
