@@ -1,3 +1,7 @@
 <div class="toastr-list-container">
-  <pgpt-toastr-presentational [toastrData]="toastrData"></pgpt-toastr-presentational>
+  <pgpt-list>
+    <ng-container *ngFor="let toastr of toastrData">
+      <pgpt-toastr-presentational [toastrData]="toastr" (removeToast)="onToastCloseClick($event)"></pgpt-toastr-presentational>
+    </ng-container>
+  </pgpt-list>
 </div>

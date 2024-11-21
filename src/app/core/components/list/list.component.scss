@@ -1,0 +1,19 @@
+@import "../../../../Styles/include.scss";
+
+.list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  row-gap: $pgpt-spacing-8;
+  column-gap: $pgpt-spacing-8;
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.horizontal {
+    flex-direction: row;
+  }
+}
