@@ -11,7 +11,9 @@ import { ActivatedRoute, RouterModule, RouterOutlet } from "@angular/router";
 import { BehaviorSubject, catchError, Observable, of, Subject, switchMap, takeUntil } from "rxjs";
 import { ForgotPasswordComponent } from "../../core/layout/forgot-password/forgot-password.component";
 import { AuthService } from "../../services/auth.service";
-import { ApiSource } from "../../core/models/api_models";
+import { ApiSource, ErrorSource } from "../../core/models/api_models";
+import { TastrService } from '../../services/tastr.service'
+import { AUTHENTICATION_FAILED, AUTHENTICATION_SUCCESS } from "../../core/Constants/api-constants";
 
 @Component({
   selector: "pgpt-login-page",
@@ -25,15 +27,15 @@ export class LoginPageComponent implements OnDestroy {
   @ViewChild("loginForm") loginForm!: NgForm;
   public formGroup: FormGroup;
   
-  
   email = new FormControl("", [FormValidator.emailValidator(), FormValidator.requiredValidator("Email is required")]);
   password = new FormControl("", [FormValidator.requiredValidator("Password is Required")]);
   
-  public isForgotPasswordClicked = new BehaviorSubject<boolean>(false);
+  public isForgotPasswordClicked$ = new BehaviorSubject<boolean>(false);
+  public loading$ = new BehaviorSubject<boolean>(false); 
   
   private destroy$ = new Subject<void>
 
-  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private authService: AuthService) {
+  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private toastrService: TastrService, private authService: AuthService) {
     this.formGroup = new FormGroup({
       email: this.email,
       password: this.password,
@@ -56,25 +58,30 @@ export class LoginPageComponent implements OnDestroy {
     if(this.formGroup.status === 'INVALID') return
 
     this.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
-      next: val => console.log(val),
-      error: err => console.log(err)
+      next: (val: ApiSource | null) => {
+        if(val) this.toastrService.success(val.message, AUTHENTICATION_SUCCESS);
+      },
     })
   }
 
   private login(email:string, password: string): Observable<ApiSource | null> {
     return this.authService.login(email, password).pipe(
       switchMap((value: any) => of({message: value.message, data: value.data, error: value.error})),
-      catchError((err) => {console.log(err); return of(null)})
+      catchError((err: ErrorSource) => {
+        this.toastrService.error(err.error.message, AUTHENTICATION_FAILED)
+        console.error(err)
+        return of(null)
+      })
     )
   }
 
   onForgotPasswordClick(): void {
-    this.isForgotPasswordClicked.next(true);
+    this.isForgotPasswordClicked$.next(true);
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-    this.isForgotPasswordClicked.complete();
+    this.isForgotPasswordClicked$.complete();
   }
 }

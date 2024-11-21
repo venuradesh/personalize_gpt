@@ -1,7 +1,7 @@
 <div class="login-page-wrapper">
-  @if(isForgotPasswordClicked | async){
+  @if(isForgotPasswordClicked$ | async){
   <div class="forgot-password-container container">
-    <pgpt-forgot-password class="forgot-password" [backToLogin]="isForgotPasswordClicked"></pgpt-forgot-password>
+    <pgpt-forgot-password class="forgot-password" [backToLogin]="isForgotPasswordClicked$"></pgpt-forgot-password>
   </div>
   } @else {
   <div class="login-container container">

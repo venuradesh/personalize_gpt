@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { TOAST_DELAY, Toastr } from "../../../models/toastr-model";
 import { MatIconModule } from "@angular/material/icon";
 import { animate, style, transition, trigger } from "@angular/animations";
@@ -10,6 +10,7 @@ import { animate, style, transition, trigger } from "@angular/animations";
   imports: [CommonModule, MatIconModule],
   templateUrl: "./toastr-presentational.component.html",
   styleUrl: "./toastr-presentational.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger("toastAnimation", [
       transition(":enter", [style({ transform: "translateY(100%)", opacity: 0 }), animate("300ms ease-in", style({ transform: "translateY(0)", opacity: 1 }))]),
