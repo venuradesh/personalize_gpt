@@ -5,6 +5,7 @@ import { RegisterPageComponent } from "./pages/register-page/register-page.compo
 import { ForgotPasswordComponent } from "./core/layout/forgot-password/forgot-password.component";
 import { ChatPageComponent } from "./pages/chat-page/chat-page.component";
 import { authGuard } from "./guards/auth.guard";
+import { userResolver } from "./Resolvers/user.resolver";
 
 export const routes: Routes = [
   {
@@ -30,6 +31,7 @@ export const routes: Routes = [
   {
     path: "chat/:id",
     component: ChatPageComponent,
+    resolve: { user: userResolver },
     canActivate: [authGuard],
   },
 ];

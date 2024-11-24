@@ -13,7 +13,7 @@ export class ClientService {
     this.options = {
       withCredentials: true,
       headers: {
-        "X-CSRF-TOKEN": this.cookies.get("csrf_refresh_token"),
+        // "X-CSRF-TOKEN": this.cookies.get("csrf_access_token"), //Disabled the CSFR TOKEN in API
         "Content-Type": "application/json",
       },
     };
