@@ -15,6 +15,7 @@ import { ApiSource, ErrorSource } from "../../core/models/api_models";
 import { TastrService } from '../../services/tastr.service'
 import { AUTHENTICATION_FAILED, AUTHENTICATION_SUCCESS } from "../../core/Constants/api-constants";
 import { NavigationService } from "../../services/navigation.service";
+import { LoadingService } from "../../services/loading.service";
 
 @Component({
   selector: "pgpt-login-page",
@@ -36,7 +37,7 @@ export class LoginPageComponent implements OnDestroy {
   
   private destroy$ = new Subject<void>
 
-  constructor(private toastrService: TastrService, private authService: AuthService, private navigationService: NavigationService) {
+  constructor(private toastrService: TastrService, private authService: AuthService, private navigationService: NavigationService, private loading: LoadingService) {
     this.formGroup = new FormGroup({
       email: this.email,
       password: this.password,
@@ -57,11 +58,11 @@ export class LoginPageComponent implements OnDestroy {
 
   onFormSubmit() {
     if(this.formGroup.status === 'INVALID') return
-
+    this.loading.enableLoading();
     this.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
       next: (val: ApiSource | null) => {
+        this.loading.disbaleLoading();
         if (!val) return;
-
         this.toastrService.success(val.message, AUTHENTICATION_SUCCESS);
         this.navigationService.navigate({to: `/chat/${val?.data.user_id }`})
       },

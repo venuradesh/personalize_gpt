@@ -7,3 +7,7 @@
 <div class="toastr-container">
   <pgpt-toastr></pgpt-toastr>
 </div>
+
+<ng-container *ngIf="loading$ | async">
+  <pgpt-loading-screen></pgpt-loading-screen>
+</ng-container>
