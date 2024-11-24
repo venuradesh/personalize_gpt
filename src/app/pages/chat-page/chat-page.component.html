@@ -1,11 +1,11 @@
 <div class="chat-page-container">
   <!-- Side Panel -->
   <div class="side-panel" [class.isOpen]="isOpen$ | async">
-    <pgpt-side-panel></pgpt-side-panel>
+    <pgpt-side-panel [user]="user"></pgpt-side-panel>
   </div>
 
   <!-- Chat Section -->
   <div class="chat-section">
-    <pgpt-chat></pgpt-chat>
+    <pgpt-chat [user]="user"></pgpt-chat>
   </div>
 </div>

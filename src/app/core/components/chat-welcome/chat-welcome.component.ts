@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 
 @Component({
@@ -9,4 +9,7 @@ import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
   templateUrl: "./chat-welcome.component.html",
   styleUrl: "./chat-welcome.component.scss",
 })
-export class ChatWelcomeComponent {}
+export class ChatWelcomeComponent {
+  @Input({ required: true })
+  userName: string = "";
+}
