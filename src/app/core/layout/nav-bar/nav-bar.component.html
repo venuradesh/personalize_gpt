@@ -1,4 +1,4 @@
-<div *ngIf="!removeNavBar" class="nav-bar-container" [class.back-activated]="!navBarButtonStatus.backButton">
+<div *ngIf="!(removeNavBar | async)" class="nav-bar-container" [class.back-activated]="!navBarButtonStatus.backButton">
   <div class="back-button-container" *ngIf="navBarButtonStatus.backButton">
     <pgpt-button [buttonType]="'base'" class="button" [onClick]="navigateToPreviousPage.bind(this)">
       <i class="material-icons-outlined back">arrow_back</i>

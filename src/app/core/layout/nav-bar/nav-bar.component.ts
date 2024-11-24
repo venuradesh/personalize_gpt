@@ -51,32 +51,26 @@ export class NavBarComponent implements OnInit, OnDestroy {
         break;
 
       case '/login':
+        this.removeNavBar.next(false);
         this.navBarButtonStatus = {
           loginButton :false,
           registerButton :true,
           themeButton: true,
           backButton: true,
         }
-        this.removeNavBar.next(false);
         break;
 
       case '/register':
+        this.removeNavBar.next(false);
         this.navBarButtonStatus = {
           loginButton :true,
           registerButton :false,
           themeButton: true,
           backButton: true,
         }
-        this.removeNavBar.next(false);
         break;
 
       default: 
-        this.navBarButtonStatus = {
-          loginButton: false,
-          registerButton: false,
-          themeButton: true,
-          backButton: false
-        }
         this.removeNavBar.next(true);
     }
 

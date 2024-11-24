@@ -14,10 +14,13 @@ export class ButtonComponent {
   buttonType: "base" | "primary" | "disabled" | "fill" = "base";
 
   @Input()
-  buttonSize: "small" | "medium" | "large" = "small";
+  buttonSize: "small" | "medium" | "large" | "basic" = "small";
 
   @Input()
   type: string = "";
+
+  @Input()
+  isBorderAdded: boolean = false;
 
   @Input()
   onClick: () => void = () => {};

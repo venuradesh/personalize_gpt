@@ -1,6 +1,6 @@
 import { Location } from "@angular/common";
 import { Injectable } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
+import { ActivatedRoute, Data, NavigationEnd, Router } from "@angular/router";
 import { filter, Observable } from "rxjs";
 
 export interface NavigateStructure {
@@ -20,5 +20,9 @@ export class NavigationService {
 
   public navigateBack() {
     this.location.back();
+  }
+
+  public getState(): { [key: string]: any } | undefined {
+    return this.router.getCurrentNavigation()?.extras?.state;
   }
 }

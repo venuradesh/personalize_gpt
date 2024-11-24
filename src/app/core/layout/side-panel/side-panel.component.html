@@ -1,6 +1,12 @@
-<div class="side-panel-container">
+<div class="side-panel-container" [class.isOpen]="isOpen$ | async">
   <!-- Top section -->
   <div class="top-section">
+    <!-- Hamburger button -->
+    <div class="hamburger-container section">
+      <pgpt-button [buttonType]="'base'" [buttonSize]="'basic'" [onClick]="togglePanel.bind(this)">
+        <i class="material-icons-outlined hamburger-menu">menu</i>
+      </pgpt-button>
+    </div>
     <!-- Start new Conversation -->
     <div class="start-chat-container section">
       <pgpt-panel-tile [tileType]="'fill'">
@@ -43,7 +49,7 @@
       <pgpt-panel-tile [tileType]="'base'">
         <div class="button-section item profile">
           <div class="icon"></div>
-          <span>User Name</span>
+          <span>{{user?.first_name}} {{user?.last_name}}</span>
         </div>
       </pgpt-panel-tile>
     </div>

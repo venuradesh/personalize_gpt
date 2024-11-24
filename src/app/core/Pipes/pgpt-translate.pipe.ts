@@ -6,7 +6,7 @@ import translatables from "./../../Translatables/translate.json";
   standalone: true,
 })
 export class PgptTranslatePipe implements PipeTransform {
-  transform(key: string): string {
+  transform(key: string, args?: { [key: string]: string }): string {
     const keys = key.split(".");
     let result: any = translatables;
 
@@ -15,6 +15,12 @@ export class PgptTranslatePipe implements PipeTransform {
       if (!result) {
         return key;
       }
+    }
+
+    if (args) {
+      Object.keys(args).forEach((argKey) => {
+        result = result.replace(`{{${argKey}}}`, args[argKey]);
+      });
     }
 
     return result || key;

@@ -11,6 +11,7 @@ $pgpt-icon-doc-analyzer: url("./../assets/Icons/bot.png");
 $pgpt-icon-setting: url("./../assets/Icons/admin.png");
 $pgpt-icon-model: url("./../assets/Icons/modal.png");
 $pgpt-icon-profile: url("./../assets/Icons/user.png");
+$pgpt-icon-close: url("./../assets/Icons/cancel.png");
 $pgpt-icon-size: 2rem;
 
 // border width
@@ -71,4 +72,13 @@ $pgpt-side-panel-small: 2.5rem;
 
 // box-shadow
 $pgpt-box-shadow-s: 0px 0px 4px rgba(0, 0, 0, 0.6);
-// $pgpt-box-shadow-m: 0px 0px 16px var(--);
+
+// Chat container sizes
+$pgpt-chat-container-max-width: calc($pgpt-sizing-base-rem * 50);
+$pgpt-chat-container-min-width: calc($pgpt-sizing-base-rem * 20);
+$pgpt-chat-container-size: clamp($pgpt-chat-container-min-width, 100%, $pgpt-chat-container-max-width);
+
+// Avatar
+$pgpt-avatar-size: 2rem;
+$pgpt-user-avatar: url("./../assets/Icons/user.png");
+$pgpt-assistant-avatar: url("./../assets/Icons/logo-low.png");

@@ -3,6 +3,7 @@
 :root {
   --pgpt-color-background: #f2f2f2;
   --pgpt-color-panel-background: #ebebeb;
+  --pgpt-color-chat-tile-background: #d1d1d1;
   --pgpt-color-background-transparent: transparent;
   --pgpt-color-background-variant: #f9f9f9;
   --pgpt-color-background-hover: #e8e8e8;
@@ -25,6 +26,8 @@
   --pgpt-color-focus: #1a376d;
   --pgpt-color-error: #ec5246;
   --pgpt-color-success: #74c473;
+  --pgpt-color-warning: #d9a918;
+  --pgpt-color-info: #0798f2;
 
   --pgpt-logo-sm: 3rem;
   --pgpt-logo-md: 5rem;
@@ -35,6 +38,7 @@
   .dark-theme {
     --pgpt-color-background: #03093e;
     --pgpt-color-panel-background: #030932;
+    --pgpt-color-chat-tile-background: #030857;
     --pgpt-color-background-variant: #0f0f1e;
     --pgpt-color-background-hover: #030923;
     --pgpt-color-background-selected: #232332;

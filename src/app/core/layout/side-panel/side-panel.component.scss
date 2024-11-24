@@ -1,14 +1,34 @@
 @import "../../../../Styles/include.scss";
 
 .side-panel-container {
-  width: $pgpt-side-panel-large;
   height: 100%;
-  padding-block: $pgpt-spacing-16;
+  width: $pgpt-side-panel-large;
+  padding-block-start: calc($pgpt-spacing-base-rem * 5);
+  padding-block-end: $pgpt-spacing-16;
   padding-inline: $pgpt-spacing-16;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--pgpt-color-panel-background);
+  border-right: 1px solid var(--pgpt-color-border-soft);
+  position: relative;
+  left: -100%;
+  transition: left 0.3s ease-in-out;
+  overflow-y: overlay;
+  @include scrollbar();
+
+  .section:not(.hamburger-container) {
+    visibility: hidden;
+  }
+
+  &.isOpen {
+    left: 0;
+
+    .section {
+      transition-delay: 0.2s;
+      visibility: visible;
+    }
+  }
 
   .top-section {
     flex: 1;
@@ -17,14 +37,28 @@
   }
 
   .section {
+    &.hamburger-container {
+      position: fixed;
+      left: $pgpt-spacing-16;
+      top: $pgpt-spacing-16;
+
+      .hamburger-menu {
+        font-size: $pgpt-font-size-display-small;
+
+        @include media("md-down") {
+          font-size: $pgpt-font-size-body;
+        }
+      }
+    }
+
     &.start-chat-container {
       margin-block-end: $pgpt-spacing-16;
       padding: 0;
     }
 
     &.document-analyzer {
-      border-top: 1px solid var(--pgpt-color-border-soft);
-      border-bottom: 1px solid var(--pgpt-color-border-soft);
+      border-top: 1px solid var(--pgpt-color-border-medium);
+      border-bottom: 1px solid var(--pgpt-color-border-medium);
       padding-block: $pgpt-spacing-8;
       margin-block-end: $pgpt-spacing-8;
     }

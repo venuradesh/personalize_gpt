@@ -1,0 +1,8 @@
+@import "./../Styles/include.scss";
+
+.toastr-container {
+  position: fixed;
+  z-index: 1000;
+  right: $pgpt-spacing-16;
+  bottom: $pgpt-spacing-16;
+}

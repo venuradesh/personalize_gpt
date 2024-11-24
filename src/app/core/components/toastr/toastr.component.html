@@ -1,0 +1,7 @@
+<div class="toastr-list-container">
+  <pgpt-list *ngIf="(toastrData$ | async) as toastrData">
+    <ng-container *ngFor="let toastr of toastrData">
+      <pgpt-toastr-presentational [toastrData]="toastr" (removeToast)="onToastCloseClick($event)"></pgpt-toastr-presentational>
+    </ng-container>
+  </pgpt-list>
+</div>

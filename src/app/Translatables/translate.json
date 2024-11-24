@@ -21,6 +21,7 @@
     "personality": "Your personality (calm, aggresive, etc.)",
     "orgName": "Company name",
     "designation": "Your job title",
+    "country": "Your country",
     "password": "Password",
     "confPassword": "Confirm password",
     "desc": "Describe yourself briefly in one sentence",
@@ -48,5 +49,12 @@
     "chatStart": "Start a new Chat",
     "documentAnalyzer": "Document Analyzer Chatbot",
     "llm": "Change LLM Model"
+  },
+
+  "chat": {
+    "inputPlaceholder": "Message PGPT..",
+    "disclaimer": "We use AI to respond, so mistakes are possible.",
+    "welcome": "Great to see you, {{username}}",
+    "welcome-sub": "How can I make things easier for you?"
   }
 }
