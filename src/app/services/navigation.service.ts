@@ -21,4 +21,8 @@ export class NavigationService {
   public navigateBack() {
     this.location.back();
   }
+
+  public getState(): { [key: string]: any } | undefined {
+    return this.router.getCurrentNavigation()?.extras?.state;
+  }
 }

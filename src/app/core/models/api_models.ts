@@ -2,7 +2,7 @@ import { HttpHeaders } from "@angular/common/http";
 
 export interface ApiSource {
   message: string;
-  data: any[] | null;
+  data: any | null;
   error: boolean;
 }
 

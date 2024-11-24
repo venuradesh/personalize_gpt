@@ -22,4 +22,8 @@ export class ClientService {
   public post(url: string, body: any | null): Observable<Object> {
     return this.httpClient.post(url, body, this.options);
   }
+
+  public get(url: string): Observable<object> {
+    return this.httpClient.get(url, this.options);
+  }
 }

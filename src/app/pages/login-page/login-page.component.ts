@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnDestroy, ViewChild } from "@angular/core";
 import { FooterComponent } from "../../core/layout/footer/footer.component";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
@@ -7,13 +7,14 @@ import { ButtonComponent } from "../../core/components/button/button.component";
 import { FormInputComponent } from "../../core/components/form-input/form-input.component";
 import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { Common } from "../../core/helpers/common";
-import { ActivatedRoute, RouterModule, RouterOutlet } from "@angular/router";
+import { RouterModule, RouterOutlet } from "@angular/router";
 import { BehaviorSubject, catchError, Observable, of, Subject, switchMap, takeUntil } from "rxjs";
 import { ForgotPasswordComponent } from "../../core/layout/forgot-password/forgot-password.component";
 import { AuthService } from "../../services/auth.service";
 import { ApiSource, ErrorSource } from "../../core/models/api_models";
 import { TastrService } from '../../services/tastr.service'
 import { AUTHENTICATION_FAILED, AUTHENTICATION_SUCCESS } from "../../core/Constants/api-constants";
+import { NavigationService } from "../../services/navigation.service";
 
 @Component({
   selector: "pgpt-login-page",
@@ -35,7 +36,7 @@ export class LoginPageComponent implements OnDestroy {
   
   private destroy$ = new Subject<void>
 
-  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private toastrService: TastrService, private authService: AuthService) {
+  constructor(private toastrService: TastrService, private authService: AuthService, private navigationService: NavigationService) {
     this.formGroup = new FormGroup({
       email: this.email,
       password: this.password,
@@ -59,7 +60,10 @@ export class LoginPageComponent implements OnDestroy {
 
     this.login(this.formGroup.value.email, this.formGroup.value.password).pipe(takeUntil(this.destroy$)).subscribe({
       next: (val: ApiSource | null) => {
-        if(val) this.toastrService.success(val.message, AUTHENTICATION_SUCCESS);
+        if (!val) return;
+
+        this.toastrService.success(val.message, AUTHENTICATION_SUCCESS);
+        this.navigationService.navigate({to: `/chat/${val?.data.user_id }`})
       },
     })
   }

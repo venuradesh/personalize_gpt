@@ -8,6 +8,7 @@ import { ChatWelcomeComponent } from "../../components/chat-welcome/chat-welcome
 import { ChatDataSource } from "../../models/chat-models";
 import { BehaviorSubject } from "rxjs";
 import { ChatTileComponent } from "../../components/chat-tile/chat-tile.component";
+import { NavigationService } from "../../../services/navigation.service";
 
 @Component({
   selector: "pgpt-chat",
@@ -22,10 +23,12 @@ export class ChatComponent {
   public chatSource$ = new BehaviorSubject<ChatDataSource[]>([]);
   chatState: FormGroup;
 
-  constructor() {
+  constructor(private navigationService: NavigationService) {
     this.chatState = new FormGroup({
       prompt: this.prompt,
     });
+
+    console.log(navigationService.getState());
   }
 
   public onSubmitClck(): void {
