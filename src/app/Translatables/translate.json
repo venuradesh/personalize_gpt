@@ -21,6 +21,7 @@
     "personality": "Your personality (calm, aggresive, etc.)",
     "orgName": "Company name",
     "designation": "Your job title",
+    "country": "Your country",
     "password": "Password",
     "confPassword": "Confirm password",
     "desc": "Describe yourself briefly in one sentence",

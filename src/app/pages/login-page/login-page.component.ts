@@ -73,8 +73,8 @@ export class LoginPageComponent implements OnDestroy {
     return this.authService.login(email, password).pipe(
       switchMap((value: any) => of({message: value.message, data: value.data, error: value.error})),
       catchError((err: ErrorSource) => {
-        this.toastrService.error(err.error.message, AUTHENTICATION_FAILED)
         console.error(err)
+        this.toastrService.error(err.error.message, AUTHENTICATION_FAILED)
         return of(null)
       })
     )

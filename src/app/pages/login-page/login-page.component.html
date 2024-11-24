@@ -20,7 +20,7 @@
 
       <!-- Password -->
       <div class="password section">
-        <pgpt-form-input [control]="password" [placeHolder]="'login.password' | pgptTranslate"></pgpt-form-input>
+        <pgpt-form-input [type]="'password'" [control]="password" [placeHolder]="'login.password' | pgptTranslate"></pgpt-form-input>
         <div class="error-state" tabindex="-1" *ngIf="password.errors">{{password.getError('error')}}</div>
       </div>
 

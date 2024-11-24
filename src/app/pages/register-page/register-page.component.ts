@@ -8,6 +8,13 @@ import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { FormDateInputComponent } from "../../core/components/form-date-input/form-date-input.component";
 import { FooterComponent } from "../../core/layout/footer/footer.component";
 import { Common } from "../../core/helpers/common";
+import { TastrService } from "../../services/tastr.service";
+import { RegisterUserModel } from "../../core/models/user_models";
+import { UserService } from "../../services/user.service";
+import { ApiSource, ErrorSource } from "../../core/models/api_models";
+import { LoadingService } from "../../services/loading.service";
+import { catchError, Observable, of, switchMap, take } from "rxjs";
+import { NavigationService } from "../../services/navigation.service";
 
 @Component({
   selector: "pgpt-register-page",
@@ -35,16 +42,17 @@ export class RegisterPageComponent implements OnInit {
 
   registerState: FormGroup;
 
-  constructor() {
+  constructor(private toast: TastrService, private userService: UserService, private loading: LoadingService, private navigationService: NavigationService) {
     this.registerState = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
       dob: this.dob,
-      designation: this.designation,
       organizationName: this.organizationName,
+      designation: this.designation,
       country: this.country,
       email: this.email,
       personality: this.personality,
+      description: this.describe,
       password: this.password,
       confPassword: this.password,
 
@@ -65,11 +73,37 @@ export class RegisterPageComponent implements OnInit {
 
   onFormSubmit(): void {
     if (this.registerState.status === "VALID") {
+      this.loading.enableLoading();
+      const registerUserModel: RegisterUserModel | null = Common.convertToRegisterUserModel(this.registerState);
+      this.registerUser(registerUserModel).subscribe({
+        next: (val: ApiSource | null) => {
+          this.loading.disbaleLoading();
+
+          if (!val) return;
+          this.toast.success(val.message);
+          this.navigationService.navigate({ to: "/login" });
+        },
+      });
     }
 
     if (this.registerState.status === "INVALID") {
-      console.log(this.registerState);
-      // this.registerState.
+      this.toast.error("Please Fill all the required fields", "Registration Error");
     }
+  }
+
+  private registerUser(registerModel: RegisterUserModel | null): Observable<ApiSource | null> {
+    if (!registerModel) return of(null);
+
+    return this.userService.registerUser(registerModel).pipe(
+      switchMap((val: any) => {
+        if (!val) return of(null);
+        return of({ message: val.message, data: val.data, error: val.error });
+      }),
+      catchError((err: ErrorSource) => {
+        this.toast.error(err.error.message);
+        console.error(err);
+        return of(null);
+      })
+    );
   }
 }

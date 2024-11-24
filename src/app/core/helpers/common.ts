@@ -3,6 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
 import { NavigationService } from "../../services/navigation.service";
 import { Inject, Injector } from "@angular/core";
+import { RegisterUserModel } from "../models/user_models";
 
 export class Common {
   constructor() {}
@@ -27,6 +28,29 @@ export class Common {
         });
       }
     });
+  }
+
+  public static convertToRegisterUserModel(formState: FormGroup): RegisterUserModel | null {
+    if (!formState.valid) return null;
+
+    const formValue = formState.value;
+
+    return {
+      first_name: formValue.firstName,
+      last_name: formValue.lastName,
+      date_of_birth: formValue.dob,
+      job_title: formValue.designation,
+      company_name: formValue.organizationName,
+      country: formValue.country,
+      email: formValue.email,
+      personality: formValue.personality,
+      description: formValue.description,
+      password: formValue.password,
+      choosen_llm: "openai",
+      apiToken: {
+        openai_api_key: formValue.apiTokens?.openAiToken,
+      },
+    };
   }
 
   public static isChildRouteActivated(route: ActivatedRoute): Observable<boolean> {
