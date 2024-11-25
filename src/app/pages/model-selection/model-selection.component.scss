@@ -1,0 +1,37 @@
+@import "../../../Styles/include.scss";
+
+.model-selection-wrapper {
+  width: 100vw;
+  height: calc(100vh - $pgpt-nav-bar-height);
+  display: flex;
+  flex-direction: column;
+
+  .models {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &-header {
+      font-size: $pgpt-font-size-display-medium;
+      font-weight: $pgpt-font-weight-semibold;
+      color: var(--pgpt-color-theme-blue);
+      margin-block: $pgpt-spacing-16;
+
+      @include media("md-down") {
+        font-size: $pgpt-font-size-display-small;
+      }
+    }
+
+    &-content {
+      display: flex;
+      column-gap: $pgpt-spacing-16;
+
+      @include media("md-down") {
+        flex-direction: column;
+        row-gap: $pgpt-spacing-16;
+      }
+    }
+  }
+}

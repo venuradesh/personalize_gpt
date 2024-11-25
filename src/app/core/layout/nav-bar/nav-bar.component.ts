@@ -70,6 +70,16 @@ export class NavBarComponent implements OnInit, OnDestroy {
         }
         break;
 
+      case '/model-selection':
+        this.removeNavBar.next(false);
+        this.navBarButtonStatus = {
+          loginButton :true,
+          registerButton :false,
+          themeButton: true,
+          backButton: true,
+        }
+        break;
+
       default: 
         this.removeNavBar.next(true);
     }
@@ -113,7 +123,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   //#region Navigate to Regsiter
   public onRegisterClick():void {
-    this.navigationService.navigate({to: '/register'});
+    this.navigationService.navigate({to: '/model-selection'});
   }
   //#endregion
 

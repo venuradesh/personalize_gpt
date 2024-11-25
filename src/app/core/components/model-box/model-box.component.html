@@ -1,0 +1,29 @@
+<div class="model">
+  <div class="model-header">{{modelData?.name}}</div>
+  <!-- Options -->
+  <div class="model-options">
+    @for(option of modelData?.options; track option){
+    <div class="model-option">{{option}}</div>
+    }
+  </div>
+
+  <!-- Instructions -->
+  <div class="model-instructions">
+    <div class="model-instructions-header">{{'modelSelection.instructionHeader' | pgptTranslate }}</div>
+    @for(instruction of modelData?.instructions; track instruction){
+    <div class="model-instruction">{{instruction}}</div>
+    }
+  </div>
+
+  <!-- Link -->
+  <div class="model-link">
+    <a [href]="modelData?.link">{{'modelSelection.clickHere' | pgptTranslate }}</a>
+  </div>
+
+  <!-- Action button -->
+  <div class="model-action-buttons">
+    <pgpt-button [buttonSize]="'large'" [buttonType]="'primary'">
+      <span>{{'modelSelection.action' | pgptTranslate:{modelName: modelData?.name ?? '' } }}</span>
+    </pgpt-button>
+  </div>
+</div>

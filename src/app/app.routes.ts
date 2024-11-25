@@ -6,6 +6,7 @@ import { ForgotPasswordComponent } from "./core/layout/forgot-password/forgot-pa
 import { ChatPageComponent } from "./pages/chat-page/chat-page.component";
 import { authGuard } from "./guards/auth.guard";
 import { userResolver } from "./Resolvers/user.resolver";
+import { ModelSelectionComponent } from "./pages/model-selection/model-selection.component";
 
 export const routes: Routes = [
   {
@@ -22,6 +23,11 @@ export const routes: Routes = [
     path: "login",
     pathMatch: "full",
     component: LoginPageComponent,
+  },
+  {
+    path: "model-selection",
+    pathMatch: "full",
+    component: ModelSelectionComponent,
   },
   {
     path: "register",

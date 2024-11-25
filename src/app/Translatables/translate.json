@@ -61,5 +61,11 @@
     "general": "General",
     "llm": "Change LLM Model",
     "profile": "Profile"
+  },
+  "modelSelection": {
+    "heading": "Choose the Model",
+    "action": "Continue with {{modelName}}",
+    "instructionHeader": "To use this you need to,",
+    "clickHere": "Click to create an API Key"
   }
 }

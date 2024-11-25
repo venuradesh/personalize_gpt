@@ -1,0 +1,106 @@
+@import "../../../../Styles/include.scss";
+
+@mixin bulletItem() {
+  content: "";
+  position: absolute;
+  left: -$pgpt-spacing-16;
+  top: $pgpt-spacing-4;
+  width: $pgpt-sizing-8;
+  height: $pgpt-sizing-8;
+  background-color: var(--pgpt-color-theme-blue);
+}
+
+.model {
+  width: 100%;
+  max-width: calc($pgpt-sizing-base-rem * 17);
+  height: max-content;
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-16;
+  border: 2px solid var(--pgpt-color-theme-blue);
+  border-radius: $pgpt-radius-m;
+
+  &-header {
+    font-size: $pgpt-font-size-display-small;
+    font-weight: $pgpt-font-weight-lighter-bold;
+    text-align: center;
+    margin-block-end: $pgpt-spacing-16;
+    color: var(--pgpt-color-text);
+  }
+
+  &-options {
+    margin-block: $pgpt-spacing-16;
+
+    .model-option {
+      font-size: $pgpt-font-size-body-medium;
+      margin-block: $pgpt-spacing-4;
+      position: relative;
+      margin-inline-start: $pgpt-spacing-16;
+      color: var(--pgpt-color-text-hint);
+      line-height: $pgpt-line-height-flowing;
+
+      @include media("md-down") {
+        font-size: $pgpt-font-size-body-small;
+      }
+
+      &::after {
+        @include bulletItem();
+      }
+    }
+  }
+
+  &-instructions {
+    &-header {
+      font-size: $pgpt-font-size-body;
+      margin-block-end: $pgpt-spacing-8;
+      color: var(--pgpt-color-text);
+    }
+
+    .model-instruction {
+      position: relative;
+      margin-inline-start: $pgpt-spacing-16;
+      font-size: $pgpt-font-size-body-medium;
+      margin-block: $pgpt-spacing-4;
+      color: var(--pgpt-color-text-hint);
+      line-height: $pgpt-line-height-flowing;
+
+      @include media("md-down") {
+        font-size: $pgpt-font-size-body-small;
+      }
+
+      &::after {
+        @include bulletItem();
+      }
+    }
+  }
+
+  &-link {
+    font-size: $pgpt-font-size-body-small;
+    cursor: pointer;
+    margin-block: $pgpt-spacing-16;
+
+    a {
+      color: var(--pgpt-color-text-link);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-action-buttons {
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-block: $pgpt-spacing-8;
+
+    span {
+      font-size: $pgpt-font-size-body-medium;
+
+      @include media("md-down") {
+        font-size: $pgpt-font-size-body-small;
+      }
+    }
+  }
+}
