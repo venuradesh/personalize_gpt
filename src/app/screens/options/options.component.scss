@@ -1,0 +1,37 @@
+@import "../../../Styles/include.scss";
+
+.options-wrapper {
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .options {
+    $pgpt-options-min-width: calc($pgpt-sizing-base-rem * 18);
+    $pgpt-options-max-width: calc($pgpt-sizing-base-rem * 38);
+
+    $pgpt-options-min-height: calc($pgpt-sizing-base-rem * 32);
+    $pgpt-options-max-height: calc($pgpt-sizing-base-rem * 34);
+
+    background-color: var(--pgpt-color-panel-background);
+    width: clamp($pgpt-options-min-width, 90vw, $pgpt-options-max-width);
+    height: clamp($pgpt-options-min-height, 90vh, $pgpt-options-max-height);
+    border-radius: $pgpt-radius-m;
+    border: 1px solid var(--pgpt-color-border-soft);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    &-tabs {
+      width: 100%;
+      height: calc($pgpt-sizing-base-rem * 4);
+      background-color: var(--pgpt-color-background);
+
+      @include media("sm-only") {
+        height: calc($pgpt-sizing-base-rem * 3);
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
   selector: "pgpt-loading-screen",
@@ -6,5 +6,6 @@ import { Component } from "@angular/core";
   imports: [],
   templateUrl: "./loading-screen.component.html",
   styleUrl: "./loading-screen.component.scss",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingScreenComponent {}

@@ -8,4 +8,8 @@
   <div class="chat-section">
     <pgpt-chat [user]="user"></pgpt-chat>
   </div>
+
+  <div class="options-section" *ngIf="isOptionsApplied">
+    <pgpt-options></pgpt-options>
+  </div>
 </div>

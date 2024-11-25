@@ -56,5 +56,10 @@
     "disclaimer": "We use AI to respond, so mistakes are possible.",
     "welcome": "Great to see you, {{username}}",
     "welcome-sub": "How can I make things easier for you?"
+  },
+  "optionTabs": {
+    "general": "General",
+    "llm": "Change LLM Model",
+    "profile": "Profile"
   }
 }
