@@ -4,11 +4,13 @@ import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { NavigationService } from "../../services/navigation.service";
 import { Subject, takeUntil } from "rxjs";
+import { MatIconModule } from "@angular/material/icon";
+import { ButtonComponent } from "../../core/components/button/button.component";
 
 @Component({
   selector: "pgpt-options",
   standalone: true,
-  imports: [TabsComponent, CommonModule],
+  imports: [TabsComponent, CommonModule, MatIconModule, ButtonComponent],
   templateUrl: "./options.component.html",
   styleUrl: "./options.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,7 +32,7 @@ export class OptionsComponent implements OnInit, OnDestroy {
   @HostListener("document:click", ["$event"])
   onBackgroundClick(event: MouseEvent): void {
     const componentClick = this.elementRef.nativeElement.contains(event.target);
-    const clickInside = this.elementRef.nativeElement.querySelector(".options").contains(event.target);
+    const clickInside = this.elementRef.nativeElement.querySelector(".options-container").contains(event.target);
     if (!clickInside && componentClick) {
       this.onCloseClick();
     }
