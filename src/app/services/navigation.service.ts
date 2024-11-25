@@ -6,6 +6,7 @@ import { filter, Observable } from "rxjs";
 export interface NavigateStructure {
   to: string;
   state?: Object;
+  fragment?: string;
 }
 
 @Injectable({
@@ -15,7 +16,7 @@ export class NavigationService {
   constructor(private router: Router, private location: Location) {}
 
   public navigate(event: NavigateStructure): void {
-    this.router.navigate([event.to], { state: event.state });
+    this.router.navigate([event.to], { state: event.state, fragment: event.fragment });
   }
 
   public navigateBack() {
@@ -24,5 +25,9 @@ export class NavigationService {
 
   public getState(): { [key: string]: any } | undefined {
     return this.router.getCurrentNavigation()?.extras?.state;
+  }
+
+  public getCurrentUrl(): string {
+    return this.router.url.split("#")[0];
   }
 }

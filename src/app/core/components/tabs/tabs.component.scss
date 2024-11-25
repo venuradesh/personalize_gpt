@@ -1,0 +1,43 @@
+@import "../../../../Styles/include.scss";
+
+.tabs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .tab {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--pgpt-color-border-soft);
+    border-inline: 1px solid var(--pgpt-color-background-transparent);
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+      background-color: var(--pgpt-color-background-hover);
+    }
+
+    &.active {
+      border-inline-color: var(--pgpt-color-border-soft);
+      border-bottom-color: transparent;
+      background-color: var(--pgpt-color-panel-background);
+      cursor: default;
+      pointer-events: none;
+
+      &.last {
+        border-right-color: var(--pgpt-color-background-transparent);
+      }
+
+      &.first {
+        border-left-color: var(--pgpt-color-background-transparent);
+      }
+    }
+
+    span {
+      font-size: $pgpt-font-size-body-small;
+      font-weight: $pgpt-font-weight-lighter-bold;
+    }
+  }
+}

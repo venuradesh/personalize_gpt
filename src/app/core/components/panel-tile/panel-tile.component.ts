@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Input, Output } from "@angular/core";
 
 @Component({
   selector: "pgpt-panel-tile",
@@ -10,4 +10,11 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 })
 export class PanelTileComponent {
   @Input() tileType: "fill" | "primary" | "base" = "base";
+
+  @Input()
+  onTileClick: () => void = () => {};
+
+  onTileItemClick(): void {
+    this.onTileClick();
+  }
 }

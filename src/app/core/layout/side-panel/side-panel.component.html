@@ -29,13 +29,13 @@
 
     <!-- Other Options -->
     <div class="other section">
-      <pgpt-panel-tile [tileType]="'base'">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onGeneralSettingsClick.bind(this)">
         <div class="button-section item settings">
           <div class="icon"></div>
           <span>{{'resources.settings' | pgptTranslate}}</span>
         </div>
       </pgpt-panel-tile>
-      <pgpt-panel-tile [tileType]="'base'">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onChangeLlmClick.bind(this)">
         <div class="button-section item llm">
           <div class="icon"></div>
           <span>{{'navigator.llm' | pgptTranslate}}</span>
@@ -46,7 +46,7 @@
   <!-- Bottom Section -->
   <div class="bottom-section">
     <div class="profile-section section">
-      <pgpt-panel-tile [tileType]="'base'">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onProfileClick.bind(this)">
         <div class="button-section item profile">
           <div class="icon"></div>
           <span>{{user?.first_name}} {{user?.last_name}}</span>

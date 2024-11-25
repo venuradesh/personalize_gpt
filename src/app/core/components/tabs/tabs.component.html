@@ -1,0 +1,9 @@
+<div class="tabs">
+  <!-- Tabs content -->
+  @for(tab of tabs; track tab; let index = $index; let first = $first; let last = $last){
+  <!-- Tabs element -->
+  <div class="tab" [ngClass]="{active: index === activeIndex, first: first, last: last}" (click)="onTabClick(index)">
+    <span class="tab-content">{{tab}}</span>
+  </div>
+  }
+</div>

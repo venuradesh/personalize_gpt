@@ -1,0 +1,14 @@
+[
+  {
+    "name": "OpenAI",
+    "options": ["More accessible", "Trained data is higher in GPT3.5", "Get $5 free credit per month"],
+    "instructions": ["Create an OpenAI account", "Generate an API key and copy the API key"],
+    "link": "https://platform.openai.com/settings/organization/api-keys"
+  },
+  {
+    "name": "Llama-3.1",
+    "options": ["Performances are high", "Offer more upto date data", "Get few API calls for new users"],
+    "instructions": ["Create a groqcloud account", "Generate an API key and copy the API key"],
+    "link": "https://console.groq.com/keys"
+  }
+]

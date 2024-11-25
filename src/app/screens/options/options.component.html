@@ -1,0 +1,24 @@
+<div class="options-wrapper">
+  <div class="options-container">
+    <!-- Close Button -->
+    <div class="options-container-close">
+      <pgpt-button [buttonType]="'base'" [onClick]="onCloseClick.bind(this)">
+        <i class="material-icons-outlined close">close</i>
+      </pgpt-button>
+    </div>
+    <!-- Options -->
+    <div class="options">
+      <!-- Settings Tabs -->
+      <div class="options-tabs">
+        <pgpt-tabs [tabs]="tabs" [activeIndex]="activeIndex" (tabChange)="onTabChange($event)"></pgpt-tabs>
+      </div>
+
+      <!-- Tabs contents -->
+      <div class="options-content">
+        <div *ngIf="activeIndex === 0">General Content</div>
+        <div *ngIf="activeIndex === 1">LLM Content</div>
+        <div *ngIf="activeIndex === 2">Profile Content</div>
+      </div>
+    </div>
+  </div>
+</div>
