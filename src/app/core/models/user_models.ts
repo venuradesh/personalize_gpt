@@ -25,8 +25,6 @@ export interface RegisterUserModel {
   description: string;
   password: string;
   choosen_llm: string;
-  apiToken: {
-    openai_api_key?: string;
-    llama_api_key?: string;
-  };
+  openai_api_key?: string;
+  llama_api_key?: string;
 }

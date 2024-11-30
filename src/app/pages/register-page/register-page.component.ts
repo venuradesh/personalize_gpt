@@ -106,7 +106,10 @@ export class RegisterPageComponent implements OnInit {
   onFormSubmit(): void {
     if (this.registerState.status === "VALID") {
       this.loading.enableLoading();
-      const registerUserModel: RegisterUserModel | null = Common.convertToRegisterUserModel(this.registerState);
+
+      const modelSelected: string = this.isOpenAIActivated ? ModelActivationStaus.OPENAI : ModelActivationStaus.LLAMA;
+      const registerUserModel: RegisterUserModel | null = Common.convertToRegisterUserModel(this.registerState, modelSelected);
+
       this.registerUser(registerUserModel).subscribe({
         next: (val: ApiSource | null) => {
           this.loading.disbaleLoading();

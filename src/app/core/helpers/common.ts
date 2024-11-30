@@ -30,7 +30,7 @@ export class Common {
     });
   }
 
-  public static convertToRegisterUserModel(formState: FormGroup): RegisterUserModel | null {
+  public static convertToRegisterUserModel(formState: FormGroup, llm_selected: string): RegisterUserModel | null {
     if (!formState.valid) return null;
 
     const formValue = formState.value;
@@ -46,10 +46,9 @@ export class Common {
       personality: formValue.personality,
       description: formValue.description,
       password: formValue.password,
-      choosen_llm: "openai",
-      apiToken: {
-        openai_api_key: formValue.apiTokens?.openAiToken,
-      },
+      choosen_llm: llm_selected,
+      openai_api_key: formValue.apiTokens?.openAiToken,
+      llama_api_key: formValue.apiTokens?.llamaApiToken,
     };
   }
 
