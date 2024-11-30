@@ -43,8 +43,8 @@ export class RegisterPageComponent implements OnInit {
   password = new FormControl("", [FormValidator.passwordValidator(), FormValidator.requiredValidator("Password is Required")]);
   confPassword = new FormControl("", [FormValidator.passwordMatcher(this.password), FormValidator.requiredValidator("Confirmation password is required")]);
   describe = new FormControl("", [Validators.maxLength(60)]);
-  openAiToken = new FormControl("", [FormValidator.requiredValidator("OpenAi API Key is required")]);
-  llamaApiToken = new FormControl("", [FormValidator.requiredValidator("Llama API Key is required")]);
+  openAiToken = new FormControl("", [FormValidator.requiredValidator("OpenAi API Key is required"), FormValidator.openAiKeyValidator()]);
+  llamaApiToken = new FormControl("", [FormValidator.requiredValidator("Llama API Key is required"), FormValidator.llamaAIAPIKeyValidator()]);
 
   registerState: FormGroup;
 

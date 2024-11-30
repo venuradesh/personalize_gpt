@@ -1,8 +1,6 @@
-import { AbstractControl, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
-import { NavigationService } from "../../services/navigation.service";
-import { Inject, Injector } from "@angular/core";
 import { RegisterUserModel } from "../models/user_models";
 
 export class Common {

@@ -83,4 +83,26 @@ export class FormValidator {
       return { error: "Confirmation password must match the original password" };
     };
   }
+
+  public static openAiKeyValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.touched && !control.dirty) return null;
+
+      const regExp: RegExp = new RegExp(/^sk-.{47,}$/);
+      if (!regExp.test(control.value)) return { error: "Please enter a valid OpenAI API Key" };
+
+      return null;
+    };
+  }
+
+  public static llamaAIAPIKeyValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.touched && !control.dirty) return null;
+
+      const regExp: RegExp = new RegExp(/^gsk_.{50,}$/);
+      if (!regExp.test(control.value)) return { error: "Please enter a valid Groqcloud API Key" };
+
+      return null;
+    };
+  }
 }
