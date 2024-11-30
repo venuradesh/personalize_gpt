@@ -82,9 +82,13 @@
 
       <!-- Keys -->
       <div class="tr key-section">
-        <div class="td">
+        <div class="td" *ngIf="isOpenAIActivated">
           <pgpt-form-input [control]="openAiToken" [placeHolder]="'register.openAiKey' | pgptTranslate"></pgpt-form-input>
           <div class="error-state" tabindex="-1" *ngIf="openAiToken.errors">{{openAiToken.getError('error')}}</div>
+        </div>
+        <div class="td" *ngIf="isLlamaActivated">
+          <pgpt-form-input [control]="llamaApiToken" [placeHolder]="'register.llamaKey' | pgptTranslate"></pgpt-form-input>
+          <div class="error-state" tabindex="-1" *ngIf="llamaApiToken.errors">{{llamaApiToken.getError('error')}}</div>
         </div>
       </div>
 

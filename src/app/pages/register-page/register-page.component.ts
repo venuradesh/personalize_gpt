@@ -13,8 +13,10 @@ import { RegisterUserModel } from "../../core/models/user_models";
 import { UserService } from "../../services/user.service";
 import { ApiSource, ErrorSource } from "../../core/models/api_models";
 import { LoadingService } from "../../services/loading.service";
-import { catchError, Observable, of, switchMap, take } from "rxjs";
+import { catchError, Observable, of, Subject, switchMap, take, takeUntil } from "rxjs";
 import { NavigationService } from "../../services/navigation.service";
+import { ActivatedRoute } from "@angular/router";
+import { ModelActivationStaus } from "../../core/models/llm-models";
 
 @Component({
   selector: "pgpt-register-page",
@@ -26,6 +28,9 @@ import { NavigationService } from "../../services/navigation.service";
 })
 export class RegisterPageComponent implements OnInit {
   @ViewChild("registerForm") registerForm!: NgForm;
+
+  public isOpenAIActivated: boolean = false;
+  public isLlamaActivated: boolean = false;
 
   firstName = new FormControl("", [FormValidator.requiredValidator("First Name is required")]);
   lastName = new FormControl("", [FormValidator.requiredValidator("Last Name is required")]);
@@ -39,10 +44,13 @@ export class RegisterPageComponent implements OnInit {
   confPassword = new FormControl("", [FormValidator.passwordMatcher(this.password), FormValidator.requiredValidator("Confirmation password is required")]);
   describe = new FormControl("", [Validators.maxLength(60)]);
   openAiToken = new FormControl("", [FormValidator.requiredValidator("OpenAi API Key is required")]);
+  llamaApiToken = new FormControl("", [FormValidator.requiredValidator("Llama API Key is required")]);
 
   registerState: FormGroup;
 
-  constructor(private toast: TastrService, private userService: UserService, private loading: LoadingService, private navigationService: NavigationService) {
+  private destroy$ = new Subject<void>();
+
+  constructor(private toast: TastrService, private userService: UserService, private loading: LoadingService, private navigationService: NavigationService, private route: ActivatedRoute) {
     this.registerState = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -56,18 +64,42 @@ export class RegisterPageComponent implements OnInit {
       password: this.password,
       confPassword: this.password,
 
-      apiTokens: new FormGroup({
-        openAiToken: this.openAiToken,
-      }),
+      apiTokens: new FormGroup({}),
     });
   }
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      this.setModelStatus(params["model"]);
+    });
+  }
 
   onSubmitButtonClick(): void {
     if (this.registerForm) {
       Common.triggerFormChecks(this.registerState);
       this.registerForm.ngSubmit.emit();
+    }
+  }
+
+  private setModelStatus(modelType: string): void {
+    const apiTokenGroup = this.registerState.get("apiTokens") as FormGroup;
+
+    if (!apiTokenGroup) {
+      this.toast.error("apiTokens group is not initialized.", "Client Error!");
+      return;
+    }
+
+    this.isOpenAIActivated = modelType === ModelActivationStaus.OPENAI;
+    this.isLlamaActivated = modelType === ModelActivationStaus.LLAMA;
+
+    if (this.isOpenAIActivated) {
+      apiTokenGroup.addControl("openAiToken", this.openAiToken);
+      apiTokenGroup.removeControl("llamaApiToken");
+    } else if (this.isLlamaActivated) {
+      apiTokenGroup.addControl("llamaApiToken", this.llamaApiToken);
+      apiTokenGroup.removeControl("openAiToken");
+    } else {
+      this.toast.error("Please Select a Model");
     }
   }
 
@@ -105,5 +137,10 @@ export class RegisterPageComponent implements OnInit {
         return of(null);
       })
     );
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

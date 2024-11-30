@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FooterComponent } from "../../core/layout/footer/footer.component";
 import data from "../../../../assets/data/model-data.json";
-import { LlmModelData } from "../../core/models/llm-models";
+import { ModelData } from "../../core/models/llm-models";
 import { ModelBoxComponent } from "../../core/components/model-box/model-box.component";
 
 @Component({
@@ -15,7 +15,7 @@ import { ModelBoxComponent } from "../../core/components/model-box/model-box.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelSelectionComponent implements OnInit {
-  jsonData: LlmModelData[] = [];
+  jsonData: ModelData[] = [];
 
   public ngOnInit(): void {
     this.jsonData = data;

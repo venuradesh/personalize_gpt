@@ -26,7 +26,8 @@
     "confPassword": "Confirm password",
     "desc": "Describe yourself briefly in one sentence",
     "maxLengthError": "Maximum character length is: ",
-    "openAiKey": "Your OpenAI API Key"
+    "openAiKey": "Your OpenAI API Key",
+    "llamaKey": "Your Llama API Key"
   },
   "login": {
     "loginPageHeader": "Welcome Back!",

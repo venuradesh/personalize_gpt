@@ -22,7 +22,7 @@
 
   <!-- Action button -->
   <div class="model-action-buttons">
-    <pgpt-button [buttonSize]="'large'" [buttonType]="'primary'">
+    <pgpt-button [buttonSize]="'large'" [buttonType]="'primary'" [onClick]="onButtonClick.bind(this)">
       <span>{{'modelSelection.action' | pgptTranslate:{modelName: modelData?.name ?? '' } }}</span>
     </pgpt-button>
   </div>
