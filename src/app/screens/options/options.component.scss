@@ -41,11 +41,21 @@
 
       &-tabs {
         width: 100%;
-        height: calc($pgpt-sizing-base-rem * 4);
+        height: calc($pgpt-sizing-base-rem * 3);
         background-color: var(--pgpt-color-background);
 
         @include media("sm-only") {
           height: calc($pgpt-sizing-base-rem * 3);
+        }
+      }
+
+      &-content {
+        flex: 1;
+        display: flex;
+        overflow-y: auto;
+
+        .profile-container {
+          flex: 1;
         }
       }
     }

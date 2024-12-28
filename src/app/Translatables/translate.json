@@ -68,5 +68,8 @@
     "action": "Continue with {{modelName}}",
     "instructionHeader": "To use this you need to,",
     "clickHere": "Click to create an API Key"
+  },
+  "profile": {
+    "update": "Update my profile"
   }
 }

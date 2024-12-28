@@ -31,6 +31,13 @@
       outline: none;
       border-color: var(--pgpt-color-focus);
     }
+
+    &[readonly] {
+      background-color: var(--pgpt-color-background-variant);
+      cursor: default;
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
 
   .show-password {

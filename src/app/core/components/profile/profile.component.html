@@ -1,0 +1,75 @@
+<div class="profile">
+  <div class="profile__icon"></div>
+  <form class="profile__form" (ngSubmit)="onFormsSubmit()" [formGroup]="profileState">
+    <!-- Name Section -->
+    <div class="profile__form-tr name-section">
+      <!-- First Name -->
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="firstName" [placeHolder]="'register.firstName' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="firstName.errors">{{firstName.getError('error')}}</div>
+      </div>
+      <!-- Last Name -->
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="lastName" [placeHolder]="'register.lastName' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="lastName.errors">{{lastName.getError('error')}}</div>
+      </div>
+    </div>
+
+    <!-- Identity Row -->
+    <div class="profile__form-tr identity-section">
+      <!-- Date of birth -->
+      <div class="profile__form-td">
+        <pgpt-form-date-input [control]="dob" [placeHolder]="'register.dob' | pgptTranslate"></pgpt-form-date-input>
+        <div class="error-state" tabindex="-1" *ngIf="dob.errors">{{dob.getError('error')}}</div>
+      </div>
+
+      <!-- Email -->
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="email" [isReadOnly]="true" [placeHolder]="'register.email' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="email.errors">{{email.getError('error')}}</div>
+      </div>
+    </div>
+
+    <!-- Organization info Row-->
+    <div class="profile__form-tr org-section">
+      <!-- Organization name -->
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="organizationName" [placeHolder]="'register.orgName' | pgptTranslate"></pgpt-form-input>
+      </div>
+      <!-- Designation -->
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="designation" [placeHolder]="'register.designation' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="designation.errors">{{designation.getError('error')}}</div>
+      </div>
+    </div>
+
+    <!-- Personality Row -->
+    <div class="profile__form-tr personality-section">
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="country" [placeHolder]="'register.country' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="country.errors">{{country.getError('error')}}</div>
+      </div>
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="personality" [placeHolder]="'register.personality' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="personality.errors">{{personality.getError('error')}}</div>
+        <div class="error-state" tabindex="-1" *ngIf="personality.errors?.['maxlength']">{{('register.maxLengthError' | pgptTranslate) + personality.errors?.['maxlength'].requiredLength}}</div>
+      </div>
+    </div>
+    <!-- Describe Row -->
+    <div class="profile__form-tr desc-section">
+      <div class="profile__form-td">
+        <pgpt-form-input [control]="describe" [placeHolder]="'register.desc' | pgptTranslate"></pgpt-form-input>
+        <div class="error-state" tabindex="-1" *ngIf="describe.errors?.['maxlength']">{{('register.maxLengthError' | pgptTranslate) + describe.errors?.['maxlength'].requiredLength}}</div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="profile__form-tr submit-btn">
+      <pgpt-button [type]="'submit'" [buttonType]="'primary'" [buttonSize]="'large'" [onClick]="onSubmitButtonClick.bind(this)">
+        <span>
+          {{ 'profile.update' | pgptTranslate }}
+        </span>
+      </pgpt-button>
+    </div>
+  </form>
+</div>
