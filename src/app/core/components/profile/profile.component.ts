@@ -15,11 +15,12 @@ import { ApiSource, ErrorSource } from "../../models/api_models";
 import { Common } from "../../helpers/common";
 import { TOAST_DELAY } from "../../models/toastr-model";
 import { InternalLoaderComponent } from "../internal-loader/internal-loader.component";
+import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
 
 @Component({
   selector: "pgpt-profile",
   standalone: true,
-  imports: [CommonModule, FormInputComponent, FormDateInputComponent, ButtonComponent, ReactiveFormsModule, FormsModule, PgptTranslatePipe, InternalLoaderComponent],
+  imports: [CommonModule, FormInputComponent, FormDateInputComponent, ButtonComponent, ReactiveFormsModule, FormsModule, PgptTranslatePipe, InternalLoaderComponent, ConfirmationDialogComponent],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
 
   public profileState: FormGroup;
   public loading$ = new BehaviorSubject<boolean>(false);
+  public isConfirmationOpen$ = new BehaviorSubject<boolean>(false);
 
   private initialState: RegisterUserModel | undefined;
 
@@ -100,6 +102,12 @@ export class ProfileComponent implements OnInit {
         },
       });
   }
+
+  public toggleLogoutConfirmation(): void {
+    this.isConfirmationOpen$.next(!this.isConfirmationOpen$.value);
+  }
+
+  public onLogoutConfirmation(): void {}
 
   private getChangedItems(formItems: Record<string, any>): Partial<RegisterUserModel> {
     const changedItems = Object.keys(formItems).reduce((acc, key) => {

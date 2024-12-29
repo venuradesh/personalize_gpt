@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 })
 export class ButtonComponent {
   @Input()
-  buttonType: "base" | "primary" | "disabled" | "fill" = "base";
+  buttonType: "base" | "primary" | "disabled" | "fill" | "danger" = "base";
 
   @Input()
   buttonSize: "small" | "medium" | "large" | "basic" = "small";

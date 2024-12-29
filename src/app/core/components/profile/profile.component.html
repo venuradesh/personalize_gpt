@@ -1,4 +1,11 @@
 <div class="profile">
+  <!-- Logout button -->
+  <div class="profile__logout">
+    <pgpt-button [buttonType]="'danger'" [buttonSize]="'medium'" [onClick]="toggleLogoutConfirmation.bind(this)">
+      <span>{{'profile.logout' | pgptTranslate}}</span>
+    </pgpt-button>
+  </div>
+
   <div class="profile__icon"></div>
   <form class="profile__form" #profileForm="ngForm" (ngSubmit)="onFormsSubmit()" [formGroup]="profileState">
     <!-- Name Section -->
@@ -77,4 +84,16 @@
       </pgpt-button>
     </div>
   </form>
+
+  <div class="profile__logout-confirmation" *ngIf="isConfirmationOpen$ | async">
+    <div class="profile__logout-confirmation-model">
+      <pgpt-confirmation-dialog
+        [modelContent]="'profile.logoutText' | pgptTranslate"
+        [modelHeading]="'profile.logoutHeading' | pgptTranslate"
+        [confirmClick]="onLogoutConfirmation.bind(this)"
+        [declineClick]="toggleLogoutConfirmation.bind(this)"
+        [closeClick]="toggleLogoutConfirmation.bind(this)"
+      ></pgpt-confirmation-dialog>
+    </div>
+  </div>
 </div>

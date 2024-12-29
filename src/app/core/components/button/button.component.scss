@@ -72,6 +72,25 @@
     }
   }
 
+  &.danger {
+    background-color: var(--pgpt-color-danger);
+    color: var(--pgpt-color-text-static-white);
+    font-weight: $pgpt-font-weight-lighter-bold;
+
+    &.add-border {
+      border: 2px solid var(--pgpt-color-danger);
+      box-shadow: none;
+
+      :focus {
+        border-color: var(--pgpt-color-focus);
+      }
+    }
+
+    &:hover {
+      background-color: var(--pgpt-color-danger-hover);
+    }
+  }
+
   &.small {
     padding-inline: $pgpt-sizing-8;
     padding-block: $pgpt-sizing-8;

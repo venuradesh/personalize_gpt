@@ -1,0 +1,23 @@
+<div class="modal">
+  <div class="modal__close-button">
+    <pgpt-button [buttonType]="'base'" [onClick]="closeClick.bind(this)">
+      <i class="material-icons-outlined close">close</i>
+    </pgpt-button>
+  </div>
+  <div class="modal__content">
+    <div class="modal__content-heading">{{modelHeading}}</div>
+    <div class="modal__content-text">{{modelContent}}</div>
+  </div>
+  <div class="modal__actions">
+    <div class="modal__action-approve">
+      <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" [onClick]="confirmClick.bind(this)">
+        <span>{{modelApproveText}}</span>
+      </pgpt-button>
+    </div>
+    <div class="modal__action-decline">
+      <pgpt-button [buttonType]="'danger'" [buttonSize]="'medium'" [onClick]="declineClick.bind(this)">
+        <span>{{modelDelineText}}</span>
+      </pgpt-button>
+    </div>
+  </div>
+</div>

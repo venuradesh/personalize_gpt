@@ -12,11 +12,23 @@
   padding-block: $pgpt-spacing-16;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 0;
+
+  &__logout {
+    margin-inline-start: auto;
+    margin-block-end: $pgpt-spacing-16;
+
+    @include media("md-down") {
+      margin-block-end: $pgpt-spacing-16;
+    }
+  }
 
   &__icon {
-    width: calc($pgpt-sizing-base-rem * 5);
-    height: calc($pgpt-sizing-base-rem * 5);
+    width: calc($pgpt-sizing-base-rem * 6);
+    height: calc($pgpt-sizing-base-rem * 6);
     background-image: $pgpt-user-avatar;
     @include image_settings();
 
@@ -62,6 +74,21 @@
 
     &-td {
       flex: 1;
+    }
+  }
+
+  &__logout-confirmation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(6px);
+
+    &-model {
+      width: 100%;
+      height: 100%;
+      position: relative;
     }
   }
 }

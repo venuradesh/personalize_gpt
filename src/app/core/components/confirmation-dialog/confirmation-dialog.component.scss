@@ -1,0 +1,48 @@
+@import "../../../../Styles/include.scss";
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: calc($pgpt-sizing-base-rem * 22);
+  min-width: calc($pgpt-sizing-base-rem * 17);
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-16;
+  border-radius: $pgpt-radius-s;
+  background-color: var(--pgpt-color-panel-background);
+  border: 1px solid var(--pgpt-color-border-soft);
+
+  &__close-button {
+    position: absolute;
+    bottom: 105%;
+    right: 0;
+
+    .close {
+      font-size: $pgpt-font-size-body-medium;
+    }
+  }
+
+  &__content {
+    text-align: center;
+    text-wrap: wrap;
+
+    &-heading {
+      color: var(--pgpt-color-text);
+      font-size: $pgpt-font-size-body;
+      font-weight: $pgpt-font-weight-lighter-bold;
+      margin-block-end: $pgpt-spacing-8;
+    }
+
+    &-text {
+      font-size: $pgpt-font-size-body-small;
+      color: var(--pgpt-color-text-hint);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-block-start: $pgpt-spacing-16;
+  }
+}
