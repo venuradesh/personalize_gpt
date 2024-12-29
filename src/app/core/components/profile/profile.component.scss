@@ -41,6 +41,18 @@
       &.submit-btn {
         margin-block-start: $pgpt-spacing-16;
         align-items: center;
+        position: relative;
+
+        .hidden {
+          visibility: hidden;
+        }
+
+        .loader {
+          display: inline-block;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
 
       @include media("md-down") {

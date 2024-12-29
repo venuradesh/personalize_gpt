@@ -23,4 +23,10 @@ export class UserService {
     const url = `${this.API_URL}/user/register`;
     return this.clientService.post(url, user_details);
   }
+
+  public updateUser(user_details: Partial<RegisterUserModel>): Observable<any> {
+    const url = `${this.API_URL}/user/update-user`;
+
+    return this.clientService.post(url, user_details);
+  }
 }

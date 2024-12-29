@@ -50,6 +50,29 @@ export class Common {
     };
   }
 
+  public static convertToPartialRegisterUserModel(user_model: Record<string, any>): Partial<RegisterUserModel> {
+    const fieldMapping: Record<string, keyof RegisterUserModel> = {
+      firstName: "first_name",
+      lastName: "last_name",
+      dob: "date_of_birth",
+      designation: "job_title",
+      organizationName: "company_name",
+      country: "country",
+      email: "email",
+      personality: "personality",
+      description: "description",
+    };
+
+    return Object.keys(user_model).reduce((acc, key) => {
+      const mappedKey = fieldMapping[key];
+      if (mappedKey) {
+        acc[mappedKey] = user_model[key];
+      }
+
+      return acc;
+    }, {} as Partial<RegisterUserModel>);
+  }
+
   public static isChildRouteActivated(route: ActivatedRoute): Observable<boolean> {
     return new Router().events.pipe(
       filter((event) => event instanceof NavigationEnd),
