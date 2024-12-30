@@ -1,0 +1,21 @@
+<div class="llm-change">
+  <div class="llm-change__current-state">
+    <span>{{'llmChange.choosen_llm' | pgptTranslate:{llm: initialState.choosen_llm } }}</span>
+  </div>
+  <div class="llm-change__boxes">
+    @for(data of jsonData; track data){
+    <pgpt-model-box [size]="'small'" [modelData]="data" [onButtonClick]="onModelClick.bind(this)" [isSelected]="choosen_llm !== data.name"></pgpt-model-box>
+    }
+  </div>
+
+  <div class="llm-change__key">
+    <pgpt-form-input [control]="llm_key" [placeHolder]="'llmChange.keyInput' | pgptTranslate:{llm: choosen_llm }"></pgpt-form-input>
+    <div class="error-state" tabindex="-1" *ngIf="llm_key.errors">{{llm_key.getError('error')}}</div>
+  </div>
+
+  <div class="llm-change__button">
+    <pgpt-button [buttonSize]="'medium'" [buttonType]="'primary'">
+      <span>{{'llmChange.buttonText' | pgptTranslate}}</span>
+    </pgpt-button>
+  </div>
+</div>

@@ -7,11 +7,12 @@ import { Subject, takeUntil } from "rxjs";
 import { MatIconModule } from "@angular/material/icon";
 import { ButtonComponent } from "../../core/components/button/button.component";
 import { ProfileComponent } from "../../core/components/profile/profile.component";
+import { LlmChangeComponent } from "../../core/components/llm-change/llm-change.component";
 
 @Component({
   selector: "pgpt-options",
   standalone: true,
-  imports: [TabsComponent, CommonModule, MatIconModule, ButtonComponent, ProfileComponent],
+  imports: [TabsComponent, CommonModule, MatIconModule, ButtonComponent, ProfileComponent, LlmChangeComponent],
   templateUrl: "./options.component.html",
   styleUrl: "./options.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

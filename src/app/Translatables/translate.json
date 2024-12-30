@@ -74,5 +74,11 @@
     "logout": "Logout",
     "logoutHeading": "Confirm Logout",
     "logoutText": "Logging out will end your current session. Are you sure you want to continue?"
+  },
+  "llmChange": {
+    "keyInput": "Please Enter the new {{llm}} Api Key",
+    "buttonText": "Change LLM",
+    "choosen_llm": "Current LLM: {{llm}}",
+    "api_key": "Current API Key: {{key}}"
   }
 }

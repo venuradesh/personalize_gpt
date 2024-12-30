@@ -16,8 +16,10 @@
       <!-- Tabs contents -->
       <div class="options-content">
         <div *ngIf="activeIndex === 0"></div>
-        <div *ngIf="activeIndex === 1">LLM Content</div>
-        <div class="profile-container" *ngIf="activeIndex === 2">
+        <div class="container" *ngIf="activeIndex === 1">
+          <pgpt-llm-change></pgpt-llm-change>
+        </div>
+        <div class="container" *ngIf="activeIndex === 2">
           <pgpt-profile></pgpt-profile>
         </div>
       </div>

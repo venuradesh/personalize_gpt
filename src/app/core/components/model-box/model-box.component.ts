@@ -17,9 +17,18 @@ export class ModelBoxComponent {
   @Input({ required: true })
   modelData: ModelData | undefined;
 
+  @Input()
+  onButtonClick = (model_name: string | undefined) => {};
+
+  @Input()
+  isSelected: boolean = true;
+
+  @Input()
+  size: "large" | "small" = "large";
+
   constructor(private navigationService: NavigationService) {}
 
-  onButtonClick(): void {
-    this.navigationService.navigate({ to: `/register/${this.modelData?.name}` });
+  ctoButtonClick(): void {
+    this.onButtonClick(this.modelData?.name);
   }
 }

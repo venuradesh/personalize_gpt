@@ -1,4 +1,4 @@
-<div class="model">
+<div class="model" [class.selected]="isSelected" [class.small]="size === 'small'">
   <div class="model-header">{{modelData?.name}}</div>
   <!-- Options -->
   <div class="model-options">
@@ -22,7 +22,7 @@
 
   <!-- Action button -->
   <div class="model-action-buttons">
-    <pgpt-button [buttonSize]="'large'" [buttonType]="'primary'" [onClick]="onButtonClick.bind(this)">
+    <pgpt-button [buttonSize]="'large'" [buttonType]="'primary'" [onClick]="ctoButtonClick.bind(this)">
       <span>{{'modelSelection.action' | pgptTranslate:{modelName: modelData?.name ?? '' } }}</span>
     </pgpt-button>
   </div>

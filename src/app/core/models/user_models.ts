@@ -28,3 +28,8 @@ export interface RegisterUserModel {
   openai_api_key?: string;
   llama_api_key?: string;
 }
+
+export interface APIKeys {
+  llama_api_key: string;
+  openai_api_key: string;
+}

@@ -71,7 +71,7 @@ export class ProfileComponent implements OnInit {
 
   public ngOnInit(): void {
     this.route.data.pipe(take(1)).subscribe({
-      next: (val: { [user: string]: RegisterUserModel }) => {
+      next: (val: { [user: string]: any }) => {
         this.mapStates(val["user"]);
         this.initialState = this.profileState.value;
       },

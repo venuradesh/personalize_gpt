@@ -5,6 +5,7 @@ import { FooterComponent } from "../../core/layout/footer/footer.component";
 import data from "../../../../assets/data/model-data.json";
 import { ModelData } from "../../core/models/llm-models";
 import { ModelBoxComponent } from "../../core/components/model-box/model-box.component";
+import { NavigationService } from "../../services/navigation.service";
 
 @Component({
   selector: "pgpt-model-selection",
@@ -17,7 +18,13 @@ import { ModelBoxComponent } from "../../core/components/model-box/model-box.com
 export class ModelSelectionComponent implements OnInit {
   jsonData: ModelData[] = [];
 
+  constructor(private navigationService: NavigationService) {}
+
   public ngOnInit(): void {
     this.jsonData = data;
+  }
+
+  onCtoButtonClick(model_name: string | undefined): void {
+    this.navigationService.navigate({ to: `/register/${model_name}` });
   }
 }
