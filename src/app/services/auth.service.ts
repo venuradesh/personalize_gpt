@@ -17,6 +17,11 @@ export class AuthService {
     return this.clientService.post(url, { email, password });
   }
 
+  public logout(): Observable<any> {
+    const url = `${this.API_URL}/auth/logout`;
+    return this.clientService.post(url, {});
+  }
+
   public isAuthenticated(): boolean {
     const token = this.cookies.get("access_token");
     return !!token;

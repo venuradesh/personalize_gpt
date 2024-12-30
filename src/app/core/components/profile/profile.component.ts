@@ -16,6 +16,9 @@ import { Common } from "../../helpers/common";
 import { TOAST_DELAY } from "../../models/toastr-model";
 import { InternalLoaderComponent } from "../internal-loader/internal-loader.component";
 import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
+import { AuthService } from "../../../services/auth.service";
+import { NavigationService } from "../../../services/navigation.service";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({
   selector: "pgpt-profile",
@@ -45,7 +48,14 @@ export class ProfileComponent implements OnInit {
 
   private initialState: RegisterUserModel | undefined;
 
-  constructor(private route: ActivatedRoute, private toast: TastrService, private userService: UserService, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private toast: TastrService,
+    private userService: UserService,
+    private navigationService: NavigationService,
+    private cookies: CookieService,
+    private authService: AuthService
+  ) {
     this.profileState = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName,
@@ -107,7 +117,21 @@ export class ProfileComponent implements OnInit {
     this.isConfirmationOpen$.next(!this.isConfirmationOpen$.value);
   }
 
-  public onLogoutConfirmation(): void {}
+  public onLogoutConfirmation(): void {
+    this.authService
+      .logout()
+      .pipe(take(1))
+      .subscribe({
+        next: (val: ApiSource) => {
+          this.toast.success(val.message);
+          this.cookies.deleteAll();
+          this.navigationService.navigate({ to: "/login" });
+        },
+        error: (error) => {
+          this.toast.error(error.error.message);
+        },
+      });
+  }
 
   private getChangedItems(formItems: Record<string, any>): Partial<RegisterUserModel> {
     const changedItems = Object.keys(formItems).reduce((acc, key) => {
