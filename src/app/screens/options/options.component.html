@@ -15,7 +15,9 @@
 
       <!-- Tabs contents -->
       <div class="options-content">
-        <div *ngIf="activeIndex === 0"></div>
+        <div class="container" *ngIf="activeIndex === 0">
+          <pgpt-general-settings></pgpt-general-settings>
+        </div>
         <div class="container" *ngIf="activeIndex === 1">
           <pgpt-llm-change></pgpt-llm-change>
         </div>

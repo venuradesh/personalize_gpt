@@ -44,7 +44,8 @@
   },
   "resources": {
     "clickHere": "Click Here",
-    "settings": "Settings"
+    "settings": "Settings",
+    "selectHeader": "Select an Option"
   },
   "navigator": {
     "chatStart": "Start a new Chat",
@@ -80,5 +81,9 @@
     "buttonText": "Change LLM",
     "choosen_llm": "Current LLM: {{llm}}",
     "api_key": "Current API Key: {{key}}"
+  },
+  "general": {
+    "theme": "Theme",
+    "deleteChats": "Delete All Chats"
   }
 }

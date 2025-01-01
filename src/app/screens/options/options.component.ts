@@ -8,11 +8,12 @@ import { MatIconModule } from "@angular/material/icon";
 import { ButtonComponent } from "../../core/components/button/button.component";
 import { ProfileComponent } from "../../core/components/profile/profile.component";
 import { LlmChangeComponent } from "../../core/components/llm-change/llm-change.component";
+import { GeneralSettingsComponent } from "../../core/components/general-settings/general-settings.component";
 
 @Component({
   selector: "pgpt-options",
   standalone: true,
-  imports: [TabsComponent, CommonModule, MatIconModule, ButtonComponent, ProfileComponent, LlmChangeComponent],
+  imports: [TabsComponent, CommonModule, MatIconModule, ButtonComponent, ProfileComponent, LlmChangeComponent, GeneralSettingsComponent],
   templateUrl: "./options.component.html",
   styleUrl: "./options.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

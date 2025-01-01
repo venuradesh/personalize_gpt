@@ -1,0 +1,27 @@
+@import "../../../../Styles/include.scss";
+
+.general {
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-16;
+
+  &__tiles {
+    display: flex;
+    flex-direction: column;
+    row-gap: $pgpt-spacing-8;
+  }
+
+  &__tile {
+    width: 100%;
+    padding-inline: $pgpt-spacing-16;
+    padding-block: $pgpt-spacing-16;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--pgpt-color-border-medium);
+    border-radius: $pgpt-radius-s;
+
+    &-content {
+      font-size: $pgpt-font-size-body-small;
+    }
+  }
+}
