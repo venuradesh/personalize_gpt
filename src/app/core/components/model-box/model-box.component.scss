@@ -109,6 +109,8 @@
   }
 
   &.small {
+    padding-block-end: $pgpt-spacing-8;
+
     .model-header {
       font-size: $pgpt-font-size-body;
     }

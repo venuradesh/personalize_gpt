@@ -41,6 +41,17 @@
   }
 
   &__button {
-    margin-block-start: $pgpt-spacing-16;
+    margin-block-start: $pgpt-spacing-8;
+
+    .hidden {
+      visibility: hidden;
+    }
+
+    .loader {
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }

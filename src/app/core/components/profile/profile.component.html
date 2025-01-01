@@ -73,14 +73,14 @@
     <!-- Submit Button -->
     <div class="profile__form-tr submit-btn">
       <pgpt-button [type]="'submit'" [buttonType]="'primary'" [buttonSize]="'large'" [onClick]="onSubmitButtonClick.bind(this)">
-        <span class="loading">
+        <div class="loading">
           <span [class.hidden]="loading$ | async">
             {{ 'profile.update' | pgptTranslate }}
           </span>
           <div class="loader" *ngIf="loading$ | async">
             <pgpt-internal-loader></pgpt-internal-loader>
           </div>
-        </span>
+        </div>
       </pgpt-button>
     </div>
   </form>

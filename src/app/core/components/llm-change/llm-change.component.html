@@ -14,8 +14,15 @@
   </div>
 
   <div class="llm-change__button">
-    <pgpt-button [buttonSize]="'medium'" [buttonType]="'primary'">
-      <span>{{'llmChange.buttonText' | pgptTranslate}}</span>
+    <pgpt-button [type]="'submit'" [buttonType]="'primary'" [buttonSize]="'large'" [onClick]="onChangeClick.bind(this)">
+      <div class="loading">
+        <span [class.hidden]="loading$ | async">
+          <span>{{'llmChange.buttonText' | pgptTranslate}}</span>
+        </span>
+        <div class="loader" *ngIf="loading$ | async">
+          <pgpt-internal-loader></pgpt-internal-loader>
+        </div>
+      </div>
     </pgpt-button>
   </div>
 </div>
