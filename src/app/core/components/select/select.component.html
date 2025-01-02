@@ -1,7 +1,7 @@
 <div class="select">
-  <div class="select__header">
+  <div class="select__header" (click)="toggleOptionsVisibility()">
     <span>{{selectedOption?.label || 'resources.selectHeader' | pgptTranslate}}</span>
-    <pgpt-button [buttonSize]="'small'" [buttonType]="'base'" class="select__header-button" [onClick]="toggleOptionsVisibility.bind(this)">
+    <pgpt-button [buttonSize]="'small'" [buttonType]="'base'" class="select__header-button">
       <i class="material-icons-outlined caret">
         {{(isOpen | async)? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
       </i>

@@ -33,7 +33,7 @@
       width: clamp($pgpt-options-min-width, 90vw, $pgpt-options-max-width);
       height: clamp($pgpt-options-min-height, 90vh, $pgpt-options-max-height);
       border-radius: $pgpt-radius-m;
-      border: 1px solid var(--pgpt-color-border-soft);
+      border: 1px solid var(--pgpt-color-border-medium);
       display: flex;
       flex-direction: column;
       overflow: hidden;

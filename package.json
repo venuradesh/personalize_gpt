@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 8080 -o",
+    "start": "ng serve --port 4200 -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "gen-c": "bash -c 'ng g c $1 core/components/$npm_config_component_name --prefix pgpt --change-detection OnPush'",

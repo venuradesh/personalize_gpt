@@ -17,6 +17,7 @@
     padding-inline-start: $pgpt-spacing-16;
     border: 1px solid var(--pgpt-color-border-medium);
     border-radius: $pgpt-radius-s;
+    cursor: pointer;
 
     .caret {
       color: var(--pgpt-color-text);

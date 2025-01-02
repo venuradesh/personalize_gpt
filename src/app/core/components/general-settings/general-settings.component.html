@@ -5,7 +5,7 @@
         <span>{{'general.theme' | pgptTranslate}}</span>
       </div>
       <div class="general__tile-action">
-        <pgpt-select [options]="[{label: 'Dark', value: 'dark'}, {label: 'Light', value: 'light'}]"></pgpt-select>
+        <pgpt-select [options]="availableThemeOptions" [selectedOption]="themeSelected" (changedValue)="onThemeValueChange($event)"></pgpt-select>
       </div>
     </div>
 
