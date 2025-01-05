@@ -8,11 +8,12 @@ import { BehaviorSubject, Observable, of, Subject, switchMap, take, takeUntil } 
 import { ActivatedRoute } from "@angular/router";
 import { UserModel } from "../../core/models/user_models";
 import { OptionsComponent } from "../../screens/options/options.component";
+import { DocumentAnalyzerComponent } from "../../screens/document-analyzer/document-analyzer.component";
 
 @Component({
   selector: "pgpt-chat-page",
   standalone: true,
-  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent],
+  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent, DocumentAnalyzerComponent],
   templateUrl: "./chat-page.component.html",
   styleUrl: "./chat-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,0 +1,42 @@
+@import "../../../../Styles/include.scss";
+
+.preview {
+  width: 100%;
+  height: calc($pgpt-sizing-base-rem * 4);
+  background-color: var(--pgpt-color-panel-background);
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-8;
+  display: flex;
+  column-gap: $pgpt-spacing-8;
+  cursor: default;
+  pointer-events: none;
+
+  &__file {
+    &-logo {
+      height: 100%;
+      aspect-ratio: 1/1;
+      background-image: $pgpt-icon-doc-pdf;
+      @include image_settings();
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      &-text {
+        font-size: $pgpt-font-size-body-medium;
+        font-weight: $pgpt-font-weight-lighter-bold;
+        color: var(--pgpt-color-text);
+        margin-block-end: $pgpt-spacing-4;
+      }
+
+      &-size {
+        font-size: $pgpt-font-size-body-small;
+        font-weight: $pgpt-font-weight-lighter-bold;
+        color: var(--pgpt-color-text-hint);
+      }
+    }
+  }
+}

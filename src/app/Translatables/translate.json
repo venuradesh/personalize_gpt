@@ -85,5 +85,9 @@
   "general": {
     "theme": "Theme",
     "deleteChats": "Delete All Chats"
+  },
+  "analyzer": {
+    "uploadCaption": "Please upload your document to start the chat",
+    "uploadButtonText": "Upload the Document"
   }
 }

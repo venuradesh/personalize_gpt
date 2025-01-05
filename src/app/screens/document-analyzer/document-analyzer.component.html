@@ -1,0 +1,45 @@
+<div class="analyzer">
+  <div class="analyzer__bot">
+    <div class="analyzer__bot-icon"></div>
+  </div>
+  <div class="analyzer__container">
+    <div class="analyzer__header">
+      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--minimize">
+        <i class="material-icons-outlined minimize">close_fullscreen</i>
+      </pgpt-button>
+      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--close">
+        <i class="material-icons-outlined close">close</i>
+      </pgpt-button>
+    </div>
+    <div class="analyzer__chat" *ngIf="(chatSource$ | async) as chatDatas">
+      @if(isFileUploaded$ | async){
+      <!-- Chat screen -->
+      <div class="analyzer__chat-messages">
+        <pgpt-doc-preview [file]="file.value"></pgpt-doc-preview>
+        <div class="analyzer__chat-message-tiles-container">
+          @for(chatData of chatDatas; track chatData){
+          <pgpt-chat-tile [tileContent]="chatData" [isAnalyzer]="true"></pgpt-chat-tile>
+          }
+        </div>
+      </div>
+      } @else {
+      <!-- Welcome screen -->
+      <div class="analyzer__chat-welcome-message">
+        <div class="analyzer__chat-welcome-message-logo"></div>
+        <div class="analyzer__chat-welcome-message-content">
+          {{'analyzer.uploadCaption' | pgptTranslate}}
+        </div>
+        <div class="analyzer__chat-welcome-message-upload">
+          <input #file_upload type="file" name="file-upload" id="file-upload" accept=".pdf" (change)="onFileChange($event)" />
+          <pgpt-button [buttonType]="'primary'" [buttonSize]="'medium'" (click)="file_upload.click()">
+            <span>{{'analyzer.uploadButtonText' | pgptTranslate}}</span>
+          </pgpt-button>
+        </div>
+      </div>
+      }
+      <div class="analyzer__chat-input-box">
+        <pgpt-form-input [inputBehaviorType]="'submit'" [control]="message"></pgpt-form-input>
+      </div>
+    </div>
+  </div>
+</div>

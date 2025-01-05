@@ -71,4 +71,16 @@
       color: var(--pgpt-color-text-hint);
     }
   }
+
+  &.isAnalyzer {
+    .avatar {
+      display: none;
+    }
+
+    .tile-content-container {
+      padding-block: $pgpt-spacing-8;
+      padding-inline: $pgpt-spacing-8;
+      margin-inline: 0;
+    }
+  }
 }

@@ -1,0 +1,132 @@
+@import "../../../Styles/include.scss";
+
+.analyzer {
+  $pgpt-analyzer-bot-button-size: $pgpt-sizing-base-rem * 3;
+  $pgpt-analyzer-bot-button-icon-size: $pgpt-sizing-base-rem * 1.5;
+
+  position: fixed;
+  z-index: 10;
+  bottom: $pgpt-spacing-16;
+  right: $pgpt-spacing-16;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  column-gap: $pgpt-spacing-8;
+
+  @include media("sm-only") {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: $pgpt-spacing-4;
+  }
+
+  &__bot {
+    width: $pgpt-analyzer-bot-button-size;
+    height: $pgpt-analyzer-bot-button-size;
+    background-color: var(--pgpt-color-background);
+    border: 1px solid var(--pgpt-color-border-medium);
+    border-radius: $pgpt-radius-l;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--pgpt-color-background-hover);
+    }
+
+    &-icon {
+      width: $pgpt-analyzer-bot-button-icon-size;
+      height: $pgpt-analyzer-bot-button-icon-size;
+      background-image: $pgpt-icon-doc-analyzer;
+      @include image_settings();
+    }
+  }
+
+  &__container {
+    $pgpt-doc-analyzer-container-width: clamp($pgpt-sizing-base-rem * 11.5, 92vw, $pgpt-sizing-base-rem * 22);
+    $pgpt-doc-analyzer-container-height: clamp($pgpt-sizing-base-rem * 22, 90vh, $pgpt-sizing-base-rem * 27);
+
+    width: $pgpt-doc-analyzer-container-width;
+    height: $pgpt-doc-analyzer-container-height;
+    border-radius: $pgpt-radius-s;
+    border-bottom-right-radius: 0;
+    position: relative;
+    background-color: var(--pgpt-color-background);
+    border: 1px solid var(--pgpt-color-border-medium);
+    padding-inline: $pgpt-spacing-8;
+    padding-block: $pgpt-spacing-8;
+
+    @include media("sm-only") {
+      border-bottom-right-radius: $pgpt-radius-s;
+      border-top-left-radius: 0;
+    }
+  }
+
+  &__header {
+    display: flex;
+    column-gap: $pgpt-spacing-4;
+    align-items: center;
+    position: absolute;
+    bottom: calc(100% + $pgpt-spacing-4);
+    right: 0;
+
+    &-button {
+      i {
+        color: var(--pgpt-color-text);
+        font-size: $pgpt-font-size-body;
+      }
+    }
+  }
+
+  &__chat {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: $pgpt-spacing-4;
+
+    &-welcome-message {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: $pgpt-spacing-8;
+      padding-inline: $pgpt-spacing-16;
+
+      &-logo {
+        width: 50%;
+        aspect-ratio: 1/1;
+        @include branding();
+        opacity: 0.6;
+      }
+
+      &-content {
+        text-align: center;
+        font-size: $pgpt-font-size-body-medium;
+        font-weight: $pgpt-font-weight-bold;
+        opacity: 0.6;
+      }
+
+      &-upload {
+        margin-block-start: $pgpt-spacing-8;
+
+        input {
+          display: none;
+        }
+      }
+    }
+
+    &-messages {
+      height: 100%;
+      overflow: hidden;
+
+      &:hover {
+        overflow-y: overlay;
+        @include scrollbar();
+      }
+    }
+  }
+}
