@@ -10,6 +10,8 @@ import { ChatDataSource } from "../../core/models/chat-models";
 import { ChatTileComponent } from "../../core/components/chat-tile/chat-tile.component";
 import { DocPreviewComponent } from "../../core/components/doc-preview/doc-preview.component";
 import { TastrService } from "../../services/tastr.service";
+import { ChatbotState, DocAnalyzerService } from "../../services/doc-analyzer.service";
+import { FormValidator } from "../../core/helpers/validators/form-validators";
 
 @Component({
   selector: "pgpt-document-analyzer",
@@ -20,64 +22,14 @@ import { TastrService } from "../../services/tastr.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentAnalyzerComponent {
-  message = new FormControl("");
+  prompt = new FormControl("", [FormValidator.requiredValidator("Please Enter your Prompts")]);
   file = new FormControl<File | null>(null);
 
-  public chatSource$ = new BehaviorSubject<ChatDataSource[]>([
-    {
-      role: "assistant",
-      content: "Heloa asldkjas alsdjka saksdj asd alskdja sda sdlakjsd alsd a",
-      created: new Date(),
-    },
-    {
-      role: "user",
-      content: "hello asd asdasdkjas  asldkjas daksdja sdlakjsdlaks dasdkjas dasd ",
-      created: new Date(),
-    },
-    {
-      role: "assistant",
-      content: "Heloa asldkjas alsdjka saksdj asd alskdja sda sdlakjsd alsd a",
-      created: new Date(),
-    },
-    {
-      role: "user",
-      content: "hello asd asdasdkjas  asldkjas daksdja sdlakjsdlaks dasdkjas dasd ",
-      created: new Date(),
-    },
-    {
-      role: "assistant",
-      content: "Heloa asldkjas alsdjka saksdj asd alskdja sda sdlakjsd alsd a",
-      created: new Date(),
-    },
-    {
-      role: "user",
-      content: "hello asd asdasdkjas  asldkjas daksdja sdlakjsdlaks dasdkjas dasd ",
-      created: new Date(),
-    },
-    {
-      role: "assistant",
-      content: "Heloa asldkjas alsdjka saksdj asd alskdja sda sdlakjsd alsd a",
-      created: new Date(),
-    },
-    {
-      role: "user",
-      content: "hello asd asdasdkjas  asldkjas daksdja sdlakjsdlaks dasdkjas dasd ",
-      created: new Date(),
-    },
-    {
-      role: "assistant",
-      content: "Heloa asldkjas alsdjka saksdj asd alskdja sda sdlakjsd alsd a",
-      created: new Date(),
-    },
-    {
-      role: "user",
-      content: "hello asd asdasdkjas  asldkjas daksdja sdlakjsdlaks dasdkjas dasd ",
-      created: new Date(),
-    },
-  ]);
+  public chatSource$ = new BehaviorSubject<ChatDataSource[]>([]);
   public isFileUploaded$ = new BehaviorSubject<boolean>(false);
+  public analyzerState$ = this.analyzer.analyzerState$;
 
-  constructor(private toast: TastrService) {}
+  constructor(private toast: TastrService, private analyzer: DocAnalyzerService) {}
 
   public onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -87,6 +39,32 @@ export class DocumentAnalyzerComponent {
         this.file.setValue(file);
         this.isFileUploaded$.next(true);
       } else this.toast.error("We're accepting only PDFs.", "File Format Error");
+    }
+  }
+
+  public onOpen(): void {
+    const currentState = this.analyzer.getAnalyzerState();
+    if (currentState === "open") this.onMinimize();
+    else {
+      this.analyzer.setAnalyzerState("open");
+    }
+  }
+
+  public onClose(): void {
+    this.analyzer.setAnalyzerState("closed");
+  }
+
+  public onMinimize(): void {
+    this.analyzer.setAnalyzerState("minimized");
+  }
+
+  public onSubmitClick(): void {
+    this.prompt.markAsTouched();
+    this.prompt.markAsDirty();
+    this.prompt.updateValueAndValidity();
+
+    if (this.prompt.valid) {
+      console.log(this.prompt.value);
     }
   }
 }

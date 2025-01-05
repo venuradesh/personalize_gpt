@@ -1,23 +1,29 @@
-<div class="analyzer">
-  <div class="analyzer__bot">
+<div class="analyzer" *ngIf="(analyzerState$ | async) as analyzerState">
+  <div class="analyzer__bot" (click)="onOpen()">
     <div class="analyzer__bot-icon"></div>
   </div>
-  <div class="analyzer__container">
+  <div class="analyzer__container" *ngIf="analyzerState === 'open'">
     <div class="analyzer__header">
-      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--minimize">
+      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--minimize" [onClick]="this.onMinimize.bind(this)">
         <i class="material-icons-outlined minimize">close_fullscreen</i>
       </pgpt-button>
-      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--close">
+      <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--close" [onClick]="this.onClose.bind(this)">
         <i class="material-icons-outlined close">close</i>
       </pgpt-button>
     </div>
-    <div class="analyzer__chat" *ngIf="(chatSource$ | async) as chatDatas">
-      @if(isFileUploaded$ | async){
+    <div
+      class="analyzer__chat"
+      *ngIf="{
+        chatDatas: chatSource$ | async,
+        fileUpload: isFileUploaded$ | async
+    } as state"
+    >
+      @if(state.fileUpload){
       <!-- Chat screen -->
       <div class="analyzer__chat-messages">
         <pgpt-doc-preview [file]="file.value"></pgpt-doc-preview>
         <div class="analyzer__chat-message-tiles-container">
-          @for(chatData of chatDatas; track chatData){
+          @for(chatData of state.chatDatas; track chatData){
           <pgpt-chat-tile [tileContent]="chatData" [isAnalyzer]="true"></pgpt-chat-tile>
           }
         </div>
@@ -37,8 +43,9 @@
         </div>
       </div>
       }
-      <div class="analyzer__chat-input-box">
-        <pgpt-form-input [inputBehaviorType]="'submit'" [control]="message"></pgpt-form-input>
+      <div class="analyzer__chat-input-box" [class.isDocUploaded]="!state.fileUpload">
+        <div class="error-state" tabindex="-1" *ngIf="prompt.errors">{{prompt.getError('error')}}</div>
+        <pgpt-form-input [inputBehaviorType]="'submit'" [control]="prompt" [placeHolder]="'analyzer.inputPlaceholder' | pgptTranslate" [onSubmitClick]="onSubmitClick.bind(this)"></pgpt-form-input>
       </div>
     </div>
   </div>

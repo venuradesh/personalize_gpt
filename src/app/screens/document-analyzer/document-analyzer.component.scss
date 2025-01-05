@@ -55,6 +55,7 @@
     border: 1px solid var(--pgpt-color-border-medium);
     padding-inline: $pgpt-spacing-8;
     padding-block: $pgpt-spacing-8;
+    animation: docAnimation 0.3s ease-in-out;
 
     @include media("sm-only") {
       border-bottom-right-radius: $pgpt-radius-s;
@@ -119,6 +120,18 @@
       }
     }
 
+    &-input-box {
+      .error-state {
+        margin-block-end: $pgpt-spacing-4;
+      }
+
+      &.isDocUploaded {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+      }
+    }
+
     &-messages {
       height: 100%;
       overflow: hidden;
@@ -128,5 +141,15 @@
         @include scrollbar();
       }
     }
+  }
+}
+
+@keyframes docAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

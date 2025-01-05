@@ -15,7 +15,7 @@
   </div>
 
   <!-- ChatBot -->
-  <div class="chat-bot-section">
+  <div class="chat-bot-section" *ngIf="(analyzerState$ | async) !== 'closed'">
     <pgpt-document-analyzer></pgpt-document-analyzer>
   </div>
 </div>

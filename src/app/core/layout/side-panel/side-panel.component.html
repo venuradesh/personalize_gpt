@@ -19,7 +19,7 @@
 
     <!-- Dcoumnet analyzer -->
     <div class="document-analyzer section">
-      <pgpt-panel-tile [tileType]="'base'">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onDocAnalyzerClick.bind(this)">
         <div class="button-section item doc-analyzer">
           <div class="icon"></div>
           <span>{{'navigator.documentAnalyzer' | pgptTranslate}}</span>
