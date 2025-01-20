@@ -48,6 +48,13 @@
 
         .prompt-input {
           width: 100%;
+          position: relative;
+
+          .error-state {
+            position: absolute;
+            bottom: 105%;
+            left: 0;
+          }
         }
 
         .chat-disclaimer {
