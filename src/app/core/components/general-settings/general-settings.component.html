@@ -1,0 +1,24 @@
+<div class="general">
+  <div class="general__tiles">
+    <div class="general__tile">
+      <div class="general__tile-content">
+        <span>{{'general.theme' | pgptTranslate}}</span>
+      </div>
+      <div class="general__tile-action">
+        <pgpt-select [options]="availableThemeOptions" [selectedOption]="themeSelected" (changedValue)="onThemeValueChange($event)"></pgpt-select>
+      </div>
+    </div>
+
+    <!-- Delete all chats -->
+    <div class="general__tile">
+      <div class="general__tile-content">
+        <span>{{'general.deleteChats' | pgptTranslate}}</span>
+      </div>
+      <div class="general__tile-action">
+        <pgpt-button [buttonSize]="'medium'" [buttonType]="'danger'">
+          <span>{{'general.deleteChats' | pgptTranslate}}</span>
+        </pgpt-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
     </div>
     <!-- Start new Conversation -->
     <div class="start-chat-container section">
-      <pgpt-panel-tile [tileType]="'fill'">
+      <pgpt-panel-tile [tileType]="'fill'" [onTileClick]="onStartNewChat.bind(this)">
         <div class="button-section">
           <i class="material-icons-outlined plus">add</i>
           <span>{{'navigator.chatStart' | pgptTranslate}}</span>
@@ -19,7 +19,7 @@
 
     <!-- Dcoumnet analyzer -->
     <div class="document-analyzer section">
-      <pgpt-panel-tile [tileType]="'base'">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onDocAnalyzerClick.bind(this)">
         <div class="button-section item doc-analyzer">
           <div class="icon"></div>
           <span>{{'navigator.documentAnalyzer' | pgptTranslate}}</span>

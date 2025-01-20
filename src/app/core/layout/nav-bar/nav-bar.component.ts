@@ -45,45 +45,35 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   //#region Check Button status
   public setButtonStatus(route: string): void {
-    switch(route){
-      case '/start':
-        this.resetButtonStatus();
-        break;
-
-      case '/login':
-        this.removeNavBar.next(false);
-        this.navBarButtonStatus = {
-          loginButton :false,
-          registerButton :true,
-          themeButton: true,
-          backButton: true,
-        }
-        break;
-
-      case '/register':
-        this.removeNavBar.next(false);
-        this.navBarButtonStatus = {
-          loginButton :true,
-          registerButton :false,
-          themeButton: true,
-          backButton: true,
-        }
-        break;
-
-      case '/model-selection':
-        this.removeNavBar.next(false);
-        this.navBarButtonStatus = {
-          loginButton :true,
-          registerButton :false,
-          themeButton: true,
-          backButton: true,
-        }
-        break;
-
-      default: 
-        this.removeNavBar.next(true);
+    if(route.startsWith('/start')){
+      this.resetButtonStatus();
+    }else if(route.startsWith('/login')){
+      this.removeNavBar.next(false);
+      this.navBarButtonStatus = {
+        loginButton :false,
+        registerButton :true,
+        themeButton: true,
+        backButton: true,
+      }
+    }else if(route.startsWith('/register')){
+      this.removeNavBar.next(false);
+      this.navBarButtonStatus = {
+        loginButton :true,
+        registerButton :false,
+        themeButton: true,
+        backButton: true,
+      }
+    }else if(route.startsWith('/model-selection')){
+      this.removeNavBar.next(false);
+      this.navBarButtonStatus = {
+        loginButton :true,
+        registerButton :false,
+        themeButton: true,
+        backButton: true,
+      }
+    } else {
+      this.removeNavBar.next(true);
     }
-
     this.cdr.markForCheck();
   }
   //#endregion

@@ -23,6 +23,10 @@ export class ClientService {
     return this.httpClient.post(url, body, this.options);
   }
 
+  public put(url: string, body: any | null): Observable<Object> {
+    return this.httpClient.put(url, body, this.options);
+  }
+
   public get(url: string): Observable<object> {
     return this.httpClient.get(url, this.options);
   }

@@ -7,6 +7,7 @@ import { ChatPageComponent } from "./pages/chat-page/chat-page.component";
 import { authGuard } from "./guards/auth.guard";
 import { userResolver } from "./Resolvers/user.resolver";
 import { ModelSelectionComponent } from "./pages/model-selection/model-selection.component";
+import { registerGuard } from "./guards/register.guard";
 
 export const routes: Routes = [
   {
@@ -30,14 +31,19 @@ export const routes: Routes = [
     component: ModelSelectionComponent,
   },
   {
-    path: "register",
+    path: "register/:model",
     pathMatch: "full",
     component: RegisterPageComponent,
+    canActivate: [registerGuard],
   },
   {
     path: "chat/:id",
     component: ChatPageComponent,
     resolve: { user: userResolver },
     canActivate: [authGuard],
+  },
+  {
+    path: "**",
+    redirectTo: "start",
   },
 ];

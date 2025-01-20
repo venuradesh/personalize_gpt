@@ -3,8 +3,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
 import { FooterComponent } from "../../core/layout/footer/footer.component";
 import data from "../../../../assets/data/model-data.json";
-import { LlmModelData } from "../../core/models/llm-models";
+import { ModelData } from "../../core/models/llm-models";
 import { ModelBoxComponent } from "../../core/components/model-box/model-box.component";
+import { NavigationService } from "../../services/navigation.service";
 
 @Component({
   selector: "pgpt-model-selection",
@@ -15,9 +16,15 @@ import { ModelBoxComponent } from "../../core/components/model-box/model-box.com
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModelSelectionComponent implements OnInit {
-  jsonData: LlmModelData[] = [];
+  jsonData: ModelData[] = [];
+
+  constructor(private navigationService: NavigationService) {}
 
   public ngOnInit(): void {
     this.jsonData = data;
+  }
+
+  onCtoButtonClick(model_name: string | undefined): void {
+    this.navigationService.navigate({ to: `/register/${model_name}` });
   }
 }

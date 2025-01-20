@@ -26,7 +26,8 @@
     "confPassword": "Confirm password",
     "desc": "Describe yourself briefly in one sentence",
     "maxLengthError": "Maximum character length is: ",
-    "openAiKey": "Your OpenAI API Key"
+    "openAiKey": "Your OpenAI API Key",
+    "llamaKey": "Your Llama API Key"
   },
   "login": {
     "loginPageHeader": "Welcome Back!",
@@ -43,7 +44,8 @@
   },
   "resources": {
     "clickHere": "Click Here",
-    "settings": "Settings"
+    "settings": "Settings",
+    "selectHeader": "Select an Option"
   },
   "navigator": {
     "chatStart": "Start a new Chat",
@@ -67,5 +69,26 @@
     "action": "Continue with {{modelName}}",
     "instructionHeader": "To use this you need to,",
     "clickHere": "Click to create an API Key"
+  },
+  "profile": {
+    "update": "Update my profile",
+    "logout": "Logout",
+    "logoutHeading": "Confirm Logout",
+    "logoutText": "Logging out will end your current session. Are you sure you want to continue?"
+  },
+  "llmChange": {
+    "keyInput": "Please Enter the new {{llm}} Api Key",
+    "buttonText": "Change LLM",
+    "choosen_llm": "Current LLM: {{llm}}",
+    "api_key": "Current API Key: {{key}}"
+  },
+  "general": {
+    "theme": "Theme",
+    "deleteChats": "Delete All Chats"
+  },
+  "analyzer": {
+    "uploadCaption": "Please upload your document to start the chat",
+    "uploadButtonText": "Upload the Document",
+    "inputPlaceholder": "Message Document Analyzer..."
   }
 }

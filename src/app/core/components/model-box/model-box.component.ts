@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
-import { LlmModelData } from "../../models/llm-models";
+import { ModelData } from "../../models/llm-models";
 import { CommonModule } from "@angular/common";
 import { ButtonComponent } from "../button/button.component";
 import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
+import { NavigationService } from "../../../services/navigation.service";
 
 @Component({
   selector: "pgpt-model-box",
@@ -14,5 +15,20 @@ import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 })
 export class ModelBoxComponent {
   @Input({ required: true })
-  modelData: LlmModelData | undefined;
+  modelData: ModelData | undefined;
+
+  @Input()
+  onButtonClick = (model_name: string | undefined) => {};
+
+  @Input()
+  isSelected: boolean = true;
+
+  @Input()
+  size: "large" | "small" = "large";
+
+  constructor(private navigationService: NavigationService) {}
+
+  ctoButtonClick(): void {
+    this.onButtonClick(this.modelData?.name);
+  }
 }

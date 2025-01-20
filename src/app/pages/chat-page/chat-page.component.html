@@ -9,7 +9,13 @@
     <pgpt-chat [user]="user"></pgpt-chat>
   </div>
 
+  <!-- Options -->
   <div class="options-section" *ngIf="isOptionsApplied">
     <pgpt-options></pgpt-options>
+  </div>
+
+  <!-- ChatBot -->
+  <div class="chat-bot-section" *ngIf="(analyzerState$ | async) !== 'closed'">
+    <pgpt-document-analyzer></pgpt-document-analyzer>
   </div>
 </div>

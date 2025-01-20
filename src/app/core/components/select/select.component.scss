@@ -1,0 +1,57 @@
+@import "../../../../Styles/include.scss";
+
+.select {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+
+  &__header {
+    font-size: $pgpt-font-size-body-small;
+    display: flex;
+    align-items: center;
+    column-gap: $pgpt-spacing-16;
+    color: var(--pgpt-color-text);
+    background-color: var(--pgpt-color-background);
+    padding-inline-start: $pgpt-spacing-16;
+    border: 1px solid var(--pgpt-color-border-medium);
+    border-radius: $pgpt-radius-s;
+    cursor: pointer;
+
+    .caret {
+      color: var(--pgpt-color-text);
+      font-size: $pgpt-font-size-body-small;
+    }
+  }
+
+  &__options {
+    position: absolute;
+    top: 105%;
+    right: 0;
+    width: max-content;
+    min-width: 100%;
+    background-color: var(--pgpt-color-background);
+    border: 1px solid var(--pgpt-color-border-medium);
+    border-top-left-radius: $pgpt-radius-s;
+    border-top-right-radius: $pgpt-radius-s;
+    overflow: hidden;
+
+    &-option {
+      width: 100%;
+      display: flex;
+      padding-inline: $pgpt-spacing-16;
+      padding-block: $pgpt-spacing-8;
+      cursor: pointer;
+      font-size: $pgpt-font-size-body-small;
+
+      &:hover {
+        background-color: var(--pgpt-color-background-hover);
+      }
+    }
+  }
+}
+
+::ng-deep .button {
+  margin-inline: 0 !important;
+}

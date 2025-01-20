@@ -1,0 +1,45 @@
+@import "../../../../Styles/include.scss";
+
+// Variables
+$transform-distance: 30px;
+$animation-duration: 1.5s;
+$animation-ease: ease-in-out;
+
+.loader {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  &__inner label {
+    font-size: $pgpt-font-size-body-medium;
+    opacity: 0;
+    display: inline-block;
+  }
+
+  // Keyframes using variables
+  @keyframes lol {
+    0% {
+      opacity: 0;
+      transform: translateX(-$transform-distance);
+    }
+    33% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    66% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX($transform-distance);
+    }
+  }
+
+  // Loop for dynamic animations
+  @for $i from 1 through 6 {
+    &__inner label:nth-child(#{$i}) {
+      animation: lol $animation-duration ($i - 1) * 50ms infinite $animation-ease;
+    }
+  }
+}

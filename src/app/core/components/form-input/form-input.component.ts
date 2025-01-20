@@ -36,6 +36,9 @@ export class FormInputComponent implements OnInit {
   @Input()
   onSubmitClick: () => void = () => {};
 
+  @Input()
+  isReadOnly: boolean = false;
+
   public showPassword: boolean = false;
   public activatePreviewPassword: boolean = false;
 

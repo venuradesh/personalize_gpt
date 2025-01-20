@@ -13,4 +13,7 @@ import { PgptDatePipe } from "../../Pipes/pgpt-date.pipe";
 export class ChatTileComponent {
   @Input({ required: true })
   tileContent!: ChatDataSource;
+
+  @Input()
+  isAnalyzer: boolean = false;
 }

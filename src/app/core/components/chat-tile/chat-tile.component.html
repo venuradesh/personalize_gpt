@@ -1,4 +1,4 @@
-<div class="chat-tile-container" [class.isAssistant]="tileContent.role === 'assistant'">
+<div class="chat-tile-container" [class.isAssistant]="tileContent.role === 'assistant'" [class.isAnalyzer]="isAnalyzer">
   <div class="avatar"></div>
   <div class="tile-content-container">
     <div class="content">{{tileContent.content}}</div>

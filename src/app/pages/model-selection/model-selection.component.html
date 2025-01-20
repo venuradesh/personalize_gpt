@@ -3,7 +3,7 @@
     <div class="models-header">{{'modelSelection.heading' | pgptTranslate}}</div>
     <div class="models-content">
       @for(data of jsonData; track data){
-      <pgpt-model-box [modelData]="data"></pgpt-model-box>
+      <pgpt-model-box [modelData]="data" [onButtonClick]="onCtoButtonClick.bind(this)"></pgpt-model-box>
       }
     </div>
   </div>

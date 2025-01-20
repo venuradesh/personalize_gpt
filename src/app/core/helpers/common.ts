@@ -1,8 +1,6 @@
-import { AbstractControl, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
-import { NavigationService } from "../../services/navigation.service";
-import { Inject, Injector } from "@angular/core";
 import { RegisterUserModel } from "../models/user_models";
 
 export class Common {
@@ -30,7 +28,7 @@ export class Common {
     });
   }
 
-  public static convertToRegisterUserModel(formState: FormGroup): RegisterUserModel | null {
+  public static convertToRegisterUserModel(formState: FormGroup, llm_selected: string): RegisterUserModel | null {
     if (!formState.valid) return null;
 
     const formValue = formState.value;
@@ -46,11 +44,33 @@ export class Common {
       personality: formValue.personality,
       description: formValue.description,
       password: formValue.password,
-      choosen_llm: "openai",
-      apiToken: {
-        openai_api_key: formValue.apiTokens?.openAiToken,
-      },
+      choosen_llm: llm_selected,
+      openai_api_key: formValue.apiTokens?.openAiToken,
+      llama_api_key: formValue.apiTokens?.llamaApiToken,
     };
+  }
+
+  public static convertToPartialRegisterUserModel(user_model: Record<string, any>): Partial<RegisterUserModel> {
+    const fieldMapping: Record<string, keyof RegisterUserModel> = {
+      firstName: "first_name",
+      lastName: "last_name",
+      dob: "date_of_birth",
+      designation: "job_title",
+      organizationName: "company_name",
+      country: "country",
+      email: "email",
+      personality: "personality",
+      description: "description",
+    };
+
+    return Object.keys(user_model).reduce((acc, key) => {
+      const mappedKey = fieldMapping[key];
+      if (mappedKey) {
+        acc[mappedKey] = user_model[key];
+      }
+
+      return acc;
+    }, {} as Partial<RegisterUserModel>);
   }
 
   public static isChildRouteActivated(route: ActivatedRoute): Observable<boolean> {

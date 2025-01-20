@@ -8,11 +8,13 @@ import { BehaviorSubject, Observable, of, Subject, switchMap, take, takeUntil } 
 import { ActivatedRoute } from "@angular/router";
 import { UserModel } from "../../core/models/user_models";
 import { OptionsComponent } from "../../screens/options/options.component";
+import { DocumentAnalyzerComponent } from "../../screens/document-analyzer/document-analyzer.component";
+import { DocAnalyzerService } from "../../services/doc-analyzer.service";
 
 @Component({
   selector: "pgpt-chat-page",
   standalone: true,
-  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent],
+  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent, DocumentAnalyzerComponent],
   templateUrl: "./chat-page.component.html",
   styleUrl: "./chat-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,10 +23,11 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   public isOpen$: BehaviorSubject<boolean> = this.sidePanel.isOpen$;
   public user: UserModel | undefined = undefined;
   public isOptionsApplied: boolean | null = false;
+  public analyzerState$ = this.analyzer.analyzerState$;
 
   private destroy$ = new Subject<void>();
 
-  constructor(private sidePanel: SidePanelService, private cdr: ChangeDetectorRef, private route: ActivatedRoute) {}
+  constructor(private sidePanel: SidePanelService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private analyzer: DocAnalyzerService) {}
 
   public ngOnInit(): void {
     this.setResolverData();

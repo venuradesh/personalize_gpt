@@ -19,6 +19,10 @@
   border: 2px solid var(--pgpt-color-theme-blue);
   border-radius: $pgpt-radius-m;
 
+  &.selected {
+    opacity: 0.5;
+  }
+
   &-header {
     font-size: $pgpt-font-size-display-small;
     font-weight: $pgpt-font-weight-lighter-bold;
@@ -101,6 +105,24 @@
       @include media("md-down") {
         font-size: $pgpt-font-size-body-small;
       }
+    }
+  }
+
+  &.small {
+    padding-block-end: $pgpt-spacing-8;
+
+    .model-header {
+      font-size: $pgpt-font-size-body;
+    }
+
+    .model-instructions-header {
+      font-size: $pgpt-font-size-body-medium;
+    }
+
+    .model-option,
+    .model-instruction,
+    .model-action-buttons span {
+      font-size: $pgpt-font-size-body-small;
     }
   }
 }

@@ -1,0 +1,17 @@
+<div class="select">
+  <div class="select__header" (click)="toggleOptionsVisibility()">
+    <span>{{selectedOption?.label || 'resources.selectHeader' | pgptTranslate}}</span>
+    <pgpt-button [buttonSize]="'small'" [buttonType]="'base'" class="select__header-button">
+      <i class="material-icons-outlined caret">
+        {{(isOpen | async)? 'keyboard_arrow_up' : 'keyboard_arrow_down'}}
+      </i>
+    </pgpt-button>
+  </div>
+  <div class="select__options" *ngIf="isOpen | async">
+    @for(option of options; track option){
+    <div class="select__options-option" (click)="selectOption(option)">
+      {{option.label}}
+    </div>
+    }
+  </div>
+</div>

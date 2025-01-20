@@ -33,7 +33,7 @@
       width: clamp($pgpt-options-min-width, 90vw, $pgpt-options-max-width);
       height: clamp($pgpt-options-min-height, 90vh, $pgpt-options-max-height);
       border-radius: $pgpt-radius-m;
-      border: 1px solid var(--pgpt-color-border-soft);
+      border: 1px solid var(--pgpt-color-border-medium);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -41,11 +41,22 @@
 
       &-tabs {
         width: 100%;
-        height: calc($pgpt-sizing-base-rem * 4);
+        height: calc($pgpt-sizing-base-rem * 3);
         background-color: var(--pgpt-color-background);
 
         @include media("sm-only") {
           height: calc($pgpt-sizing-base-rem * 3);
+        }
+      }
+
+      &-content {
+        flex: 1;
+        display: flex;
+        overflow-y: auto;
+
+        .container {
+          flex: 1;
+          height: max-content;
         }
       }
     }

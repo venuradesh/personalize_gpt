@@ -45,9 +45,28 @@
         align-items: center;
         margin-inline: auto;
         width: $pgpt-chat-container-size;
+        position: relative;
+
+        .loading-container {
+          width: 100%;
+          background-color: var(--pgpt-color-background);
+          height: calc($pgpt-sizing-base-rem * 2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          bottom: 100%;
+        }
 
         .prompt-input {
           width: 100%;
+          position: relative;
+
+          .error-state {
+            position: absolute;
+            bottom: 105%;
+            left: 0;
+          }
         }
 
         .chat-disclaimer {

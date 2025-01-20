@@ -1,0 +1,94 @@
+@import "../../../../Styles/include.scss";
+
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.profile {
+  flex: 1;
+  padding-inline: $pgpt-spacing-16;
+  padding-block: $pgpt-spacing-16;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+
+  &__logout {
+    margin-inline-start: auto;
+    margin-block-end: $pgpt-spacing-16;
+
+    @include media("md-down") {
+      margin-block-end: $pgpt-spacing-16;
+    }
+  }
+
+  &__icon {
+    width: calc($pgpt-sizing-base-rem * 6);
+    height: calc($pgpt-sizing-base-rem * 6);
+    background-image: $pgpt-user-avatar;
+    @include image_settings();
+
+    @include media("md-down") {
+      min-width: calc($pgpt-sizing-base-rem * 3);
+      min-height: calc($pgpt-sizing-base-rem * 3);
+    }
+  }
+
+  &__form {
+    width: 100%;
+    margin-block-start: $pgpt-spacing-16;
+    padding-block-end: $pgpt-spacing-16;
+
+    &-tr {
+      display: flex;
+      justify-content: center;
+      column-gap: $pgpt-spacing-8;
+      row-gap: $pgpt-spacing-8;
+      margin-block: $pgpt-spacing-8;
+
+      &.submit-btn {
+        margin-block-start: $pgpt-spacing-16;
+        align-items: center;
+        position: relative;
+
+        .hidden {
+          visibility: hidden;
+        }
+
+        .loader {
+          display: inline-block;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      @include media("md-down") {
+        flex-direction: column;
+      }
+    }
+
+    &-td {
+      flex: 1;
+    }
+  }
+
+  &__logout-confirmation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+    backdrop-filter: blur(6px);
+
+    &-model {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+  }
+}
