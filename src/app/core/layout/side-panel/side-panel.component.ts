@@ -9,6 +9,7 @@ import { BehaviorSubject } from "rxjs";
 import { UserModel } from "../../models/user_models";
 import { NavigationService } from "../../../services/navigation.service";
 import { DocAnalyzerService } from "../../../services/doc-analyzer.service";
+import { NewChatService } from "../../../services/new-chat.service";
 
 @Component({
   selector: "pgpt-side-panel",
@@ -25,7 +26,7 @@ export class SidePanelComponent implements OnInit {
   private currentRoute: string = "";
   isOpen$: BehaviorSubject<boolean> = this.sidePanel.isOpen$;
 
-  constructor(private sidePanel: SidePanelService, private navigationService: NavigationService, private analyzer: DocAnalyzerService) {}
+  constructor(private sidePanel: SidePanelService, private navigationService: NavigationService, private analyzer: DocAnalyzerService, private newChat: NewChatService) {}
 
   public ngOnInit(): void {
     this.currentRoute = this.navigationService.getCurrentUrl();
@@ -33,6 +34,10 @@ export class SidePanelComponent implements OnInit {
 
   togglePanel(): void {
     this.sidePanel.toggle();
+  }
+
+  public onStartNewChat(): void {
+    this.newChat.createANewChat();
   }
 
   public onDocAnalyzerClick(): void {

@@ -4,7 +4,7 @@
       <div class="chat-content-top" *ngIf="(chatSource$ | async) as chatDatas">
         @if(chatDatas.length === 0){
         <!-- Welcome banner -->
-        <div class="chat-welcome-container">
+        <div class="chat-welcome-container" *ngIf="!(loading$ | async)">
           <pgpt-chat-welcome [userName]="user?.first_name || ''"></pgpt-chat-welcome>
         </div>
         } @else {
@@ -18,6 +18,9 @@
         }
       </div>
       <div class="chat-content-bottom">
+        <div class="loading-container" *ngIf="loading$ | async">
+          <pgpt-internal-loader></pgpt-internal-loader>
+        </div>
         <div class="prompt-input">
           <div class="error-state" tabindex="-1" *ngIf="prompt.errors">{{prompt.getError('error')}}</div>
           <pgpt-form-input [control]="prompt" [inputBehaviorType]="'submit'" [placeHolder]="'chat.inputPlaceholder' | pgptTranslate" [onSubmitClick]="onSubmitClck.bind(this)"></pgpt-form-input>

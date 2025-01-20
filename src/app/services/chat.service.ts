@@ -20,4 +20,9 @@ export class ChatService {
     const url = `${this.API_URL}/chat/load-session-chat`;
     return this.clientService.get(url);
   }
+
+  loadNewChat(): Observable<any> {
+    const url = `${this.API_URL}/chat/start-new-chat`;
+    return this.clientService.get(url);
+  }
 }
