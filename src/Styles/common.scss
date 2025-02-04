@@ -30,7 +30,7 @@
 @mixin scrollbar() {
   scrollbar-width: thin;
   scrollbar-color: var(--pgpt-color-text-hint) var(--pgpt-color-background-transparent);
-  scrollbar-gutter: stable;
+  // scrollbar-gutter: stable;
 }
 
 @mixin text_overflow_ellipsis($line_clamp) {

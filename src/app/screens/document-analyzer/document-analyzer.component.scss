@@ -142,6 +142,11 @@
       }
     }
   }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 @keyframes docAnimation {

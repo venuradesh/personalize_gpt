@@ -19,8 +19,8 @@ export class ClientService {
     };
   }
 
-  public post(url: string, body: any | null): Observable<Object> {
-    return this.httpClient.post(url, body, this.options);
+  public post(url: string, body: any | null, headers?: {}): Observable<Object> {
+    return this.httpClient.post(url, body, { ...this.options, headers });
   }
 
   public put(url: string, body: any | null): Observable<Object> {

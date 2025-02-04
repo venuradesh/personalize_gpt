@@ -43,6 +43,9 @@
         </div>
       </div>
       }
+      <div class="analyzer__loading" *ngIf="loading$ | async">
+        <pgpt-internal-loader></pgpt-internal-loader>
+      </div>
       <div class="analyzer__chat-input-box" [class.isDocUploaded]="!state.fileUpload">
         <div class="error-state" tabindex="-1" *ngIf="prompt.errors">{{prompt.getError('error')}}</div>
         <pgpt-form-input [inputBehaviorType]="'submit'" [control]="prompt" [placeHolder]="'analyzer.inputPlaceholder' | pgptTranslate" [onSubmitClick]="onSubmitClick.bind(this)"></pgpt-form-input>
