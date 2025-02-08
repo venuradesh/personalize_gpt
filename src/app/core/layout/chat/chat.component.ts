@@ -55,7 +55,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private _newChatListener(): void {
     this.newChat.startNewChat$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: () => this._startNewChat(),
+      next: (value: boolean) => {
+        if (value) this._startNewChat();
+      },
     });
   }
 

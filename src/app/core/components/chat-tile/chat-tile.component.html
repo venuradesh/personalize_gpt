@@ -1,7 +1,9 @@
 <div class="chat-tile-container" [class.isAssistant]="tileContent.role === 'assistant'" [class.isAnalyzer]="isAnalyzer">
   <div class="avatar"></div>
   <div class="tile-content-container">
-    <div class="content">{{tileContent.content}}</div>
+    <div class="content">
+      <markdown [data]="tileContent.content"></markdown>
+    </div>
     @if (tileContent.created) {
     <!-- Created date and time -->
     <div class="time">{{tileContent.created | pgptDate}}</div>
