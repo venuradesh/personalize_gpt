@@ -58,6 +58,7 @@
     text-align: right;
 
     .content {
+      width: 100%;
       font-size: $pgpt-font-size-body-medium;
       padding-block-end: $pgpt-spacing-4;
       line-height: $pgpt-line-height-flowing;
@@ -120,5 +121,15 @@
 
   a {
     color: var(--pgpt-color-text-link);
+  }
+
+  pre {
+    overflow-x: overlay;
+    background-color: var(--pgpt-color-background-selected);
+    color: var(--pgpt-color-text-weak);
+    padding-inline: $pgpt-spacing-16;
+    padding-block: $pgpt-spacing-16;
+    margin-block: $pgpt-spacing-16;
+    @include scrollbar();
   }
 }

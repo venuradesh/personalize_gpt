@@ -28,9 +28,19 @@
 }
 
 @mixin scrollbar() {
-  scrollbar-width: thin;
-  scrollbar-color: var(--pgpt-color-text-hint) var(--pgpt-color-background-transparent);
-  // scrollbar-gutter: stable;
+  &::-webkit-scrollbar {
+    width: $pgpt-sizing-4;
+    height: $pgpt-sizing-4;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--pgpt-color-scroll-thumb);
+    border-radius: $pgpt-radius-m;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--pgpt-color-scroll-thumb-hover);
+  }
 }
 
 @mixin text_overflow_ellipsis($line_clamp) {
