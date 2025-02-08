@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
 import { ButtonComponent } from "../../core/components/button/button.component";
 import { FormInputComponent } from "../../core/components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
@@ -23,9 +23,10 @@ import { InternalLoaderComponent } from "../../core/components/internal-loader/i
   styleUrl: "./document-analyzer.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DocumentAnalyzerComponent {
+export class DocumentAnalyzerComponent implements OnInit {
   prompt = new FormControl("", [FormValidator.requiredValidator("Please Enter your Prompts")]);
   file = new FormControl<File | null>(null);
+  fileName: string = "";
 
   public chatSource$ = new BehaviorSubject<ChatDataSource[]>([]);
   public isFileUploaded$ = new BehaviorSubject<boolean>(false);
@@ -33,6 +34,10 @@ export class DocumentAnalyzerComponent {
   public loading$ = new BehaviorSubject<boolean>(false);
 
   constructor(private toast: TastrService, private analyzer: DocAnalyzerService, private analyzerAPI: DocAnalyserApiService) {}
+
+  public ngOnInit(): void {
+    this.loadSessionChat();
+  }
 
   public onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -104,10 +109,10 @@ export class DocumentAnalyzerComponent {
       .subscribe({
         next: (val: ApiSource) => {
           this.setAnalayzerMessage(val.data);
-          console.log(val);
         },
         error: (err: ErrorSource) => {
-          console.log(err);
+          this.toast.error(err.error.message);
+          console.error(err);
         },
         complete: () => this.loading$.next(false),
       });
@@ -123,5 +128,30 @@ export class DocumentAnalyzerComponent {
 
   private _addMessageToArray(message: string, role: UserRole) {
     this.chatSource$.next([...this.chatSource$.value, { role: role, content: message }]);
+  }
+
+  private loadSessionChat(): void {
+    this.loading$.next(true);
+    this.analyzerAPI
+      .loadSessionData()
+      .pipe(take(1))
+      .subscribe({
+        next: (response: ApiSource) => {
+          const fileName = response.data["file_name"];
+          const chat = response.data["chat"];
+
+          if (fileName && chat.length > 0) {
+            this.file.setValue(null);
+            this.fileName = fileName;
+            this.isFileUploaded$.next(true);
+            this.chatSource$.next(chat);
+          }
+        },
+        error: (err: ErrorSource) => {
+          this.toast.error(err.error.message);
+          console.error(err);
+        },
+        complete: () => this.loading$.next(false),
+      });
   }
 }

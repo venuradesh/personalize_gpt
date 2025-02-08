@@ -103,7 +103,7 @@
 
   ul,
   ol {
-    margin-inline-start: $pgpt-spacing-16;
+    margin-inline-start: calc($pgpt-spacing-base-rem * 2);
 
     li {
       opacity: 0.8;

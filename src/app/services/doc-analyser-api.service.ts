@@ -18,4 +18,8 @@ export class DocAnalyserApiService {
   sendUserQuery(query: string): Observable<any> {
     return this.client.post(`${this.API_URL}/analyzer/user-query`, { query: query });
   }
+
+  loadSessionData(): Observable<any> {
+    return this.client.get(`${this.API_URL}/analyzer/get-doc-chat-session`);
+  }
 }

@@ -8,7 +8,7 @@ import { SidePanelService } from "../../../services/side-panel.service";
 import { BehaviorSubject } from "rxjs";
 import { UserModel } from "../../models/user_models";
 import { NavigationService } from "../../../services/navigation.service";
-import { DocAnalyzerService } from "../../../services/doc-analyzer.service";
+import { ChatbotState, DocAnalyzerService } from "../../../services/doc-analyzer.service";
 import { NewChatService } from "../../../services/new-chat.service";
 
 @Component({
@@ -30,6 +30,7 @@ export class SidePanelComponent implements OnInit {
 
   public ngOnInit(): void {
     this.currentRoute = this.navigationService.getCurrentUrl();
+    this.setAnalyzer();
   }
 
   togglePanel(): void {
@@ -54,5 +55,10 @@ export class SidePanelComponent implements OnInit {
 
   public onGeneralSettingsClick(): void {
     this.navigationService.navigate({ to: this.currentRoute, fragment: "options/general" });
+  }
+
+  private setAnalyzer(): void {
+    const analyzerState = localStorage.getItem("doc-analyzer");
+    if (analyzerState) this.analyzer.setAnalyzerState(analyzerState as ChatbotState);
   }
 }

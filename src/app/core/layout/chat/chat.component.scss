@@ -27,13 +27,12 @@
       justify-content: space-between;
 
       &-top {
-        width: 100%;
+        width: $pgpt-chat-container-size;
         height: 100%;
         padding-inline-end: $pgpt-sizing-8;
         margin-block-end: $pgpt-spacing-16;
         overflow: overlay;
         @include scrollbar();
-        width: $pgpt-chat-container-size;
 
         .chat-welcome-container {
           height: 100%;

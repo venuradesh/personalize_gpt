@@ -11,6 +11,7 @@ export class DocAnalyzerService {
   public analyzerState$ = this.analyzerStateSubject$.asObservable();
 
   setAnalyzerState(state: ChatbotState): void {
+    localStorage.setItem("doc-analyzer", state);
     this.analyzerStateSubject$.next(state);
   }
 

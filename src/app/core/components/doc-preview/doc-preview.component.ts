@@ -11,4 +11,6 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
 })
 export class DocPreviewComponent {
   @Input({ required: true }) file: File | null = null;
+
+  @Input() fileName!: string;
 }
