@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ButtonComponent } from "../../core/components/button/button.component";
 import { FormInputComponent } from "../../core/components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../core/Pipes/pgpt-translate.pipe";
@@ -14,6 +14,7 @@ import { FormValidator } from "../../core/helpers/validators/form-validators";
 import { DocAnalyserApiService } from "../../services/doc-analyser-api.service";
 import { ApiSource, ErrorSource } from "../../core/models/api_models";
 import { InternalLoaderComponent } from "../../core/components/internal-loader/internal-loader.component";
+import { Common } from "../../core/helpers/common";
 
 @Component({
   selector: "pgpt-document-analyzer",
@@ -24,6 +25,8 @@ import { InternalLoaderComponent } from "../../core/components/internal-loader/i
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DocumentAnalyzerComponent implements OnInit {
+  @ViewChild("documentChatContainer") documentChatContainer!: ElementRef;
+
   prompt = new FormControl("", [FormValidator.requiredValidator("Please Enter your Prompts")]);
   file = new FormControl<File | null>(null);
   fileName: string = "";
@@ -128,6 +131,7 @@ export class DocumentAnalyzerComponent implements OnInit {
 
   private _addMessageToArray(message: string, role: UserRole) {
     this.chatSource$.next([...this.chatSource$.value, { role: role, content: message }]);
+    setTimeout(() => Common.scrollToBottom(this.documentChatContainer));
   }
 
   private loadSessionChat(): void {

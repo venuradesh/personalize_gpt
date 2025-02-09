@@ -1,7 +1,7 @@
 <div class="chat-wrapper">
   <div class="chat-container">
     <div class="chat-content">
-      <div class="chat-content-top" *ngIf="(chatSource$ | async) as chatDatas">
+      <div class="chat-content-top" #chatContainer *ngIf="(chatSource$ | async) as chatDatas">
         @if(chatDatas.length === 0){
         <!-- Welcome banner -->
         <div class="chat-welcome-container" *ngIf="!(loading$ | async)">

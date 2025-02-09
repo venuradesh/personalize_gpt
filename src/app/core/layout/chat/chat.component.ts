@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormInputComponent } from "../../components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 import { FormControl, FormGroup, FormsModule } from "@angular/forms";
@@ -16,6 +16,7 @@ import { LoadingService } from "../../../services/loading.service";
 import { InternalLoaderComponent } from "../../components/internal-loader/internal-loader.component";
 import { TastrService } from "../../../services/tastr.service";
 import { NewChatService } from "../../../services/new-chat.service";
+import { Common } from "../../helpers/common";
 
 @Component({
   selector: "pgpt-chat",
@@ -25,6 +26,8 @@ import { NewChatService } from "../../../services/new-chat.service";
   styleUrl: "./chat.component.scss",
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChild("chatContainer") private chatContainer!: ElementRef;
+
   @Input()
   user: UserModel | undefined = undefined;
 
@@ -113,6 +116,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private _addMessageToArray(message: string, role: UserRole, created: string) {
     this.chatSource$.next([...this.chatSource$.value, { role: role, content: message, created: new Date(created) }]);
+    setTimeout(() => Common.scrollToBottom(this.chatContainer));
   }
 
   public ngOnDestroy(): void {

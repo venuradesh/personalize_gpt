@@ -20,7 +20,7 @@
     >
       @if(state.fileUpload){
       <!-- Chat screen -->
-      <div class="analyzer__chat-messages">
+      <div class="analyzer__chat-messages" #documentChatContainer>
         <pgpt-doc-preview [file]="file.value" [fileName]="fileName"></pgpt-doc-preview>
         <div class="analyzer__chat-message-tiles-container">
           @for(chatData of state.chatDatas; track chatData){
