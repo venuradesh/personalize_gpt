@@ -132,4 +132,31 @@
     margin-block: $pgpt-spacing-16;
     @include scrollbar();
   }
+
+  div:has(table) {
+    overflow-x: overlay;
+    @include scrollbar();
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: $pgpt-spacing-16;
+
+    th {
+      padding-block: $pgpt-spacing-8;
+      padding-inline: $pgpt-spacing-8;
+      background-color: var(--pgpt-color-background-selected);
+      border: 1px solid var(--pgpt-color-border-soft);
+      font-size: $pgpt-font-size-body-small;
+    }
+
+    td {
+      padding-inline: $pgpt-spacing-8;
+      padding-block: $pgpt-spacing-8;
+      color: var(--pgpt-color-text-hint);
+      border: 1px solid var(--pgpt-color-border-soft);
+      font-size: $pgpt-font-size-body-small;
+    }
+  }
 }
