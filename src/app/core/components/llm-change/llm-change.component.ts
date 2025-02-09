@@ -28,7 +28,7 @@ import { TOAST_DELAY } from "../../models/toastr-model";
 export class LlmChangeComponent implements OnInit {
   jsonData: ModelData[] = [];
 
-  llm_key = new FormControl("", [FormValidator.requiredValidator()]);
+  llm_key = new FormControl("", [FormValidator.requiredValidator("Please Enter the API Key")]);
   choosen_llm: ModelActivationStaus = ModelActivationStaus.OPENAI;
 
   public initialState: { choosen_llm: string; api_keys: APIKeys } = {
