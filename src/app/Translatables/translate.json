@@ -91,5 +91,8 @@
     "uploadCaption": "Please upload your document to start the chat",
     "uploadButtonText": "Upload the Document",
     "inputPlaceholder": "Message Document Analyzer..."
+  },
+  "history": {
+    "title": "chat history"
   }
 }

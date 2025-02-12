@@ -17,6 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (acceptedErrorCodes.includes(error.status)) {
           this.navigationService.navigate({ to: "login" });
           localStorage.removeItem("doc-analyzer");
+          localStorage.removeItem("history");
           this.cookie.deleteAll();
           this.toastr.error("Access restricted. Please log in to continue.", "Authentication Needed");
         } else {

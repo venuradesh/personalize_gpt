@@ -18,4 +18,9 @@
   <div class="chat-bot-section" *ngIf="(analyzerState$ | async) !== 'closed'">
     <pgpt-document-analyzer></pgpt-document-analyzer>
   </div>
+
+  <!-- History -->
+  <div class="history-section" *ngIf="(historyState$ | async) !== 'closed'">
+    <pgpt-history></pgpt-history>
+  </div>
 </div>

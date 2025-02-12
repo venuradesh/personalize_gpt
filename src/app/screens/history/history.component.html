@@ -1,0 +1,34 @@
+<div
+  class="history"
+  *ngIf="{
+    state: history$ | async,
+    chatHistory: historyList$ | async
+} as history"
+>
+  <div class="history__button" (click)="openHistoryContainer(history.state)">
+    <div class="history__button-icon"></div>
+  </div>
+  <div class="history__wrapper" *ngIf="history.state === 'open'">
+    <div class="history__header">
+      <div class="history__header-title">{{'history.title' | pgptTranslate}}</div>
+      <div class="history__header-actions">
+        <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--minimize" [onClick]="this.onMinimize.bind(this)">
+          <i class="material-icons-outlined minimize">close_fullscreen</i>
+        </pgpt-button>
+        <pgpt-button [buttonType]="'base'" class="analyzer__header-button analyzer__header-button--close" [onClick]="this.onClose.bind(this)">
+          <i class="material-icons-outlined close">close</i>
+        </pgpt-button>
+      </div>
+    </div>
+    <div class="history__container">
+      <div class="history__container-tiles">
+        @for(chatItem of history.chatHistory; track chatItem){
+        <div class="history__container-tile" (click)="onChatHistoryItemClick(chatItem.chat_id)">
+          <div class="history__container-tile-icon"></div>
+          <span class="history__container-tile-content">{{chatItem.chat_name}}</span>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
