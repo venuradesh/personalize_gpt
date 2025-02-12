@@ -41,6 +41,7 @@ export class HistoryComponent implements OnInit {
   }
 
   openHistoryContainer(historyState: HistoryState | null) {
+    this._getChatHistory();
     this.history.setHistoryState(historyState === "open" ? "minimized" : "open");
   }
 
