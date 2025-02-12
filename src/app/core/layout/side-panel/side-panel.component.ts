@@ -10,6 +10,7 @@ import { UserModel } from "../../models/user_models";
 import { NavigationService } from "../../../services/navigation.service";
 import { ChatbotState, DocAnalyzerService } from "../../../services/doc-analyzer.service";
 import { NewChatService } from "../../../services/new-chat.service";
+import { ChatTileComponent } from "../../components/chat-tile/chat-tile.component";
 
 @Component({
   selector: "pgpt-side-panel",
@@ -56,6 +57,8 @@ export class SidePanelComponent implements OnInit {
   public onGeneralSettingsClick(): void {
     this.navigationService.navigate({ to: this.currentRoute, fragment: "options/general" });
   }
+
+  public onChatHistoryClick(): void {}
 
   private setAnalyzer(): void {
     const analyzerState = localStorage.getItem("doc-analyzer");

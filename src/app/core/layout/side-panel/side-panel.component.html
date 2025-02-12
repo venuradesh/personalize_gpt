@@ -14,7 +14,7 @@
           <i class="material-icons-outlined plus">add</i>
           <span>{{'navigator.chatStart' | pgptTranslate}}</span>
         </div>
-      </pgpt-panel-tile> 
+      </pgpt-panel-tile>
     </div>
 
     <!-- Dcoumnet analyzer -->
@@ -39,6 +39,16 @@
         <div class="button-section item llm">
           <div class="icon"></div>
           <span>{{'navigator.llm' | pgptTranslate}}</span>
+        </div>
+      </pgpt-panel-tile>
+    </div>
+
+    <!-- Chat Histories -->
+    <div class="history section">
+      <pgpt-panel-tile [tileType]="'base'" [onTileClick]="onChatHistoryClick.bind(this)">
+        <div class="button-section item history">
+          <div class="icon"></div>
+          <span>{{'navigator.chatHistory' | pgptTranslate}}</span>
         </div>
       </pgpt-panel-tile>
     </div>

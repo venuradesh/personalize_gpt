@@ -50,7 +50,8 @@
   "navigator": {
     "chatStart": "Start a new Chat",
     "documentAnalyzer": "Document Analyzer Chatbot",
-    "llm": "Change LLM Model"
+    "llm": "Change LLM Model",
+    "chatHistory": "Chat History"
   },
 
   "chat": {
