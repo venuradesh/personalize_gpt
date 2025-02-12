@@ -7,6 +7,7 @@ import { HistoryApiService } from "../../services/history-api.service";
 import { BehaviorSubject, take } from "rxjs";
 import { ApiSource, ErrorSource } from "../../core/models/api_models";
 import { TastrService } from "../../services/tastr.service";
+import { LoadChatService } from "../../services/load-chat.service";
 
 interface HistoryItem {
   chat_id: string;
@@ -25,7 +26,7 @@ export class HistoryComponent implements OnInit {
   history$ = this.history.historyState$;
   historyList$ = new BehaviorSubject<HistoryItem[]>([]);
 
-  constructor(private history: HistoryService, private historyAPI: HistoryApiService, private toast: TastrService) {}
+  constructor(private history: HistoryService, private historyAPI: HistoryApiService, private toast: TastrService, private loadChat: LoadChatService) {}
 
   ngOnInit(): void {
     this._getChatHistory();
@@ -43,7 +44,10 @@ export class HistoryComponent implements OnInit {
     this.history.setHistoryState(historyState === "open" ? "minimized" : "open");
   }
 
-  public onChatHistoryItemClick(chat_id: string) {}
+  public onChatHistoryItemClick(chat_id: string) {
+    this.onMinimize();
+    this._loadChatById(chat_id);
+  }
 
   private _getChatHistory(): void {
     this.historyAPI
@@ -54,6 +58,22 @@ export class HistoryComponent implements OnInit {
         error: (err: ErrorSource) => {
           console.error(err);
           this.toast.error(err.error.message);
+        },
+      });
+  }
+
+  private _loadChatById(chat_id: string): void {
+    this.historyAPI
+      .loadChatByChatId(chat_id)
+      .pipe(take(1))
+      .subscribe({
+        next: (response: ApiSource) => {
+          this.toast.success("Chat loaded by Chat history");
+          this.loadChat.setToDefault();
+          this.loadChat.loadChatRetrievedByChatId(response.data);
+        },
+        error: (err: ErrorSource) => {
+          console.log(err);
         },
       });
   }

@@ -17,6 +17,7 @@ import { InternalLoaderComponent } from "../../components/internal-loader/intern
 import { TastrService } from "../../../services/tastr.service";
 import { NewChatService } from "../../../services/new-chat.service";
 import { Common } from "../../helpers/common";
+import { loadChatItem, LoadChatService } from "../../../services/load-chat.service";
 
 @Component({
   selector: "pgpt-chat",
@@ -38,11 +39,12 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private chatService: ChatService, private toast: TastrService, private newChat: NewChatService) {}
+  constructor(private chatService: ChatService, private toast: TastrService, private newChat: NewChatService, private loadChat: LoadChatService) {}
 
   public ngOnInit(): void {
     this._loadSessionChat();
     this._newChatListener();
+    this._loadChatListener();
   }
 
   public onSubmitClck(): void {
@@ -61,6 +63,20 @@ export class ChatComponent implements OnInit, OnDestroy {
       next: (value: boolean) => {
         if (value) this._startNewChat();
       },
+    });
+  }
+
+  private _loadChatListener(): void {
+    this.loading$.next(true);
+
+    this.loadChat.loadChat$.pipe(takeUntil(this.destroy$)).subscribe({
+      next: (chats: loadChatItem[]) => {
+        if (chats.length > 0) {
+          this.chatSource$.next([]);
+          chats.map((chat) => this._addMessageToArray(chat.content, chat.role as UserRole, chat.timestamp));
+        }
+      },
+      complete: () => this.loading$.next(false),
     });
   }
 
