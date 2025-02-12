@@ -135,12 +135,15 @@
     &-messages {
       height: 100%;
       overflow: hidden;
-
-      &:hover {
-        overflow-y: overlay;
-        @include scrollbar();
-      }
+      padding-inline-end: $pgpt-spacing-8;
+      overflow-y: overlay;
+      @include scrollbar();
     }
+  }
+
+  &__loading {
+    display: flex;
+    justify-content: center;
   }
 }
 

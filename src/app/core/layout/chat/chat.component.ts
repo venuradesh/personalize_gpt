@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormInputComponent } from "../../components/form-input/form-input.component";
 import { PgptTranslatePipe } from "../../Pipes/pgpt-translate.pipe";
 import { FormControl, FormGroup, FormsModule } from "@angular/forms";
@@ -16,6 +16,8 @@ import { LoadingService } from "../../../services/loading.service";
 import { InternalLoaderComponent } from "../../components/internal-loader/internal-loader.component";
 import { TastrService } from "../../../services/tastr.service";
 import { NewChatService } from "../../../services/new-chat.service";
+import { Common } from "../../helpers/common";
+import { loadChatItem, LoadChatService } from "../../../services/load-chat.service";
 
 @Component({
   selector: "pgpt-chat",
@@ -25,6 +27,8 @@ import { NewChatService } from "../../../services/new-chat.service";
   styleUrl: "./chat.component.scss",
 })
 export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChild("chatContainer") private chatContainer!: ElementRef;
+
   @Input()
   user: UserModel | undefined = undefined;
 
@@ -35,11 +39,12 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject<void>();
 
-  constructor(private chatService: ChatService, private toast: TastrService, private newChat: NewChatService) {}
+  constructor(private chatService: ChatService, private toast: TastrService, private newChat: NewChatService, private loadChat: LoadChatService) {}
 
   public ngOnInit(): void {
     this._loadSessionChat();
     this._newChatListener();
+    this._loadChatListener();
   }
 
   public onSubmitClck(): void {
@@ -55,7 +60,23 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private _newChatListener(): void {
     this.newChat.startNewChat$.pipe(takeUntil(this.destroy$)).subscribe({
-      next: () => this._startNewChat(),
+      next: (value: boolean) => {
+        if (value) this._startNewChat();
+      },
+    });
+  }
+
+  private _loadChatListener(): void {
+    this.loading$.next(true);
+
+    this.loadChat.loadChat$.pipe(takeUntil(this.destroy$)).subscribe({
+      next: (chats: loadChatItem[]) => {
+        if (chats.length > 0) {
+          this.chatSource$.next([]);
+          chats.map((chat) => this._addMessageToArray(chat.content, chat.role as UserRole, chat.timestamp));
+        }
+      },
+      complete: () => this.loading$.next(false),
     });
   }
 
@@ -111,6 +132,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private _addMessageToArray(message: string, role: UserRole, created: string) {
     this.chatSource$.next([...this.chatSource$.value, { role: role, content: message, created: new Date(created) }]);
+    setTimeout(() => Common.scrollToBottom(this.chatContainer));
   }
 
   public ngOnDestroy(): void {

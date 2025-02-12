@@ -109,6 +109,10 @@
         &.profile .icon {
           background-image: $pgpt-icon-profile;
         }
+
+        &.history .icon {
+          background-image: $pgpt-icon-history;
+        }
       }
     }
   }

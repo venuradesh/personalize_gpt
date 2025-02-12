@@ -58,6 +58,7 @@
     text-align: right;
 
     .content {
+      width: 100%;
       font-size: $pgpt-font-size-body-medium;
       padding-block-end: $pgpt-spacing-4;
       line-height: $pgpt-line-height-flowing;
@@ -81,6 +82,85 @@
       padding-block: $pgpt-spacing-8;
       padding-inline: $pgpt-spacing-8;
       margin-inline: 0;
+    }
+  }
+}
+
+::ng-deep .isAssistant {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-block: $pgpt-spacing-8;
+  }
+
+  h1 {
+    font-size: $pgpt-font-size-display-small;
+  }
+
+  p {
+    margin-block: $pgpt-spacing-8;
+    text-align: justify;
+    opacity: 0.8;
+  }
+
+  ul,
+  ol {
+    margin-inline-start: calc($pgpt-spacing-base-rem * 2);
+
+    li {
+      opacity: 0.8;
+      margin-block: $pgpt-spacing-4;
+
+      &:has(p):has(strong) {
+        opacity: 1;
+      }
+    }
+  }
+
+  p:has(strong) {
+    opacity: 1;
+  }
+
+  a {
+    color: var(--pgpt-color-text-link);
+  }
+
+  pre {
+    overflow-x: overlay;
+    background-color: var(--pgpt-color-background-selected);
+    color: var(--pgpt-color-text-weak);
+    padding-inline: $pgpt-spacing-16;
+    padding-block: $pgpt-spacing-16;
+    margin-block: $pgpt-spacing-16;
+    @include scrollbar();
+  }
+
+  div:has(table) {
+    overflow-x: overlay;
+    @include scrollbar();
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-block: $pgpt-spacing-16;
+
+    th {
+      padding-block: $pgpt-spacing-8;
+      padding-inline: $pgpt-spacing-8;
+      background-color: var(--pgpt-color-background-selected);
+      border: 1px solid var(--pgpt-color-border-soft);
+      font-size: $pgpt-font-size-body-small;
+    }
+
+    td {
+      padding-inline: $pgpt-spacing-8;
+      padding-block: $pgpt-spacing-8;
+      color: var(--pgpt-color-text-hint);
+      border: 1px solid var(--pgpt-color-border-soft);
+      font-size: $pgpt-font-size-body-small;
     }
   }
 }

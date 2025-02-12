@@ -2,6 +2,7 @@ import { FormGroup } from "@angular/forms";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
 import { RegisterUserModel } from "../models/user_models";
+import { ElementRef } from "@angular/core";
 
 export class Common {
   constructor() {}
@@ -78,5 +79,9 @@ export class Common {
       filter((event) => event instanceof NavigationEnd),
       map(() => this.checkForChildRoutes(route))
     );
+  }
+
+  public static scrollToBottom(element: ElementRef): void {
+    element.nativeElement.scrollTop = element.nativeElement.scrollHeight;
   }
 }

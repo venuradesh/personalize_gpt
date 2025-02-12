@@ -10,11 +10,13 @@ import { UserModel } from "../../core/models/user_models";
 import { OptionsComponent } from "../../screens/options/options.component";
 import { DocumentAnalyzerComponent } from "../../screens/document-analyzer/document-analyzer.component";
 import { DocAnalyzerService } from "../../services/doc-analyzer.service";
+import { HistoryComponent } from "../../screens/history/history.component";
+import { HistoryService } from "../../services/history.service";
 
 @Component({
   selector: "pgpt-chat-page",
   standalone: true,
-  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent, DocumentAnalyzerComponent],
+  imports: [CommonModule, SidePanelComponent, ChatComponent, MatIconModule, OptionsComponent, DocumentAnalyzerComponent, HistoryComponent],
   templateUrl: "./chat-page.component.html",
   styleUrl: "./chat-page.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,10 +26,11 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   public user: UserModel | undefined = undefined;
   public isOptionsApplied: boolean | null = false;
   public analyzerState$ = this.analyzer.analyzerState$;
+  public historyState$ = this.history.historyState$;
 
   private destroy$ = new Subject<void>();
 
-  constructor(private sidePanel: SidePanelService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private analyzer: DocAnalyzerService) {}
+  constructor(private sidePanel: SidePanelService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private analyzer: DocAnalyzerService, private history: HistoryService) {}
 
   public ngOnInit(): void {
     this.setResolverData();

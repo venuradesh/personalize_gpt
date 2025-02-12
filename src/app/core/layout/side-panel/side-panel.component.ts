@@ -8,8 +8,9 @@ import { SidePanelService } from "../../../services/side-panel.service";
 import { BehaviorSubject } from "rxjs";
 import { UserModel } from "../../models/user_models";
 import { NavigationService } from "../../../services/navigation.service";
-import { DocAnalyzerService } from "../../../services/doc-analyzer.service";
+import { ChatbotState, DocAnalyzerService } from "../../../services/doc-analyzer.service";
 import { NewChatService } from "../../../services/new-chat.service";
+import { HistoryService, HistoryState } from "../../../services/history.service";
 
 @Component({
   selector: "pgpt-side-panel",
@@ -26,10 +27,17 @@ export class SidePanelComponent implements OnInit {
   private currentRoute: string = "";
   isOpen$: BehaviorSubject<boolean> = this.sidePanel.isOpen$;
 
-  constructor(private sidePanel: SidePanelService, private navigationService: NavigationService, private analyzer: DocAnalyzerService, private newChat: NewChatService) {}
+  constructor(
+    private sidePanel: SidePanelService,
+    private navigationService: NavigationService,
+    private analyzer: DocAnalyzerService,
+    private history: HistoryService,
+    private newChat: NewChatService
+  ) {}
 
   public ngOnInit(): void {
     this.currentRoute = this.navigationService.getCurrentUrl();
+    this.setAnalyzer();
   }
 
   togglePanel(): void {
@@ -54,5 +62,16 @@ export class SidePanelComponent implements OnInit {
 
   public onGeneralSettingsClick(): void {
     this.navigationService.navigate({ to: this.currentRoute, fragment: "options/general" });
+  }
+
+  public onChatHistoryClick(): void {
+    this.history.setHistoryState("open");
+  }
+
+  private setAnalyzer(): void {
+    const analyzerState = localStorage.getItem("doc-analyzer");
+    const historyState = localStorage.getItem("history");
+    if (analyzerState) this.analyzer.setAnalyzerState(analyzerState as ChatbotState);
+    if (historyState) this.history.setHistoryState(historyState as HistoryState);
   }
 }
