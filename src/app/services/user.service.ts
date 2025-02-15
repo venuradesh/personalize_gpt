@@ -35,4 +35,9 @@ export class UserService {
     const url = `${this.API_URL}/user/update-llm-modal`;
     return this.clientService.put(url, { choosen_llm, api_key });
   }
+
+  public resetPassword(user_id: string, password: string): Observable<any> {
+    const url = `${this.API_URL}/user/password-reset`;
+    return this.clientService.put(url, { user_id, password });
+  }
 }

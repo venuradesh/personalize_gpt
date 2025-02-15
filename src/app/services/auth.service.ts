@@ -30,4 +30,9 @@ export class AuthService {
   public forgotPassword(email: string): Observable<any> {
     return this.clientService.post(`${this.API_URL}/auth/forgot-password`, { email });
   }
+
+  public authenticateToken(token: string): Observable<any> {
+    const url = `${this.API_URL}/auth/authenticate-email-by-reset-token`;
+    return this.clientService.post(url, { reset_token: token });
+  }
 }

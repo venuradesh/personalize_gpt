@@ -26,7 +26,6 @@ export const userResolver: ResolveFn<Observable<UserModel | null>> = (route, sta
   }
 
   return userService.getUserData(userId).pipe(
-    take(1),
     switchMap((response) => {
       loading.disbaleLoading();
       return of(response.data as UserModel);
@@ -36,6 +35,7 @@ export const userResolver: ResolveFn<Observable<UserModel | null>> = (route, sta
       loading.disbaleLoading();
       toastrService.error(error.message || "An error occurred.", error.name || "Error");
       return of(null);
-    })
+    }),
+    take(1)
   );
 };

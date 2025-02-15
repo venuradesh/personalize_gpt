@@ -96,5 +96,12 @@
   },
   "history": {
     "title": "chat history"
+  },
+  "reset": {
+    "heading": "Reset password",
+    "text": "Please create a new password to secure your account. Use a mix of letters, numbers, and special characters for better security.",
+    "password": "New password",
+    "confPassword": "Confirm Password",
+    "submit": "Confirm and Reset"
   }
 }
