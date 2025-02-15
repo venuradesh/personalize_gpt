@@ -11,7 +11,7 @@
     <div class="heading">{{'login.loginPageHeader' | pgptTranslate}}</div>
 
     <!-- Form Section -->
-    <form class="login-form" #loginForm="ngForm" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
+    <form class="login-form" #loginForm="ngForm" autocomplete="off" (ngSubmit)="onFormSubmit()" [formGroup]="formGroup">
       <!-- Email -->
       <div class="email section">
         <pgpt-form-input [control]="email" [placeHolder]="'login.email' | pgptTranslate"></pgpt-form-input>

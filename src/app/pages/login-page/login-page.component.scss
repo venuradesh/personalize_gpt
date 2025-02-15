@@ -16,7 +16,11 @@
     margin-block-start: 10%;
 
     &.forgot-password-container {
-      margin-block-start: 20%;
+      margin-block-start: 15%;
+
+      @include media("md-down") {
+        margin-block-start: 25%;
+      }
     }
 
     &.login-container {

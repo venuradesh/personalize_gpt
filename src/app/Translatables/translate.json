@@ -40,7 +40,9 @@
     "register": "Register",
     "forgotPasswordContent": "No Worries, We'll send you reset instructions.",
     "backToLogin": "Back to Login",
-    "resetPassword": "Reset Password"
+    "resetPassword": "Reset Password",
+    "emailSentConf": "Check Your Inbox!",
+    "emailSentConfText": "Please check your email for a link to reset your password. The link is valid for a limited time, so make sure to use it soon!"
   },
   "resources": {
     "clickHere": "Click Here",
@@ -94,5 +96,12 @@
   },
   "history": {
     "title": "chat history"
+  },
+  "reset": {
+    "heading": "Reset password",
+    "text": "Please create a new password to secure your account. Use a mix of letters, numbers, and special characters for better security.",
+    "password": "New password",
+    "confPassword": "Confirm Password",
+    "submit": "Confirm and Reset"
   }
 }

@@ -71,6 +71,14 @@ export class NavBarComponent implements OnInit, OnDestroy {
         themeButton: true,
         backButton: true,
       }
+    } else if(route.startsWith('/password-reset')){
+      this.removeNavBar.next(false);
+      this.navBarButtonStatus = {
+        loginButton :true,
+        registerButton :false,
+        themeButton: true,
+        backButton: true,
+      }
     } else {
       this.removeNavBar.next(true);
     }

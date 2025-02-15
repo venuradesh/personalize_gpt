@@ -1,6 +1,6 @@
 <div class="input-wrapper">
   <ng-content></ng-content>
-  <input [type]="type" [placeholder]="placeHolder" [formControl]="control" class="input-field" [readOnly]="isReadOnly" tabindex="0" (keyup)="onKeyUp($event)" />
+  <input [type]="type" [placeholder]="placeHolder" [formControl]="control" class="input-field" [readOnly]="isReadOnly" tabindex="0" autocomplete="off" (keyup)="onKeyUp($event)" />
   <div class="show-password" *ngIf="activatePreviewPassword">
     <pgpt-button [onClick]="togglePassword.bind(this)" *ngIf="!showPassword">
       <i class="material-icons-outlined show-icon">visibility</i>

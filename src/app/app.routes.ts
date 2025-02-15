@@ -8,6 +8,9 @@ import { authGuard } from "./guards/auth.guard";
 import { userResolver } from "./Resolvers/user.resolver";
 import { ModelSelectionComponent } from "./pages/model-selection/model-selection.component";
 import { registerGuard } from "./guards/register.guard";
+import { PasswordResetComponent } from "./pages/password-reset/password-reset.component";
+import { verifyTokenGuard } from "./guards/verify-token.guard";
+import { passwordResetResolver } from "./Resolvers/password-reset.resolver";
 
 export const routes: Routes = [
   {
@@ -41,6 +44,12 @@ export const routes: Routes = [
     component: ChatPageComponent,
     resolve: { user: userResolver },
     canActivate: [authGuard],
+  },
+  {
+    path: "password-reset/:token",
+    component: PasswordResetComponent,
+    resolve: { data: passwordResetResolver },
+    canActivate: [verifyTokenGuard],
   },
   {
     path: "**",

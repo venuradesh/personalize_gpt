@@ -105,3 +105,14 @@ a {
   margin-block-start: $pgpt-spacing-8;
   line-height: $pgpt-line-height-flowing;
 }
+
+.hidden {
+  visibility: hidden;
+
+  & + .loader {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

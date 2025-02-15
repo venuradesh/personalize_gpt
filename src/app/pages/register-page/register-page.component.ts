@@ -62,7 +62,7 @@ export class RegisterPageComponent implements OnInit {
       personality: this.personality,
       description: this.describe,
       password: this.password,
-      confPassword: this.password,
+      confPassword: this.confPassword,
 
       apiTokens: new FormGroup({}),
     });
