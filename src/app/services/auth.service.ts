@@ -26,4 +26,8 @@ export class AuthService {
     const token = this.cookies.get("access_token");
     return !!token;
   }
+
+  public forgotPassword(email: string): Observable<any> {
+    return this.clientService.post(`${this.API_URL}/auth/forgot-password`, { email });
+  }
 }
